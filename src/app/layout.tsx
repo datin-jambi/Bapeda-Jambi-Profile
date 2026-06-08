@@ -1,0 +1,55 @@
+import type { Metadata } from "next";
+import { Poppins, Inter } from "next/font/google";
+import "./globals.css";
+import { Providers } from "@/components/providers";
+import { Toaster } from "sonner";
+import NextTopLoader from "nextjs-toploader";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "BAPENDA Provinsi Jambi",
+    template: "%s | BAPENDA Provinsi Jambi",
+  },
+  description: "Website Resmi Badan Pendapatan Daerah Provinsi Jambi",
+  keywords: ["bapenda", "jambi", "pajak", "samsat", "pkb"],
+  authors: [{ name: "BAPENDA Provinsi Jambi" }],
+  creator: "BAPENDA Provinsi Jambi",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    url: process.env.NEXT_PUBLIC_APP_URL,
+    siteName: "BAPENDA Provinsi Jambi",
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="id" suppressHydrationWarning>
+      <body className={`${poppins.variable} ${inter.variable} font-inter antialiased`}>
+        <NextTopLoader
+          color="hsl(var(--primary))"
+          height={3}
+          showSpinner={false}
+          shadow={false}
+        />
+        <Providers>
+          {children}
+          <Toaster richColors position="top-right" />
+        </Providers>
+      </body>
+    </html>
+  );
+}
+
