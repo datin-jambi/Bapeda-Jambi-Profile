@@ -16,11 +16,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { newsSchema, NewsInput } from "@/lib/validations";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { ArrowLeft, Loader2, Send, CheckCircle, XCircle, Eye } from "lucide-react";
+import { ArrowLeft, Send, CheckCircle, XCircle, Eye } from "lucide-react";
 import Link from "next/link";
 import { ImageUpload } from "@/components/cms/image-upload";
 import { useAuthStore } from "@/store";
-import { hasPermission, canPublish } from "@/types";
 import { ContentStatus } from "@prisma/client";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -110,27 +109,27 @@ export default function EditNewsPage() {
         </div>
         <div className="flex gap-2">
           {status === "DRAFT" && (
-            <Button variant="outline" size="sm" onClick={() => actionMutation.mutate("submit")} disabled={actionMutation.isPending}>
+            <Button variant="secondary" size="sm" loading={actionMutation.isPending} onClick={() => actionMutation.mutate("submit")}>
               <Send className="mr-1 h-3 w-3" />Kirim Review
             </Button>
           )}
           {isAdmin && status === "PENDING_REVIEW" && (
             <>
-              <Button variant="outline" size="sm" className="text-green-600" onClick={() => actionMutation.mutate("approve")} disabled={actionMutation.isPending}>
+              <Button variant="success" size="sm" loading={actionMutation.isPending} onClick={() => actionMutation.mutate("approve")}>
                 <CheckCircle className="mr-1 h-3 w-3" />Setujui
               </Button>
-              <Button variant="outline" size="sm" className="text-red-600" onClick={() => actionMutation.mutate("reject")} disabled={actionMutation.isPending}>
+              <Button variant="destructive" size="sm" loading={actionMutation.isPending} onClick={() => actionMutation.mutate("reject")}>
                 <XCircle className="mr-1 h-3 w-3" />Tolak
               </Button>
             </>
           )}
           {isAdmin && status === "APPROVED" && (
-            <Button size="sm" onClick={() => actionMutation.mutate("publish")} disabled={actionMutation.isPending}>
+            <Button size="sm" loading={actionMutation.isPending} onClick={() => actionMutation.mutate("publish")}>
               <Eye className="mr-1 h-3 w-3" />Publikasi
             </Button>
           )}
           {isAdmin && status === "PUBLISHED" && (
-            <Button variant="outline" size="sm" onClick={() => actionMutation.mutate("unpublish")} disabled={actionMutation.isPending}>
+            <Button variant="warning" size="sm" loading={actionMutation.isPending} onClick={() => actionMutation.mutate("unpublish")}>
               Batalkan Publikasi
             </Button>
           )}
@@ -204,9 +203,7 @@ export default function EditNewsPage() {
         {canEdit && (
           <div className="flex justify-end gap-3">
             <Button type="button" variant="outline" asChild><Link href="/cms/news">Batal</Link></Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menyimpan...</> : "Simpan Perubahan"}
-            </Button>
+            <Button type="submit" loading={isSubmitting}>Simpan Perubahan</Button>
           </div>
         )}
       </form>

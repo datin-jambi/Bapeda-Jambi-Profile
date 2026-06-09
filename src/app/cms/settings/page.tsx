@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { Loader2, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function CmsSettingsPage() {
@@ -115,9 +115,7 @@ export default function CmsSettingsPage() {
         </Card>
 
         <div className="flex justify-end">
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menyimpan...</> : <><Save className="mr-2 h-4 w-4" />Simpan Pengaturan</>}
-          </Button>
+          <Button type="submit" loading={isSubmitting} leftIcon={<Save className="h-4 w-4" />}>Simpan Pengaturan</Button>
         </div>
       </form>
     </div>

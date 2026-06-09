@@ -112,7 +112,7 @@ export default function CmsFaqsPage() {
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1">
                         <Button size="sm" variant="ghost" onClick={() => openEdit(faq)}><Pencil className="h-3 w-3" /></Button>
-                        <Button size="sm" variant="ghost" className="text-red-600" onClick={() => { if (confirm("Hapus FAQ ini?")) deleteMutation.mutate(faq.id); }}><Trash2 className="h-3 w-3" /></Button>
+                        <Button size="sm" variant="destructive" onClick={() => { if (confirm("Hapus FAQ ini?")) deleteMutation.mutate(faq.id); }}><Trash2 className="h-3 w-3" /></Button>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -169,9 +169,7 @@ export default function CmsFaqsPage() {
             </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setOpen(false)}>Batal</Button>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Menyimpan..." : "Simpan"}
-              </Button>
+              <Button type="submit" loading={isSubmitting}>Simpan</Button>
             </DialogFooter>
           </form>
         </DialogContent>

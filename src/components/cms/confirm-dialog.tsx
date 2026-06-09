@@ -44,8 +44,8 @@ export function ConfirmDialog({
           <Button variant="outline" onClick={() => onOpenChange(false)} disabled={loading}>
             {cancelLabel}
           </Button>
-          <Button variant={variant} onClick={onConfirm} disabled={loading}>
-            {loading ? "Memproses..." : confirmLabel}
+          <Button variant={variant} onClick={onConfirm} loading={loading}>
+            {confirmLabel}
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

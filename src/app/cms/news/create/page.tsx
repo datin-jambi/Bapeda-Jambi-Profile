@@ -13,7 +13,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import api from "@/lib/axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { Loader2, ArrowLeft, Upload } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { ImageUpload } from "@/components/cms/image-upload";
 
@@ -118,9 +118,7 @@ export default function CreateNewsPage() {
           <Button type="button" variant="outline" asChild>
             <Link href="/cms/news">Batal</Link>
           </Button>
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menyimpan...</> : "Simpan sebagai Draft"}
-          </Button>
+          <Button type="submit" loading={isSubmitting}>Simpan sebagai Draft</Button>
         </div>
       </form>
     </div>

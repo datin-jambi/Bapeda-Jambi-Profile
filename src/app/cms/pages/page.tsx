@@ -124,7 +124,7 @@ export default function CmsPagesPage() {
             </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setOpen(false)}>Batal</Button>
-              <Button type="submit" disabled={isSubmitting}>{isSubmitting ? "Menyimpan..." : "Simpan"}</Button>
+              <Button type="submit" loading={isSubmitting}>Simpan</Button>
             </DialogFooter>
           </form>
         </DialogContent>

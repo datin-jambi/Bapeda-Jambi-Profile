@@ -201,7 +201,7 @@ export default function CmsBannersPage() {
       render: (b) => (
         <div className="flex items-center justify-end gap-1">
           <Button size="sm" variant="ghost" onClick={() => openEdit(b)}><Pencil className="h-3 w-3" /></Button>
-          <Button size="sm" variant="ghost" className="text-red-600" onClick={() => setDeleteId(b.id)}>
+          <Button size="sm" variant="destructive" onClick={() => setDeleteId(b.id)}>
             <Trash2 className="h-3 w-3" />
           </Button>
         </div>
@@ -319,7 +319,7 @@ export default function CmsBannersPage() {
 
             <div className="flex items-center justify-end gap-2 px-6 py-4 border-t">
               <Button type="button" variant="outline" onClick={() => setOpen(false)}>Batal</Button>
-              <Button type="submit" disabled={isSubmitting}>{isSubmitting ? "Menyimpan..." : "Simpan"}</Button>
+              <Button type="submit" loading={isSubmitting}>Simpan</Button>
             </div>
           </form>
         </DialogContent>

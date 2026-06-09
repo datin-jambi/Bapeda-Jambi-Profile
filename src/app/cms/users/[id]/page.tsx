@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { updateUserSchema, UpdateUserInput } from "@/lib/validations";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -152,9 +152,7 @@ export default function EditUserPage() {
               </>
             )}
             <div className="flex justify-end">
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menyimpan...</> : "Simpan Perubahan"}
-              </Button>
+              <Button type="submit" loading={isSubmitting}>Simpan Perubahan</Button>
             </div>
           </form>
         </CardContent>

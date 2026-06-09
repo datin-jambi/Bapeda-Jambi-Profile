@@ -335,8 +335,7 @@ export default function CmsUsersPage() {
               </Button>
               <Button
                 size="sm"
-                variant="ghost"
-                className="text-red-600"
+                variant="destructive"
                 title="Hapus"
                 onClick={() => setDeleteId(u.id)}
               >
@@ -360,7 +359,7 @@ export default function CmsUsersPage() {
           <p className="text-sm text-muted-foreground">Kelola akun pengguna CMS</p>
         </div>
         {isSuperAdmin && (
-          <Button onClick={openCreate}>
+          <Button onClick={openCreate} className="w-fit">
             <Plus className="mr-2 h-4 w-4" />Tambah Pengguna
           </Button>
         )}

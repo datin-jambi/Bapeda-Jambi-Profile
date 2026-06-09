@@ -12,7 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import api from "@/lib/axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { Loader2, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { ImageUpload } from "@/components/cms/image-upload";
 
@@ -68,9 +68,7 @@ export default function CreateGalleryPage() {
 
         <div className="flex justify-end gap-3">
           <Button type="button" variant="outline" asChild><Link href="/cms/galleries">Batal</Link></Button>
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Membuat...</> : "Buat Galeri"}
-          </Button>
+          <Button type="submit" loading={isSubmitting}>Buat Galeri</Button>
         </div>
       </form>
     </div>

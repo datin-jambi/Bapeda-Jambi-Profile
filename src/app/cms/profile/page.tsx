@@ -15,7 +15,6 @@ import { updateUserSchema, changePasswordSchema, UpdateUserInput, ChangePassword
 import { useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
 
 export default function CmsProfilePage() {
   const { user: storeUser, setUser } = useAuthStore();
@@ -114,9 +113,7 @@ export default function CmsProfilePage() {
               </div>
             </div>
             <div className="flex justify-end">
-              <Button type="submit" disabled={profileMutation.isPending}>
-                {profileMutation.isPending ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menyimpan...</> : "Simpan Perubahan"}
-              </Button>
+              <Button type="submit" loading={profileMutation.isPending}>Simpan Perubahan</Button>
             </div>
           </form>
         </CardContent>

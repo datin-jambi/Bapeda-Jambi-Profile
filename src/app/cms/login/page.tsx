@@ -11,7 +11,7 @@ import { useAuthStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import api from "@/lib/axios";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -79,13 +79,7 @@ export default function LoginPage() {
             {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
           </div>
 
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Memproses...</>
-            ) : (
-              "Masuk"
-            )}
-          </Button>
+          <Button type="submit" className="w-full" loading={isSubmitting}>Masuk</Button>
         </form>
 
         <p className="mt-4 text-center text-xs text-muted-foreground">

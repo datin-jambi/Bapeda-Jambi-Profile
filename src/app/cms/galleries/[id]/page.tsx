@@ -169,9 +169,7 @@ export default function EditGalleryPage() {
         </Card>
 
         <div className="flex justify-end gap-3">
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menyimpan...</> : "Simpan"}
-          </Button>
+          <Button type="submit" loading={isSubmitting}>Simpan</Button>
         </div>
       </form>
 
@@ -242,10 +240,11 @@ export default function EditGalleryPage() {
                 <Button
                   type="button"
                   size="sm"
-                  disabled={!pendingUrls.length || addItemMutation.isPending}
+                  loading={addItemMutation.isPending}
+                  disabled={!pendingUrls.length}
                   onClick={handleSaveAllItems}
                 >
-                  {addItemMutation.isPending ? <><Loader2 className="mr-1 h-3 w-3 animate-spin" />Menyimpan...</> : `Simpan ${pendingUrls.length} Foto`}
+                  {`Simpan ${pendingUrls.length} Foto`}
                 </Button>
                 <Button type="button" size="sm" variant="outline" onClick={() => { setAddingItem(false); setPendingUrls([]); }}>Batal</Button>
               </div>
