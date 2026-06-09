@@ -60,6 +60,11 @@ export default function CmsBannersPage() {
   const [editId, setEditId] = useState<string | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
+  function handleDialogOpenChange(v: boolean) {
+    setOpen(v);
+    if (!v) { reset(); setEditId(null); }
+  }
+
   // ── URL sync ───────────────────────────────────────────────────────────────
 
   const pushParams = useCallback(
@@ -116,7 +121,7 @@ export default function CmsBannersPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cms-banners"] });
       toast.success(editId ? "Banner diperbarui" : "Banner dibuat");
-      setOpen(false); reset(); setEditId(null);
+      handleDialogOpenChange(false);
     },
     onError: (err: { response?: { data?: { message?: string } } }) =>
       toast.error(err.response?.data?.message || "Gagal"),
@@ -267,7 +272,7 @@ export default function CmsBannersPage() {
         onConfirm={() => { if (deleteId) deleteMutation.mutate(deleteId, { onSettled: () => setDeleteId(null) }); }}
       />
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={handleDialogOpenChange}>
         <DialogContent className="max-w-2xl p-0 gap-0 max-h-[90vh] flex flex-col">
           <VisuallyHidden.Root>
             <DialogTitle>{editId ? "Edit Banner" : "Tambah Banner Baru"}</DialogTitle>
@@ -309,7 +314,11 @@ export default function CmsBannersPage() {
                 </div>
                 <div className="space-y-2">
                   <Label>Status</Label>
-                  <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" {...register("isActive", { setValueAs: (v) => v === "true" || v === true })}>
+                  <select
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    value={watch("isActive") ? "true" : "false"}
+                    onChange={(e) => setValue("isActive", e.target.value === "true")}
+                  >
                     <option value="true">Aktif</option>
                     <option value="false">Nonaktif</option>
                   </select>
@@ -318,7 +327,7 @@ export default function CmsBannersPage() {
             </div>
 
             <div className="flex items-center justify-end gap-2 px-6 py-4 border-t">
-              <Button type="button" variant="outline" onClick={() => setOpen(false)}>Batal</Button>
+              <Button type="button" variant="outline" onClick={() => handleDialogOpenChange(false)}>Batal</Button>
               <Button type="submit" loading={isSubmitting}>Simpan</Button>
             </div>
           </form>

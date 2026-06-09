@@ -51,12 +51,16 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
   let status: ContentStatus = "DRAFT";
   if (user.role === "Admin_Uptd" || user.role === "Editor") status = "PENDING_REVIEW";
 
-  const news = await newsRepository.create({
-    ...parsed.data,
-    slug,
-    authorId: user.id,
-    status,
-  });
+  const createData = { ...parsed.data, slug, authorId: user.id, status };
+  console.log("[news/create] data:", JSON.stringify(createData));
+
+  let news;
+  try {
+    news = await newsRepository.create(createData);
+  } catch (e: unknown) {
+    console.error("[news/create] prisma error:", e);
+    throw e;
+  }
 
   await createAuditLog({ userId: user.id, action: "CREATE", entityType: "News", entityId: news.id, newData: news });
   return ApiResponse.created(news, "Berita berhasil dibuat");

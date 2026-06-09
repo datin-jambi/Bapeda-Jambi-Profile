@@ -8,14 +8,21 @@ export async function createAuditLog(data: {
   oldData?: unknown;
   newData?: unknown;
 }): Promise<void> {
-  await prisma.auditLog.create({
-    data: {
-      userId: data.userId,
-      action: data.action,
-      entityType: data.entityType,
-      entityId: data.entityId,
-      oldData: data.oldData ? (data.oldData as object) : undefined,
-      newData: data.newData ? (data.newData as object) : undefined,
-    },
-  });
+  const serialize = (v: unknown) =>
+    v != null ? (JSON.parse(JSON.stringify(v)) as object) : undefined;
+
+  try {
+    await prisma.auditLog.create({
+      data: {
+        userId: data.userId,
+        action: data.action,
+        entityType: data.entityType,
+        entityId: data.entityId,
+        oldData: serialize(data.oldData),
+        newData: serialize(data.newData),
+      },
+    });
+  } catch (err) {
+    console.error("[AuditLog] Failed to write audit log:", err);
+  }
 }

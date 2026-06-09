@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { FallbackImage } from "@/components/ui/fallback-image";
+import { Images } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 

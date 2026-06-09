@@ -94,7 +94,7 @@ export async function getAuthUser(): Promise<AuthUser | null> {
     const payload = await verifyAccessToken(token);
     if (!payload) return null;
     return {
-      id: payload.sub,
+      id: Number(payload.sub),
       email: payload.email,
       role: payload.role as Role,
       name: payload.name,

@@ -122,7 +122,7 @@ export default function CreateNewsPage() {
           <Button type="button" variant="outline" asChild>
             <Link href="/cms/news">Batal</Link>
           </Button>
-          <Button type="submit" loading={isSubmitting}>Simpan sebagai Draft</Button>
+          <Button type="submit" loading={isSubmitting || mutation.isPending}>Simpan sebagai Draft</Button>
         </div>
       </form>
     </div>
