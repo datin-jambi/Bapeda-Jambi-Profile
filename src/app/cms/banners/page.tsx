@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/axios";
-import Image from "next/image";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -113,7 +113,7 @@ export default function CmsBannersPage() {
     {
       key: "imageUrl", header: "Gambar", render: (b) =>
         b.imageUrl ? (
-          <Image src={b.imageUrl} alt={b.title} width={100} height={60} className="rounded object-cover" />
+          <FallbackImage src={b.imageUrl} alt={b.title} fallback="banner" width={100} height={60} className="rounded object-cover" />
         ) : (
           <span className="text-xs text-muted-foreground">Tidak ada gambar</span>
         ),

@@ -4,8 +4,8 @@ import { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { FallbackImage } from "@/components/ui/fallback-image";
 
 interface Banner {
   id: number;
@@ -50,9 +50,10 @@ export function HeroSection({ banners }: { banners: Banner[] }) {
           )}
         >
           <div className="absolute inset-0 bg-primary/60 z-10" />
-          <Image
+          <FallbackImage
             src={banner.imageUrl}
             alt={banner.title}
+            fallback="banner"
             fill
             className="object-cover"
             priority={i === 0}

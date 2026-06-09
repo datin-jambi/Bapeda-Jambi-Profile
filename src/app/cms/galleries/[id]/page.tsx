@@ -19,7 +19,7 @@ import { ArrowLeft, Loader2, Plus, Trash2, Send, CheckCircle, XCircle, Eye, Uplo
 import Link from "next/link";
 import { ImageUpload } from "@/components/cms/image-upload";
 import { useAuthStore } from "@/store";
-import Image from "next/image";
+import { FallbackImage } from "@/components/ui/fallback-image";
 
 export default function EditGalleryPage() {
   const { id } = useParams<{ id: string }>();
@@ -225,7 +225,7 @@ export default function EditGalleryPage() {
                 <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                   {pendingUrls.map((url, i) => (
                     <div key={i} className="relative aspect-square rounded overflow-hidden bg-gray-100">
-                      <Image src={url} alt={`preview-${i}`} fill className="object-cover" />
+                      <FallbackImage src={url} alt={`preview-${i}`} fallback="galleryItem" fill className="object-cover" />
                       <button
                         type="button"
                         className="absolute top-0 right-0 bg-red-500 text-white rounded-bl p-0.5"
@@ -258,7 +258,7 @@ export default function EditGalleryPage() {
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
               {gallery.items.map((item: any) => (
                 <div key={item.id} className="relative group aspect-square rounded-lg overflow-hidden bg-gray-100">
-                  <Image src={item.fileUrl} alt={item.title || "Gallery item"} fill className="object-cover" />
+                  <FallbackImage src={item.fileUrl} alt={item.title || "Gallery item"} fallback="galleryItem" fill className="object-cover" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                     <Button
                       type="button"

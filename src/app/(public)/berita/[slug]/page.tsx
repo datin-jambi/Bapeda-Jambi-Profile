@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
 import Link from "next/link";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, ArrowLeft } from "lucide-react";
@@ -53,11 +53,9 @@ export default async function NewsDetailPage({ params }: Props) {
             <span className="flex items-center gap-1"><User className="h-4 w-4" />{news.author.name}</span>
           </div>
 
-          {news.thumbnailUrl && (
-            <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-8">
-              <Image src={news.thumbnailUrl} alt={news.title} fill className="object-cover" priority />
-            </div>
-          )}
+          <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-8">
+            <FallbackImage src={news.thumbnailUrl} alt={news.title} fallback="news" fill className="object-cover" priority />
+          </div>
 
           <div className="prose-content" dangerouslySetInnerHTML={{ __html: news.content }} />
         </article>
@@ -70,7 +68,7 @@ export default async function NewsDetailPage({ params }: Props) {
                 {related.map((r) => (
                   <Link key={r.id} href={`/berita/${r.slug}`} className="flex gap-3 group">
                     <div className="relative w-20 h-14 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                      {r.thumbnailUrl && <Image src={r.thumbnailUrl} alt={r.title} fill className="object-cover group-hover:scale-105 transition-transform" />}
+                      <FallbackImage src={r.thumbnailUrl} alt={r.title} fallback="news" fill className="object-cover group-hover:scale-105 transition-transform" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-800 group-hover:text-primary transition-colors line-clamp-2">{r.title}</p>

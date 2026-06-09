@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import Link from "next/link";
-import { Images } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -33,13 +32,7 @@ export default async function GaleriPage() {
           {galleries.map((g) => (
             <Link key={g.id} href={`/galeri/${g.id}`} className="group block">
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-gray-100">
-                {g.coverImage ? (
-                  <Image src={g.coverImage} alt={g.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/30 flex items-center justify-center">
-                    <Images className="h-12 w-12 text-primary/30" />
-                  </div>
-                )}
+                <FallbackImage src={g.coverImage} alt={g.title} fallback="gallery" fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <div className="mt-3">

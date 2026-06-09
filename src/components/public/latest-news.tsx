@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { formatDate, truncate } from "@/lib/utils";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar } from "lucide-react";
@@ -40,13 +40,7 @@ export function LatestNewsSection({ news }: { news: NewsItem[] }) {
           <div className="lg:col-span-2">
             <Link href={`/berita/${featured.slug}`} className="group block">
               <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-gray-100">
-                {featured.thumbnailUrl ? (
-                  <Image src={featured.thumbnailUrl} alt={featured.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
-                    <span className="text-primary/40 text-4xl font-bold">BAPENDA</span>
-                  </div>
-                )}
+                <FallbackImage src={featured.thumbnailUrl} alt={featured.title} fallback="news" fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <Badge className="bg-secondary text-white mb-2">{featured.category.name}</Badge>
@@ -67,13 +61,7 @@ export function LatestNewsSection({ news }: { news: NewsItem[] }) {
             {rest.slice(0, 4).map((item) => (
               <Link key={item.id} href={`/berita/${item.slug}`} className="group flex gap-3">
                 <div className="relative w-20 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                  {item.thumbnailUrl ? (
-                    <Image src={item.thumbnailUrl} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform" />
-                  ) : (
-                    <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
-                      <span className="text-primary/30 text-xs font-bold">BP</span>
-                    </div>
-                  )}
+                  <FallbackImage src={item.thumbnailUrl} alt={item.title} fallback="news" fill className="object-cover group-hover:scale-105 transition-transform" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs text-secondary font-medium">{item.category.name}</p>

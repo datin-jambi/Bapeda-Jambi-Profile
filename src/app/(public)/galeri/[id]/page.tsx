@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Images } from "lucide-react";
 import Link from "next/link";
@@ -41,7 +41,7 @@ export default async function GalleryDetailPage({ params }: Props) {
           {gallery.items.map((item) => (
             <a key={item.id} href={item.fileUrl} target="_blank" rel="noopener noreferrer" className="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block">
               {item.mediaType === "IMAGE" ? (
-                <Image src={item.fileUrl} alt={item.title || gallery.title} fill className="object-cover group-hover:scale-110 transition-transform duration-300" />
+                <FallbackImage src={item.fileUrl} alt={item.title || gallery.title} fallback="galleryItem" fill className="object-cover group-hover:scale-110 transition-transform duration-300" />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
                   <Images className="h-10 w-10 text-primary/40" />

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import { ArrowRight, Images } from "lucide-react";
 
 interface GalleryItem {
@@ -30,13 +30,7 @@ export function GallerySection({ galleries }: { galleries: GalleryItem[] }) {
           {galleries.map((g) => (
             <Link key={g.id} href={`/galeri/${g.id}`} className="group block">
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-gray-200">
-                {g.coverImage ? (
-                  <Image src={g.coverImage} alt={g.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
-                    <Images className="h-12 w-12 text-primary/30" />
-                  </div>
-                )}
+                <FallbackImage src={g.coverImage} alt={g.title} fallback="gallery" fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                   <p className="text-white font-medium text-sm">{g.title}</p>

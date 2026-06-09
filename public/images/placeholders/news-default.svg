@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#f1f5f9"/>
+  <rect x="0" y="0" width="1200" height="675" fill="#e2e8f0"/>
+  <rect x="100" y="180" width="1000" height="20" rx="10" fill="#cbd5e1"/>
+  <rect x="200" y="220" width="800" height="16" rx="8" fill="#cbd5e1"/>
+  <rect x="250" y="256" width="700" height="16" rx="8" fill="#cbd5e1"/>
+  <rect x="500" y="310" width="200" height="40" rx="6" fill="#94a3b8"/>
+  <text x="600" y="338" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle">Berita</text>
+  <circle cx="600" cy="120" r="50" fill="#cbd5e1"/>
+  <text x="600" y="128" font-family="sans-serif" font-size="36" fill="#94a3b8" text-anchor="middle">📰</text>
+</svg>

@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import Image from "next/image";
 import { formatDate } from "@/lib/utils";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import { Badge } from "@/components/ui/badge";
 import { Calendar } from "lucide-react";
 import type { Metadata } from "next";
@@ -66,13 +66,7 @@ export default async function BeritaPage({ searchParams }: { searchParams: Promi
           {news.map((item) => (
             <Link key={item.id} href={`/berita/${item.slug}`} className="group bg-white rounded-xl border hover:shadow-md transition-shadow overflow-hidden">
               <div className="relative aspect-[16/9] bg-gray-100">
-                {item.thumbnailUrl ? (
-                  <Image src={item.thumbnailUrl} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
-                    <span className="text-primary/30 font-bold text-xl">BAPENDA</span>
-                  </div>
-                )}
+                <FallbackImage src={item.thumbnailUrl} alt={item.title} fallback="news" fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="p-4">
                 <Badge variant="outline" className="text-xs mb-2">{item.category.name}</Badge>

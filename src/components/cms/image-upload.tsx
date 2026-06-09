@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Upload, X, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
-import NextImage from "next/image";
+import { FallbackImage } from "@/components/ui/fallback-image";
 import api from "@/lib/axios";
 
 interface ImageUploadProps {
@@ -56,7 +56,7 @@ export function ImageUpload({ value, onChange, folder = "/bapenda/uploads", acce
       {value ? (
         <div className="relative w-full max-w-sm">
           <div className="relative aspect-video rounded-lg overflow-hidden border bg-gray-50">
-            <NextImage src={value} alt="Preview" fill className="object-cover" unoptimized />
+            <FallbackImage src={value} alt="Preview" fallback="banner" fill className="object-cover" unoptimized />
           </div>
           {!disabled && (
             <Button
