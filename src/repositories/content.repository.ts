@@ -69,11 +69,20 @@ export const pageRepository = {
 };
 
 export const bannerRepository = {
-  async findAll(activeOnly = false) {
-    return prisma.banner.findMany({
-      where: { deletedAt: null, ...(activeOnly && { isActive: true }) },
-      orderBy: { sortOrder: "asc" },
-    });
+  async findAll(params: { skip: number; limit: number; search?: string; isActive?: boolean }) {
+    const where = {
+      deletedAt: null,
+      ...(params.isActive !== undefined && { isActive: params.isActive }),
+      ...(params.search && { title: { contains: params.search, mode: "insensitive" as const } }),
+    };
+    const [data, total] = await Promise.all([
+      prisma.banner.findMany({
+        where, skip: params.skip, take: params.limit,
+        orderBy: { sortOrder: "asc" },
+      }),
+      prisma.banner.count({ where }),
+    ]);
+    return { data, total };
   },
 
   async findById(id: number) {
