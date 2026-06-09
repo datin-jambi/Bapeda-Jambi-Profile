@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   authors: [{ name: "BAPENDA Provinsi Jambi" }],
   creator: "BAPENDA Provinsi Jambi",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
+  icons: {
+    icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
+    shortcut: "/favicon.ico",
+    apple: "/icons/logo.png",
+  },
   openGraph: {
     type: "website",
     locale: "id_ID",

@@ -10,6 +10,7 @@ import {
   Shield, Image, Settings, Users, Building2, ChevronLeft, ChevronRight,
   User, ScrollText,
 } from "lucide-react";
+import NextImage from "next/image";
 import { Role } from "@prisma/client";
 
 interface NavItem {
@@ -53,15 +54,25 @@ export function CmsSidebar() {
       <div className="flex h-16 items-center justify-between px-4 border-b border-primary-600">
         {isOpen && (
           <Link href="/cms/dashboard" className="flex items-center gap-2 min-w-0">
-            <div className="flex-shrink-0 w-8 h-8 bg-secondary rounded-md flex items-center justify-center font-bold text-white text-xs">
-              BP
-            </div>
+            <NextImage
+              src="/icons/logo.png"
+              alt="Logo BAPENDA"
+              width={32}
+              height={32}
+              className="flex-shrink-0 rounded-md"
+            />
             <span className="text-sm font-semibold leading-tight truncate">BAPENDA Jambi</span>
           </Link>
         )}
         {!isOpen && (
-          <div className="w-8 h-8 bg-secondary rounded-md flex items-center justify-center font-bold text-white text-xs mx-auto">
-            BP
+          <div className="mx-auto">
+            <NextImage
+              src="/icons/logo.png"
+              alt="Logo BAPENDA"
+              width={32}
+              height={32}
+              className="rounded-md"
+            />
           </div>
         )}
         <button

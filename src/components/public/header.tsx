@@ -44,9 +44,14 @@ export function PublicHeader() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">BP</span>
-            </div>
+            <Image
+              src="/icons/logo.png"
+              alt="Logo BAPENDA Provinsi Jambi"
+              width={40}
+              height={40}
+              className="rounded-lg"
+              priority
+            />
             <div className="hidden sm:block">
               <p className="text-primary font-bold text-sm leading-tight">BAPENDA</p>
               <p className="text-gray-500 text-xs leading-tight">Provinsi Jambi</p>
