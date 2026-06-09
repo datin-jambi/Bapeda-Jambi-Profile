@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, X } from "lucide-react";
+import { Search, X, SlidersHorizontal } from "lucide-react";
 
 export interface FilterOption {
   label: string;
@@ -21,32 +21,42 @@ export interface SelectFilter {
 interface DataTableFilterProps {
   value: string;
   onChange: (value: string) => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
   placeholder?: string;
   selects?: SelectFilter[];
+  isSearching?: boolean;
+  onReset?: () => void;
   children?: React.ReactNode;
 }
 
 export function DataTableFilter({
   value,
   onChange,
-  onKeyDown,
   placeholder = "Cari...",
   selects,
+  isSearching = false,
+  onReset,
   children,
 }: DataTableFilterProps) {
+  const hasActiveFilter =
+    value.trim() !== "" ||
+    selects?.some((s) => s.value !== "all") === true;
+
   return (
     <div className="flex items-center gap-2 flex-wrap">
+      {/* Search input */}
       <div className="relative flex-1 min-w-[200px] max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          onKeyDown={onKeyDown}
           placeholder={placeholder}
           className="pl-9 pr-9"
         />
-        {value && (
+        {isSearching ? (
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground animate-pulse">
+            Mencari...
+          </span>
+        ) : value ? (
           <Button
             size="sm"
             variant="ghost"
@@ -55,9 +65,10 @@ export function DataTableFilter({
           >
             <X className="h-3 w-3" />
           </Button>
-        )}
+        ) : null}
       </div>
 
+      {/* Filter selects — always visible */}
       {selects?.map((sel, i) => (
         <Select key={i} value={sel.value} onValueChange={sel.onChange}>
           <SelectTrigger className="w-[160px]">
@@ -73,6 +84,14 @@ export function DataTableFilter({
           </SelectContent>
         </Select>
       ))}
+
+      {/* Reset filter button — visible when any filter is active */}
+      {onReset && hasActiveFilter && (
+        <Button variant="outline" size="sm" onClick={onReset}>
+          <SlidersHorizontal className="h-4 w-4 mr-2" />
+          Reset Filter
+        </Button>
+      )}
 
       {children}
     </div>

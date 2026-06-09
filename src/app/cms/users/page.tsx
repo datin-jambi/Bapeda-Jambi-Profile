@@ -1,18 +1,17 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import api from "@/lib/axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Pencil, Trash2, Search, KeyRound } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Plus, Pencil, Trash2, KeyRound } from "lucide-react";
 import { toast } from "sonner";
-import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,6 +19,41 @@ import { registerSchema, RegisterInput } from "@/lib/validations";
 import { Role } from "@prisma/client";
 import { useAuthStore } from "@/store";
 import { z } from "zod";
+import { DataTable, ColumnDef } from "@/components/cms/data-table";
+import { DataTableFilter } from "@/components/cms/data-table-filter";
+import { DataTablePagination } from "@/components/cms/data-table-pagination";
+import { ConfirmDialog } from "@/components/cms/confirm-dialog";
+import { useDebounce } from "@/hooks/use-debounce";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+type Uptd = {
+  id: number;
+  name: string;
+};
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  role: Role;
+  isActive: boolean;
+  avatarUrl?: string | null;
+  uptd?: Uptd | null;
+  createdAt: string;
+};
+
+type UserResponse = {
+  data: User[];
+  meta: {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+  };
+};
+
+// ─── Constants ────────────────────────────────────────────────────────────────
 
 const ROLES: { value: Role; label: string }[] = [
   { value: "Super_Admin", label: "Super Admin" },
@@ -30,53 +64,121 @@ const ROLES: { value: Role; label: string }[] = [
 ];
 
 const resetPwSchema = z.object({ newPassword: z.string().min(8, "Min. 8 karakter") });
+type ResetPwInput = z.infer<typeof resetPwSchema>;
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+}
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function CmsUsersPage() {
   const { user: me } = useAuthStore();
   const queryClient = useQueryClient();
-  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Initialise state from URL params
+  const [searchInput, setSearchInput] = useState(searchParams.get("search") ?? "");
+  const [roleFilter, setRoleFilter] = useState(searchParams.get("role") ?? "all");
+  const [statusFilter, setStatusFilter] = useState(searchParams.get("status") ?? "all");
+  const [page, setPage] = useState(Number(searchParams.get("page") ?? 1));
+  const [pageSize, setPageSize] = useState(Number(searchParams.get("limit") ?? 10));
+
+  // Debounced search — fires API after 2 s of inactivity
+  const debouncedSearch = useDebounce(searchInput, 2000);
+  const isSearching = searchInput !== debouncedSearch;
+
+  // ── URL sync ───────────────────────────────────────────────────────────────
+
+  const pushParams = useCallback(
+    (overrides: Record<string, string>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      Object.entries(overrides).forEach(([k, v]) => {
+        if (v && v !== "all") params.set(k, v);
+        else params.delete(k);
+      });
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, router, pathname],
+  );
+
+  // Sync debounced search → URL + reset page
+  useEffect(() => {
+    pushParams({ search: debouncedSearch, page: "1" });
+    setPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearch]);
+
+  // Dialog state
+  const [createOpen, setCreateOpen] = useState(false);
   const [resetOpen, setResetOpen] = useState(false);
   const [resetTargetId, setResetTargetId] = useState<number | null>(null);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [roleFilter, setRoleFilter] = useState<string>("");
+  const [deleteId, setDeleteId] = useState<number | null>(null);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["cms-users", page, search, roleFilter],
-    queryFn: () =>
-      api.get(`/cms/users?page=${page}&limit=10${search ? `&search=${search}` : ""}${roleFilter ? `&role=${roleFilter}` : ""}`).then((r) => r.data),
+  // ── Data fetching ──────────────────────────────────────────────────────────
+
+  const { data, isLoading } = useQuery<UserResponse>({
+    queryKey: ["cms-users", page, pageSize, debouncedSearch, roleFilter, statusFilter],
+    queryFn: () => {
+      const params = new URLSearchParams();
+      params.set("page", String(page));
+      params.set("limit", String(pageSize));
+      if (debouncedSearch) params.set("search", debouncedSearch);
+      if (roleFilter !== "all") params.set("role", roleFilter);
+      if (statusFilter === "active") params.set("isActive", "true");
+      if (statusFilter === "inactive") params.set("isActive", "false");
+      return api.get(`/cms/users?${params.toString()}`).then((r) => r.data);
+    },
   });
 
-  const { data: uptds } = useQuery({
+  const { data: uptds } = useQuery<Uptd[]>({
     queryKey: ["uptds"],
     queryFn: () => api.get("/cms/uptd").then((r) => r.data.data),
   });
 
-  const { register, handleSubmit, setValue, watch, reset, formState: { errors, isSubmitting } } = useForm<RegisterInput>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: { role: "Editor" },
-  });
+  const users = data?.data ?? [];
+  const meta = data?.meta;
+  const isSuperAdmin = me?.role === "Super_Admin";
 
-  const { register: regReset, handleSubmit: handleReset, reset: resetPw, formState: { isSubmitting: isResetting } } = useForm<{ newPassword: string }>({
-    resolver: zodResolver(resetPwSchema),
-  });
-
-  const role = watch("role");
+  // ── Mutations ──────────────────────────────────────────────────────────────
 
   const createMutation = useMutation({
-    mutationFn: (data: RegisterInput) => api.post("/cms/users", data),
+    mutationFn: (payload: RegisterInput) => api.post("/cms/users", payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cms-users"] });
       toast.success("Pengguna berhasil dibuat");
-      setOpen(false); reset();
+      setCreateOpen(false);
+      createReset();
     },
-    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal membuat pengguna"),
+    onError: (err: { response?: { data?: { message?: string } } }) =>
+      toast.error(err.response?.data?.message || "Gagal membuat pengguna"),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => api.delete(`/cms/users/${id}`),
-    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ["cms-users"] }); toast.success("Pengguna dihapus"); },
-    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cms-users"] });
+      toast.success("Pengguna dihapus");
+    },
+    onError: (err: { response?: { data?: { message?: string } } }) =>
+      toast.error(err.response?.data?.message || "Gagal menghapus pengguna"),
   });
 
   const resetPasswordMutation = useMutation({
@@ -84,146 +186,288 @@ export default function CmsUsersPage() {
       api.post(`/cms/users/${id}/reset-password`, { newPassword }),
     onSuccess: () => {
       toast.success("Password berhasil direset");
-      setResetOpen(false); resetPw();
+      setResetOpen(false);
+      resetPwReset();
     },
-    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal reset password"),
+    onError: (err: { response?: { data?: { message?: string } } }) =>
+      toast.error(err.response?.data?.message || "Gagal reset password"),
   });
 
-  const users = data?.data ?? [];
-  const pagination = data?.meta;
-  const isSuperAdmin = me?.role === "Super_Admin";
+  // ── Forms ──────────────────────────────────────────────────────────────────
+
+  const {
+    register: createRegister,
+    handleSubmit: handleCreateSubmit,
+    setValue: createSetValue,
+    watch: createWatch,
+    reset: createReset,
+    formState: { errors: createErrors, isSubmitting: isCreating },
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: { role: "Editor" },
+  });
+
+  const {
+    register: regReset,
+    handleSubmit: handleResetSubmit,
+    reset: resetPwReset,
+    formState: { isSubmitting: isResetting },
+  } = useForm<ResetPwInput>({
+    resolver: zodResolver(resetPwSchema),
+  });
+
+  const selectedRole = createWatch("role");
+
+  // ── Handlers ───────────────────────────────────────────────────────────────
+
+  function handleRoleFilter(val: string) {
+    setRoleFilter(val);
+    setPage(1);
+    pushParams({ role: val, page: "1" });
+  }
+
+  function handleStatusFilter(val: string) {
+    setStatusFilter(val);
+    setPage(1);
+    pushParams({ status: val, page: "1" });
+  }
+
+  function handlePageChange(p: number) {
+    setPage(p);
+    pushParams({ page: String(p) });
+  }
+
+  function handlePageSizeChange(size: number) {
+    setPageSize(size);
+    setPage(1);
+    pushParams({ limit: String(size), page: "1" });
+  }
+
+  function handleReset() {
+    setSearchInput("");
+    setRoleFilter("all");
+    setStatusFilter("all");
+    setPage(1);
+    router.replace(pathname, { scroll: false });
+  }
+
+  function openCreate() {
+    createReset({ role: "Editor" });
+    setCreateOpen(true);
+  }
+
+  // ── Columns ────────────────────────────────────────────────────────────────
+
+  const columns: ColumnDef<User>[] = [
+    {
+      key: "avatar",
+      header: "Avatar",
+      render: (u) => (
+        <Avatar className="h-8 w-8">
+          {u.avatarUrl && <AvatarImage src={u.avatarUrl} alt={u.name} />}
+          <AvatarFallback className="text-xs">{getInitials(u.name)}</AvatarFallback>
+        </Avatar>
+      ),
+    },
+    {
+      key: "name",
+      header: "Nama",
+      cellClassName: "font-medium",
+      render: (u) => u.name,
+    },
+    {
+      key: "email",
+      header: "Email",
+      cellClassName: "text-sm text-muted-foreground",
+      render: (u) => u.email,
+    },
+    {
+      key: "role",
+      header: "Role",
+      render: (u) => (
+        <Badge variant="outline" className="text-xs">
+          {u.role.replace(/_/g, " ")}
+        </Badge>
+      ),
+    },
+    {
+      key: "isActive",
+      header: "Status",
+      render: (u) => (
+        <Badge variant={u.isActive ? "success" : "destructive"}>
+          {u.isActive ? "Aktif" : "Nonaktif"}
+        </Badge>
+      ),
+    },
+    {
+      key: "uptd",
+      header: "UPTD",
+      cellClassName: "text-sm text-muted-foreground",
+      render: (u) => u.uptd?.name ?? "-",
+    },
+    {
+      key: "createdAt",
+      header: "Dibuat",
+      cellClassName: "text-sm text-muted-foreground whitespace-nowrap",
+      render: (u) => formatDate(u.createdAt),
+    },
+    {
+      key: "actions",
+      header: "Aksi",
+      headerClassName: "text-right",
+      cellClassName: "text-right",
+      render: (u) => (
+        <div className="flex items-center justify-end gap-1">
+          <Button size="sm" variant="ghost" asChild title="Edit">
+            <a href={`/cms/users/${u.id}`}>
+              <Pencil className="h-3 w-3" />
+            </a>
+          </Button>
+          {isSuperAdmin && (
+            <>
+              <Button
+                size="sm"
+                variant="ghost"
+                title="Reset Password"
+                onClick={() => { setResetTargetId(u.id); setResetOpen(true); }}
+              >
+                <KeyRound className="h-3 w-3" />
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                className="text-red-600"
+                title="Hapus"
+                onClick={() => setDeleteId(u.id)}
+              >
+                <Trash2 className="h-3 w-3" />
+              </Button>
+            </>
+          )}
+        </div>
+      ),
+    },
+  ];
+
+  // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-primary">Manajemen Pengguna</h1>
           <p className="text-sm text-muted-foreground">Kelola akun pengguna CMS</p>
         </div>
         {isSuperAdmin && (
-          <Button onClick={() => { reset({ role: "Editor" }); setOpen(true); }}>
+          <Button onClick={openCreate}>
             <Plus className="mr-2 h-4 w-4" />Tambah Pengguna
           </Button>
         )}
       </div>
 
-      <Card>
-        <div className="p-4 border-b flex flex-wrap items-center gap-3">
-          <div className="relative flex-1 min-w-[200px] max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Cari nama atau email..."
-              className="pl-9"
-              value={search}
-              onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            />
-          </div>
-          <Select value={roleFilter} onValueChange={(v) => { setRoleFilter(v === "ALL" ? "" : v); setPage(1); }}>
-            <SelectTrigger className="w-[160px]"><SelectValue placeholder="Semua Role" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="ALL">Semua Role</SelectItem>
-              {ROLES.map((r) => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
-            </SelectContent>
-          </Select>
-          {pagination && <span className="text-sm text-muted-foreground">Total: {pagination.totalItems} pengguna</span>}
-        </div>
+      {/* Filter */}
+      <DataTableFilter
+        value={searchInput}
+        onChange={setSearchInput}
+        placeholder="Cari nama atau email..."
+        isSearching={isSearching}
+        onReset={handleReset}
+        selects={[
+          {
+            value: roleFilter,
+            onChange: handleRoleFilter,
+            placeholder: "Semua Role",
+            allLabel: "Semua Role",
+            options: ROLES.map((r) => ({ label: r.label, value: r.value })),
+          },
+          {
+            value: statusFilter,
+            onChange: handleStatusFilter,
+            placeholder: "Status",
+            allLabel: "Semua Status",
+            options: [
+              { label: "Aktif", value: "active" },
+              { label: "Nonaktif", value: "inactive" },
+            ],
+          },
+        ]}
+      />
 
-        <CardContent className="p-0">
-          {isLoading ? (
-            <div className="p-6 space-y-3">{Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className="h-12 w-full" />)}</div>
-          ) : !users.length ? (
-            <div className="p-12 text-center text-muted-foreground">Belum ada pengguna</div>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Nama</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>UPTD</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Aksi</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {users.map((u: any) => (
-                  <TableRow key={u.id}>
-                    <TableCell className="font-medium">{u.name}</TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{u.email}</TableCell>
-                    <TableCell><Badge variant="outline" className="text-xs">{u.role.replace(/_/g, " ")}</Badge></TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{u.uptd?.name || "-"}</TableCell>
-                    <TableCell><Badge variant={u.isActive ? "success" : "destructive"}>{u.isActive ? "Aktif" : "Nonaktif"}</Badge></TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex items-center justify-end gap-1">
-                        <Button size="sm" variant="ghost" asChild title="Edit">
-                          <a href={`/cms/users/${u.id}`}><Pencil className="h-3 w-3" /></a>
-                        </Button>
-                        {isSuperAdmin && (
-                          <>
-                            <Button size="sm" variant="ghost" title="Reset Password" onClick={() => { setResetTargetId(u.id); setResetOpen(true); }}>
-                              <KeyRound className="h-3 w-3" />
-                            </Button>
-                            <Button size="sm" variant="ghost" className="text-red-600" title="Hapus" onClick={() => { if (confirm(`Hapus pengguna ${u.name}?`)) deleteMutation.mutate(u.id); }}>
-                              <Trash2 className="h-3 w-3" />
-                            </Button>
-                          </>
-                        )}
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </CardContent>
-      </Card>
+      {/* Table */}
+      <DataTable<User>
+        data={users}
+        columns={columns}
+        isLoading={isLoading || isSearching}
+        emptyMessage="Belum ada pengguna"
+        skeletonRows={pageSize}
+      />
 
-      {pagination && pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">Halaman {pagination.page} dari {pagination.totalPages}</p>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>Sebelumnya</Button>
-            <Button variant="outline" size="sm" disabled={page >= pagination.totalPages} onClick={() => setPage((p) => p + 1)}>Selanjutnya</Button>
-          </div>
-        </div>
-      )}
+      {/* Pagination */}
+      <DataTablePagination
+        page={page}
+        totalPages={meta?.totalPages ?? 1}
+        totalItems={meta?.totalItems ?? 0}
+        pageSize={pageSize}
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+      />
+
+      {/* Confirm Delete */}
+      <ConfirmDialog
+        open={!!deleteId}
+        onOpenChange={(v) => { if (!v) setDeleteId(null); }}
+        title="Hapus Pengguna"
+        description="Pengguna yang dihapus tidak dapat dikembalikan. Lanjutkan?"
+        confirmLabel="Ya, Hapus"
+        loading={deleteMutation.isPending}
+        onConfirm={() => {
+          if (deleteId) deleteMutation.mutate(deleteId, { onSettled: () => setDeleteId(null) });
+        }}
+      />
 
       {/* Create User Dialog */}
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={createOpen} onOpenChange={setCreateOpen}>
         <DialogContent className="max-w-lg">
-          <DialogHeader><DialogTitle>Tambah Pengguna Baru</DialogTitle></DialogHeader>
-          <form onSubmit={handleSubmit((d) => createMutation.mutate(d))} className="space-y-4">
+          <DialogHeader>
+            <DialogTitle>Tambah Pengguna Baru</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleCreateSubmit((d) => createMutation.mutate(d))} className="space-y-4">
             <div className="space-y-2">
               <Label>Nama Lengkap *</Label>
-              <Input placeholder="Nama lengkap" {...register("name")} />
-              {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
+              <Input placeholder="Nama lengkap" {...createRegister("name")} />
+              {createErrors.name && <p className="text-xs text-destructive">{createErrors.name.message}</p>}
             </div>
             <div className="space-y-2">
               <Label>Email *</Label>
-              <Input type="email" placeholder="email@bapenda.go.id" {...register("email")} />
-              {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
+              <Input type="email" placeholder="email@bapenda.go.id" {...createRegister("email")} />
+              {createErrors.email && <p className="text-xs text-destructive">{createErrors.email.message}</p>}
             </div>
             <div className="space-y-2">
               <Label>Password *</Label>
-              <Input type="password" placeholder="Min. 8 karakter" {...register("password")} />
-              {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
+              <Input type="password" placeholder="Min. 8 karakter" {...createRegister("password")} />
+              {createErrors.password && <p className="text-xs text-destructive">{createErrors.password.message}</p>}
             </div>
             <div className="space-y-2">
               <Label>Role *</Label>
-              <Select defaultValue="Editor" onValueChange={(v) => setValue("role", v as Role)}>
+              <Select defaultValue="Editor" onValueChange={(v) => createSetValue("role", v as Role)}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  {ROLES.map((r) => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
+                  {ROLES.map((r) => (
+                    <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
-            {(role === "Ketua_Uptd" || role === "Admin_Uptd") && (
+            {(selectedRole === "Ketua_Uptd" || selectedRole === "Admin_Uptd") && (
               <div className="space-y-2">
                 <Label>UPTD</Label>
-                <Select onValueChange={(v) => setValue("uptdId", parseInt(v, 10))}>
+                <Select onValueChange={(v) => createSetValue("uptdId", parseInt(v, 10))}>
                   <SelectTrigger><SelectValue placeholder="Pilih UPTD" /></SelectTrigger>
                   <SelectContent>
-                    {uptds?.map((u: any) => <SelectItem key={u.id} value={String(u.id)}>{u.name}</SelectItem>)}
+                    {uptds?.map((u) => (
+                      <SelectItem key={u.id} value={String(u.id)}>{u.name}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -231,11 +475,11 @@ export default function CmsUsersPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>No. Telepon</Label>
-                <Input placeholder="08xxxxxxxxxx" {...register("phone")} />
+                <Input placeholder="08xxxxxxxxxx" {...createRegister("phone")} />
               </div>
               <div className="space-y-2">
                 <Label>Jenis Kelamin</Label>
-                <Select onValueChange={(v) => setValue("gender", v)}>
+                <Select onValueChange={(v) => createSetValue("gender", v)}>
                   <SelectTrigger><SelectValue placeholder="Pilih" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Laki-laki">Laki-laki</SelectItem>
@@ -245,8 +489,8 @@ export default function CmsUsersPage() {
               </div>
             </div>
             <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => setOpen(false)}>Batal</Button>
-              <Button type="submit" disabled={isSubmitting}>{isSubmitting ? "Menyimpan..." : "Buat Pengguna"}</Button>
+              <Button type="button" variant="outline" onClick={() => setCreateOpen(false)}>Batal</Button>
+              <Button type="submit" disabled={isCreating}>{isCreating ? "Menyimpan..." : "Buat Pengguna"}</Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -255,14 +499,21 @@ export default function CmsUsersPage() {
       {/* Reset Password Dialog */}
       <Dialog open={resetOpen} onOpenChange={setResetOpen}>
         <DialogContent className="max-w-sm">
-          <DialogHeader><DialogTitle>Reset Password</DialogTitle></DialogHeader>
-          <form onSubmit={handleReset((d) => { if (resetTargetId) resetPasswordMutation.mutate({ id: resetTargetId, newPassword: d.newPassword }); })} className="space-y-4">
+          <DialogHeader>
+            <DialogTitle>Reset Password</DialogTitle>
+          </DialogHeader>
+          <form
+            onSubmit={handleResetSubmit((d) => {
+              if (resetTargetId) resetPasswordMutation.mutate({ id: resetTargetId, newPassword: d.newPassword });
+            })}
+            className="space-y-4"
+          >
             <div className="space-y-2">
               <Label>Password Baru *</Label>
               <Input type="password" placeholder="Min. 8 karakter" {...regReset("newPassword")} />
             </div>
             <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => { setResetOpen(false); resetPw(); }}>Batal</Button>
+              <Button type="button" variant="outline" onClick={() => { setResetOpen(false); resetPwReset(); }}>Batal</Button>
               <Button type="submit" disabled={isResetting}>{isResetting ? "Menyimpan..." : "Reset Password"}</Button>
             </DialogFooter>
           </form>

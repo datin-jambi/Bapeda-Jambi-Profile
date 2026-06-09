@@ -1,6 +1,8 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import api from "@/lib/axios";
 import { FallbackImage } from "@/components/ui/fallback-image";
 import { Button } from "@/components/ui/button";
@@ -9,7 +11,6 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
-import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { ConfirmDialog } from "@/components/cms/confirm-dialog";
@@ -21,6 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { DataTableFilter } from "@/components/cms/data-table-filter";
 import { DataTable, ColumnDef } from "@/components/cms/data-table";
 import { DataTablePagination } from "@/components/cms/data-table-pagination";
+import { useDebounce } from "@/hooks/use-debounce";
 
 type Banner = {
   id: string;
@@ -40,22 +42,54 @@ type BannerResponse = {
 
 export default function CmsBannersPage() {
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Initialise state from URL params
+  const [searchInput, setSearchInput] = useState(searchParams.get("search") ?? "");
+  const [statusFilter, setStatusFilter] = useState(searchParams.get("status") ?? "all");
+  const [page, setPage] = useState(Number(searchParams.get("page") ?? 1));
+  const [pageSize, setPageSize] = useState(Number(searchParams.get("limit") ?? 10));
+
+  // Debounced search — fires API after 2 s of inactivity
+  const debouncedSearch = useDebounce(searchInput, 2000);
+  const isSearching = searchInput !== debouncedSearch;
+
   const [open, setOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
-  const [search, setSearch] = useState("");
-  const [searchInput, setSearchInput] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
+  // ── URL sync ───────────────────────────────────────────────────────────────
+
+  const pushParams = useCallback(
+    (overrides: Record<string, string>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      Object.entries(overrides).forEach(([k, v]) => {
+        if (v && v !== "all") params.set(k, v);
+        else params.delete(k);
+      });
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, router, pathname],
+  );
+
+  // Sync debounced search → URL + reset page
+  useEffect(() => {
+    pushParams({ search: debouncedSearch, page: "1" });
+    setPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearch]);
+
+  // ── Data fetching ──────────────────────────────────────────────────────────
+
   const { data, isLoading } = useQuery<BannerResponse>({
-    queryKey: ["cms-banners", page, pageSize, search, statusFilter],
+    queryKey: ["cms-banners", page, pageSize, debouncedSearch, statusFilter],
     queryFn: () => {
       const params = new URLSearchParams();
       params.set("page", String(page));
       params.set("limit", String(pageSize));
-      if (search) params.set("search", search);
+      if (debouncedSearch) params.set("search", debouncedSearch);
       if (statusFilter === "active") params.set("active", "true");
       if (statusFilter === "inactive") params.set("active", "false");
       return api.get(`/cms/banners?${params.toString()}`).then((r) => r.data);
@@ -65,12 +99,16 @@ export default function CmsBannersPage() {
   const banners = data?.data ?? [];
   const meta = data?.meta;
 
+  // ── Forms ──────────────────────────────────────────────────────────────────
+
   const { register, handleSubmit, setValue, watch, reset, formState: { errors, isSubmitting } } = useForm<BannerInput>({
     resolver: zodResolver(bannerSchema),
     defaultValues: { isActive: true, sortOrder: 0 },
   });
 
   const imageUrl = watch("imageUrl");
+
+  // ── Mutations ──────────────────────────────────────────────────────────────
 
   const saveMutation = useMutation({
     mutationFn: (data: BannerInput) =>
@@ -80,32 +118,67 @@ export default function CmsBannersPage() {
       toast.success(editId ? "Banner diperbarui" : "Banner dibuat");
       setOpen(false); reset(); setEditId(null);
     },
-    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal"),
+    onError: (err: { response?: { data?: { message?: string } } }) =>
+      toast.error(err.response?.data?.message || "Gagal"),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => api.delete(`/cms/banners/${id}`),
-    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ["cms-banners"] }); toast.success("Banner dihapus"); },
-    onError: (err: any) => toast.error(err.response?.data?.message || "Gagal"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cms-banners"] });
+      toast.success("Banner dihapus");
+    },
+    onError: (err: { response?: { data?: { message?: string } } }) =>
+      toast.error(err.response?.data?.message || "Gagal"),
   });
 
-  function openCreate() { reset({ isActive: true, sortOrder: 0, imageUrl: "" }); setEditId(null); setOpen(true); }
+  // ── Handlers ───────────────────────────────────────────────────────────────
+
+  function handleStatusFilter(val: string) {
+    setStatusFilter(val);
+    setPage(1);
+    pushParams({ status: val, page: "1" });
+  }
+
+  function handlePageChange(p: number) {
+    setPage(p);
+    pushParams({ page: String(p) });
+  }
+
+  function handlePageSizeChange(size: number) {
+    setPageSize(size);
+    setPage(1);
+    pushParams({ limit: String(size), page: "1" });
+  }
+
+  function handleReset() {
+    setSearchInput("");
+    setStatusFilter("all");
+    setPage(1);
+    router.replace(pathname, { scroll: false });
+  }
+
+  function openCreate() {
+    reset({ isActive: true, sortOrder: 0, imageUrl: "" });
+    setEditId(null);
+    setOpen(true);
+  }
+
   function openEdit(b: Banner) {
-    reset({ title: b.title, description: b.description, imageUrl: b.imageUrl, buttonText: b.buttonText, buttonUrl: b.buttonUrl, sortOrder: b.sortOrder, isActive: b.isActive });
-    setEditId(b.id); setOpen(true);
+    reset({
+      title: b.title,
+      description: b.description,
+      imageUrl: b.imageUrl,
+      buttonText: b.buttonText,
+      buttonUrl: b.buttonUrl,
+      sortOrder: b.sortOrder,
+      isActive: b.isActive,
+    });
+    setEditId(b.id);
+    setOpen(true);
   }
 
-  function handleSearch(val: string) {
-    setSearchInput(val);
-    if (val === "") { setSearch(""); setPage(1); }
-  }
-
-  function handleSearchKeyDown(e: React.KeyboardEvent) {
-    if (e.key === "Enter") { setSearch(searchInput); setPage(1); }
-  }
-
-  function handleStatusFilter(val: string) { setStatusFilter(val); setPage(1); }
-  function handlePageSizeChange(size: number) { setPageSize(size); setPage(1); }
+  // ── Columns ────────────────────────────────────────────────────────────────
 
   const columns: ColumnDef<Banner>[] = [
     { key: "sortOrder", header: "Urutan", render: (b) => b.sortOrder },
@@ -136,6 +209,8 @@ export default function CmsBannersPage() {
     },
   ];
 
+  // ── Render ─────────────────────────────────────────────────────────────────
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -148,9 +223,10 @@ export default function CmsBannersPage() {
 
       <DataTableFilter
         value={searchInput}
-        onChange={handleSearch}
-        onKeyDown={handleSearchKeyDown}
-        placeholder="Cari judul... (Enter untuk cari)"
+        onChange={setSearchInput}
+        placeholder="Cari judul..."
+        isSearching={isSearching}
+        onReset={handleReset}
         selects={[
           {
             value: statusFilter,
@@ -168,7 +244,7 @@ export default function CmsBannersPage() {
       <DataTable
         data={banners}
         columns={columns}
-        isLoading={isLoading}
+        isLoading={isLoading || isSearching}
         emptyMessage="Belum ada banner"
       />
 
@@ -177,7 +253,7 @@ export default function CmsBannersPage() {
         totalPages={meta?.totalPages ?? 1}
         totalItems={meta?.totalItems ?? 0}
         pageSize={pageSize}
-        onPageChange={setPage}
+        onPageChange={handlePageChange}
         onPageSizeChange={handlePageSizeChange}
       />
 
@@ -196,12 +272,10 @@ export default function CmsBannersPage() {
           <VisuallyHidden.Root>
             <DialogTitle>{editId ? "Edit Banner" : "Tambah Banner Baru"}</DialogTitle>
           </VisuallyHidden.Root>
-          {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b">
             <h2 className="text-lg font-semibold">{editId ? "Edit Banner" : "Tambah Banner Baru"}</h2>
           </div>
 
-          {/* Content */}
           <form onSubmit={handleSubmit((d) => saveMutation.mutate(d))} className="flex flex-col flex-1 min-h-0">
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
               <div className="space-y-2">
@@ -243,7 +317,6 @@ export default function CmsBannersPage() {
               </div>
             </div>
 
-            {/* Footer */}
             <div className="flex items-center justify-end gap-2 px-6 py-4 border-t">
               <Button type="button" variant="outline" onClick={() => setOpen(false)}>Batal</Button>
               <Button type="submit" disabled={isSubmitting}>{isSubmitting ? "Menyimpan..." : "Simpan"}</Button>
