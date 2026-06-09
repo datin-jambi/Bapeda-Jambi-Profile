@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Twitter, Instagram, Youtube, MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export function PublicFooter() {
@@ -10,7 +11,14 @@ export function PublicFooter() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">BP</span>
+                <Image
+                  src="/icons/logo.png"
+                  alt="Logo BAPENDA Provinsi Jambi"
+                  width={40}
+                  height={40}
+                  className="rounded-lg"
+                  priority
+                />
               </div>
               <div>
                 <p className="font-bold text-white">BAPENDA</p>
