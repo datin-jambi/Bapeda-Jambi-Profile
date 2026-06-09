@@ -7,48 +7,208 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Seeding database...");
 
-  // Seed UPTDs
-  const uptd1 = await prisma.uptd.upsert({
-    where: { code: "UPTD-001" },
-    update: {},
-    create: {
+  // ── Seed UPTDs ──────────────────────────────────────────────────────────────
+  // Koordinat menggunakan titik pusat wilayah. Perlu diverifikasi oleh admin.
+  const uptdData = [
+    {
       code: "UPTD-001",
       name: "UPTD Samsat Kota Jambi",
-      address: "Jl. Sultan Thaha No. 1, Kota Jambi",
-      phone: "0741-12345",
+      address: "Jl. Sultan Thaha No. 17, Ps. Jambi, Kota Jambi",
+      phone: "0741-23355",
       email: "samsat.kotajambi@bapenda.jambiprov.go.id",
       headName: "Dr. H. Ahmad Fauzi, M.Si",
+      province: "Jambi",
+      city: "Kota Jambi",
+      district: "Pasar Jambi",
+      latitude: -1.6101,
+      longitude: 103.6131,
+      googleMapsUrl: "https://maps.google.com/?q=-1.6101,103.6131",
       isActive: true,
+      showOnPublicMap: true,
     },
-  });
-
-  const uptd2 = await prisma.uptd.upsert({
-    where: { code: "UPTD-002" },
-    update: {},
-    create: {
+    {
       code: "UPTD-002",
       name: "UPTD Samsat Muaro Jambi",
-      address: "Jl. Lintas Sumatera, Sengeti",
-      phone: "0741-67890",
+      address: "Jl. Lintas Sumatera, Sengeti, Muaro Jambi",
+      phone: "0741-7076000",
       email: "samsat.muarojambi@bapenda.jambiprov.go.id",
       headName: "Drs. H. Budiman, M.M",
+      province: "Jambi",
+      city: "Kabupaten Muaro Jambi",
+      district: "Sekernan",
+      latitude: -1.5982,
+      longitude: 103.4670,
+      googleMapsUrl: "https://maps.google.com/?q=-1.5982,103.4670",
       isActive: true,
+      showOnPublicMap: true,
     },
-  });
-
-  const uptd3 = await prisma.uptd.upsert({
-    where: { code: "UPTD-003" },
-    update: {},
-    create: {
+    {
       code: "UPTD-003",
       name: "UPTD Samsat Batanghari",
-      address: "Jl. Depati Purbo, Muara Bulian",
+      address: "Jl. Depati Purbo No. 1, Muara Bulian, Batanghari",
       phone: "0743-21098",
       email: "samsat.batanghari@bapenda.jambiprov.go.id",
       headName: "H. Ridwan Syah, S.E., M.M",
+      province: "Jambi",
+      city: "Kabupaten Batanghari",
+      district: "Muara Bulian",
+      latitude: -1.7249,
+      longitude: 103.2614,
+      googleMapsUrl: "https://maps.google.com/?q=-1.7249,103.2614",
       isActive: true,
+      showOnPublicMap: true,
     },
-  });
+    {
+      code: "UPTD-004",
+      name: "UPTD Samsat Muara Bungo",
+      address: "Jl. Lintas Sumatera, Muara Bungo",
+      phone: "0747-21024",
+      email: "samsat.bungo@bapenda.jambiprov.go.id",
+      headName: "H. Syamsul Bahri, S.E.",
+      province: "Jambi",
+      city: "Kabupaten Bungo",
+      district: "Muara Bungo",
+      latitude: -1.5543,
+      longitude: 102.1186,
+      googleMapsUrl: "https://maps.google.com/?q=-1.5543,102.1186",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+    {
+      code: "UPTD-005",
+      name: "UPTD Samsat Tebo",
+      address: "Jl. Lintas Muara Tebo, Kabupaten Tebo",
+      phone: "0744-21138",
+      email: "samsat.tebo@bapenda.jambiprov.go.id",
+      headName: "Hj. Yusnita, S.E., M.M",
+      province: "Jambi",
+      city: "Kabupaten Tebo",
+      district: "Tebo Tengah",
+      latitude: -1.3822,
+      longitude: 102.1508,
+      googleMapsUrl: "https://maps.google.com/?q=-1.3822,102.1508",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+    {
+      code: "UPTD-006",
+      name: "UPTD Samsat Sarolangun",
+      address: "Jl. Lintas Sumatera, Sarolangun",
+      phone: "0745-91024",
+      email: "samsat.sarolangun@bapenda.jambiprov.go.id",
+      headName: "Drs. H. Amir Hamzah",
+      province: "Jambi",
+      city: "Kabupaten Sarolangun",
+      district: "Sarolangun",
+      latitude: -2.3281,
+      longitude: 102.6916,
+      googleMapsUrl: "https://maps.google.com/?q=-2.3281,102.6916",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+    {
+      code: "UPTD-007",
+      name: "UPTD Samsat Merangin",
+      address: "Jl. Jenderal Sudirman, Bangko, Merangin",
+      phone: "0746-21059",
+      email: "samsat.merangin@bapenda.jambiprov.go.id",
+      headName: "H. Fahmi Arya, S.H.",
+      province: "Jambi",
+      city: "Kabupaten Merangin",
+      district: "Bangko",
+      latitude: -2.2733,
+      longitude: 102.4656,
+      googleMapsUrl: "https://maps.google.com/?q=-2.2733,102.4656",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+    {
+      code: "UPTD-008",
+      name: "UPTD Samsat Kerinci",
+      address: "Jl. Depati Parbo, Sungai Penuh, Kerinci",
+      phone: "0748-21058",
+      email: "samsat.kerinci@bapenda.jambiprov.go.id",
+      headName: "Dra. Hj. Rosmiati, M.Si",
+      province: "Jambi",
+      city: "Kota Sungai Penuh",
+      district: "Sungai Penuh",
+      latitude: -2.0622,
+      longitude: 101.3930,
+      googleMapsUrl: "https://maps.google.com/?q=-2.0622,101.3930",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+    {
+      code: "UPTD-009",
+      name: "UPTD Samsat Tanjung Jabung Barat",
+      address: "Jl. Zainir Haviz, Kuala Tungkal, Tanjab Barat",
+      phone: "0742-21216",
+      email: "samsat.tanjabbar@bapenda.jambiprov.go.id",
+      headName: "H. Edy Kurniawan, S.E.",
+      province: "Jambi",
+      city: "Kabupaten Tanjung Jabung Barat",
+      district: "Tungkal Ilir",
+      latitude: -0.8540,
+      longitude: 103.4634,
+      googleMapsUrl: "https://maps.google.com/?q=-0.8540,103.4634",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+    {
+      code: "UPTD-010",
+      name: "UPTD Samsat Tanjung Jabung Timur",
+      address: "Jl. Komplek Perkantoran, Muara Sabak, Tanjab Timur",
+      phone: "0740-7353001",
+      email: "samsat.tabjtim@bapenda.jambiprov.go.id",
+      headName: "Drs. H. Fauzan, M.M",
+      province: "Jambi",
+      city: "Kabupaten Tanjung Jabung Timur",
+      district: "Muara Sabak Barat",
+      latitude: -1.0812,
+      longitude: 103.8698,
+      googleMapsUrl: "https://maps.google.com/?q=-1.0812,103.8698",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+    {
+      code: "UPTD-011",
+      name: "UPTD Samsat Sungai Penuh",
+      address: "Jl. Muradi, Sungai Penuh",
+      phone: "0748-322058",
+      email: "samsat.sungaipenuh@bapenda.jambiprov.go.id",
+      headName: "H. Hermansyah, S.E., M.Si",
+      province: "Jambi",
+      city: "Kota Sungai Penuh",
+      district: "Sungai Penuh",
+      latitude: -2.0534,
+      longitude: 101.3974,
+      googleMapsUrl: "https://maps.google.com/?q=-2.0534,101.3974",
+      isActive: true,
+      showOnPublicMap: true,
+    },
+  ];
+
+  const uptdRecords: Record<string, { id: number }> = {};
+  for (const u of uptdData) {
+    const record = await prisma.uptd.upsert({
+      where: { code: u.code },
+      update: {
+        latitude: u.latitude,
+        longitude: u.longitude,
+        city: u.city,
+        district: u.district,
+        province: u.province,
+        googleMapsUrl: u.googleMapsUrl,
+        showOnPublicMap: u.showOnPublicMap,
+      },
+      create: u,
+    });
+    uptdRecords[u.code] = { id: record.id };
+  }
+
+  const uptd1 = uptdRecords["UPTD-001"];
+  const uptd2 = uptdRecords["UPTD-002"];
+  const uptd3 = uptdRecords["UPTD-003"];
 
   // Seed Users
   const passwordHash = await bcrypt.hash("password", 12);

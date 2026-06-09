@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(grep -E \"\\\\.\\(ts|tsx\\)$\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(mkdir -p \"c:/Users/ASUS/Documents/BPKPD/Code/Bapeda-Jambi-Profile/src/app/cms/uptd/[id]\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\ASUS\\Documents\\BPKPD\\Code\\Bapeda-Jambi-Profile\\src\\app\\cms\\uptd"
     ]
   }
 }

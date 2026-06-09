@@ -21,6 +21,7 @@ const NAV_LINKS = [
     ],
   },
   { href: "/layanan", label: "Layanan" },
+  { href: "/lokasi-uptd", label: "Lokasi UPTD" },
   { href: "/regulasi", label: "Regulasi" },
   {
     label: "Publikasi",

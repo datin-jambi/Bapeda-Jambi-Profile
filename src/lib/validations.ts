@@ -113,11 +113,37 @@ export const settingsSchema = z.record(z.string(), z.string());
 export const uptdSchema = z.object({
   code: z.string().min(2, "Kode UPTD wajib diisi"),
   name: z.string().min(2, "Nama UPTD wajib diisi"),
+  description: z.string().optional().nullable(),
   address: z.string().optional().nullable(),
   phone: z.string().optional().nullable(),
-  email: z.string().email().optional().nullable(),
+  email: z.string().email("Format email tidak valid").optional().nullable(),
   headName: z.string().optional().nullable(),
+
+  // Wilayah
+  province: z.string().optional().nullable(),
+  city: z.string().optional().nullable(),
+  district: z.string().optional().nullable(),
+  subDistrict: z.string().optional().nullable(),
+  postalCode: z.string().optional().nullable(),
+
+  // Geolokasi — validated range
+  latitude: z.coerce
+    .number()
+    .min(-90, "Latitude harus antara -90 dan 90")
+    .max(90, "Latitude harus antara -90 dan 90")
+    .optional()
+    .nullable(),
+  longitude: z.coerce
+    .number()
+    .min(-180, "Longitude harus antara -180 dan 180")
+    .max(180, "Longitude harus antara -180 dan 180")
+    .optional()
+    .nullable(),
+  googleMapsUrl: z.string().url("Format URL tidak valid").optional().nullable(),
+
+  // Visibilitas
   isActive: z.boolean().optional(),
+  showOnPublicMap: z.boolean().optional(),
 });
 
 export type LoginInput = z.infer<typeof loginSchema>;

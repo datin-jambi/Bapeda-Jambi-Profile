@@ -180,27 +180,135 @@ export const uptdRepository = {
     });
   },
 
+  async findPaginated(params: {
+    page: number;
+    limit: number;
+    skip: number;
+    search?: string;
+    isActive?: boolean;
+    hasUsers?: boolean;
+  }) {
+    const where = {
+      deletedAt: null,
+      ...(params.isActive !== undefined && { isActive: params.isActive }),
+      ...(params.search && {
+        OR: [
+          { name: { contains: params.search, mode: "insensitive" as const } },
+          { code: { contains: params.search, mode: "insensitive" as const } },
+        ],
+      }),
+      ...(params.hasUsers === true && { users: { some: { deletedAt: null } } }),
+      ...(params.hasUsers === false && { users: { none: { deletedAt: null } } }),
+    };
+
+    const [data, total] = await Promise.all([
+      prisma.uptd.findMany({
+        where,
+        skip: params.skip,
+        take: params.limit,
+        orderBy: { code: "asc" },
+        include: { _count: { select: { users: { where: { deletedAt: null } } } } },
+      }),
+      prisma.uptd.count({ where }),
+    ]);
+
+    return { data, total };
+  },
+
   async findById(id: number) {
     return prisma.uptd.findUnique({
       where: { id, deletedAt: null },
-      include: { _count: { select: { users: true } } },
+      include: { _count: { select: { users: { where: { deletedAt: null } } } } },
     });
   },
 
+  async findByIdWithStats(id: number) {
+    const uptd = await prisma.uptd.findUnique({
+      where: { id, deletedAt: null },
+    });
+    if (!uptd) return null;
+
+    const [userStats, users] = await Promise.all([
+      prisma.user.groupBy({
+        by: ["role", "isActive"],
+        where: { uptdId: id, deletedAt: null },
+        _count: { id: true },
+      }),
+      prisma.user.findMany({
+        where: { uptdId: id, deletedAt: null },
+        select: {
+          id: true, name: true, email: true, role: true,
+          isActive: true, createdAt: true, avatarUrl: true,
+        },
+        orderBy: { createdAt: "desc" },
+      }),
+    ]);
+
+    const totalUser = userStats.reduce((sum, s) => sum + s._count.id, 0);
+    const totalAdmin = userStats
+      .filter((s) => s.role === "Admin" || s.role === "Ketua_Uptd" || s.role === "Admin_Uptd")
+      .reduce((sum, s) => sum + s._count.id, 0);
+    const totalOperator = userStats
+      .filter((s) => s.role === "Editor")
+      .reduce((sum, s) => sum + s._count.id, 0);
+    const totalAktif = userStats
+      .filter((s) => s.isActive)
+      .reduce((sum, s) => sum + s._count.id, 0);
+    const totalNonaktif = userStats
+      .filter((s) => !s.isActive)
+      .reduce((sum, s) => sum + s._count.id, 0);
+
+    return {
+      ...uptd,
+      stats: { totalUser, totalAdmin, totalOperator, totalAktif, totalNonaktif },
+      users,
+    };
+  },
+
   async create(data: {
-    code: string; name: string; address?: string | null;
-    phone?: string | null; email?: string | null;
-    headName?: string | null; isActive?: boolean;
+    code: string; name: string; description?: string | null;
+    address?: string | null; phone?: string | null; email?: string | null;
+    headName?: string | null; isActive?: boolean; showOnPublicMap?: boolean;
+    province?: string | null; city?: string | null; district?: string | null;
+    subDistrict?: string | null; postalCode?: string | null;
+    latitude?: number | null; longitude?: number | null; googleMapsUrl?: string | null;
   }) {
     return prisma.uptd.create({ data });
   },
 
   async update(id: number, data: Partial<{
-    code: string; name: string; address: string | null;
-    phone: string | null; email: string | null;
-    headName: string | null; isActive: boolean;
+    code: string; name: string; description: string | null;
+    address: string | null; phone: string | null; email: string | null;
+    headName: string | null; isActive: boolean; showOnPublicMap: boolean;
+    province: string | null; city: string | null; district: string | null;
+    subDistrict: string | null; postalCode: string | null;
+    latitude: number | null; longitude: number | null; googleMapsUrl: string | null;
   }>) {
     return prisma.uptd.update({ where: { id }, data });
+  },
+
+  async findForPublicMap(params: { search?: string; city?: string; district?: string }) {
+    return prisma.uptd.findMany({
+      where: {
+        deletedAt: null,
+        isActive: true,
+        showOnPublicMap: true,
+        latitude: { not: null },
+        longitude: { not: null },
+        ...(params.search && {
+          name: { contains: params.search, mode: "insensitive" as const },
+        }),
+        ...(params.city && { city: { contains: params.city, mode: "insensitive" as const } }),
+        ...(params.district && { district: { contains: params.district, mode: "insensitive" as const } }),
+      },
+      select: {
+        id: true, code: true, name: true, description: true,
+        address: true, phone: true, email: true,
+        city: true, district: true, province: true,
+        latitude: true, longitude: true, googleMapsUrl: true,
+      },
+      orderBy: { name: "asc" },
+    });
   },
 
   async delete(id: number) {

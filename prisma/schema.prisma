@@ -31,18 +31,35 @@ model User {
 }
 
 model Uptd {
-  id        Int       @id @default(autoincrement())
-  code      String    @unique
-  name      String
-  address   String?
-  phone     String?
-  email     String?
-  headName  String?
-  isActive  Boolean   @default(true)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-  users     User[]
+  id               Int       @id @default(autoincrement())
+  code             String    @unique
+  name             String
+  description      String?
+  address          String?
+  phone            String?
+  email            String?
+  headName         String?
+
+  // Wilayah
+  province         String?   @default("Jambi")
+  city             String?
+  district         String?
+  subDistrict      String?
+  postalCode       String?
+
+  // Geolokasi
+  latitude         Float?
+  longitude        Float?
+  googleMapsUrl    String?
+
+  // Visibilitas
+  isActive         Boolean   @default(true)
+  showOnPublicMap  Boolean   @default(false)
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime?
+  users            User[]
 
   @@map("uptds")
 }
