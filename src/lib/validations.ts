@@ -40,6 +40,9 @@ export const changePasswordSchema = z.object({
 export const newsCategorySchema = z.object({
   name: z.string().min(2, "Nama kategori minimal 2 karakter"),
   slug: z.string().optional(),
+  description: z.string().optional().nullable(),
+  sortOrder: z.coerce.number().int().min(0).optional().default(0),
+  isActive: z.boolean().optional().default(true),
 });
 
 export const newsSchema = z.object({
@@ -154,6 +157,7 @@ export const uptdSchema = z.object({
   showOnPublicMap: z.boolean().optional(),
 });
 
+export type NewsCategoryInput = z.infer<typeof newsCategorySchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;

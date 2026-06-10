@@ -287,18 +287,18 @@ async function main() {
 
   // Seed News Categories
   const categories = [
-    { name: "Pengumuman", slug: "pengumuman" },
-    { name: "Berita", slug: "berita" },
-    { name: "Kegiatan", slug: "kegiatan" },
-    { name: "Inovasi", slug: "inovasi" },
-    { name: "Layanan", slug: "layanan" },
+    { name: "Pengumuman", slug: "pengumuman", description: "Pengumuman resmi dari BAPENDA Provinsi Jambi", sortOrder: 1, isActive: true },
+    { name: "Berita", slug: "berita", description: "Berita terkini seputar kegiatan BAPENDA", sortOrder: 2, isActive: true },
+    { name: "Kegiatan", slug: "kegiatan", description: "Liputan kegiatan dan acara BAPENDA", sortOrder: 3, isActive: true },
+    { name: "Inovasi", slug: "inovasi", description: "Inovasi layanan dan program BAPENDA", sortOrder: 4, isActive: true },
+    { name: "Layanan", slug: "layanan", description: "Informasi seputar layanan pajak daerah", sortOrder: 5, isActive: true },
   ];
 
   const createdCategories: Record<string, number> = {};
   for (const cat of categories) {
     const created = await prisma.newsCategory.upsert({
       where: { slug: cat.slug },
-      update: {},
+      update: { description: cat.description, sortOrder: cat.sortOrder, isActive: cat.isActive },
       create: cat,
     });
     createdCategories[cat.slug] = created.id;
