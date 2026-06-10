@@ -32,7 +32,7 @@ export default async function GalleryDetailPage({ params }: Props) {
         orderBy: { sortOrder: "asc" },
       },
     },
-  });
+  }).catch(() => null);
 
   if (!gallery) notFound();
 

@@ -21,7 +21,7 @@ export default async function ProfilPage({ params }: Props) {
   const [page, allPages] = await Promise.all([
     pageRepository.findBySlug(slug),
     pageRepository.findAll(),
-  ]);
+  ]).catch(() => [null, []] as [null, never[]]);
 
   if (!page || !page.isPublished) notFound();
 

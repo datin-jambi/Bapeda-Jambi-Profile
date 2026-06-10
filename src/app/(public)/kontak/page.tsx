@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function KontakPage() {
-  const settings = await settingRepository.findAll();
+  const settings = await settingRepository.findAll().catch(() => ({} as Record<string, string>));
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

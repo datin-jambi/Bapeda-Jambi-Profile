@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import api from "@/lib/axios";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +17,7 @@ import { DataTableFilter } from "@/components/cms/data-table-filter";
 import { DataTablePagination } from "@/components/cms/data-table-pagination";
 import { useDebounce } from "@/hooks/use-debounce";
 
+
 type PageItem = {
   id: number;
   title: string;
@@ -30,7 +31,7 @@ type PageResponse = {
   meta: { page: number; limit: number; totalItems: number; totalPages: number };
 };
 
-export default function CmsPagesPage() {
+function CmsPagesPage() {
   const { user } = useAuthStore();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -245,4 +246,8 @@ export default function CmsPagesPage() {
       />
     </div>
   );
+}
+
+export default function Page() {
+  return <Suspense><CmsPagesPage /></Suspense>;
 }

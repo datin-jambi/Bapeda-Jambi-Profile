@@ -3,9 +3,9 @@ import { PublicFooter } from "@/components/public/footer";
 import { pageRepository } from "@/repositories/content.repository";
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  const pages = await pageRepository.findAll().then((all) =>
-    all.filter((p) => p.isPublished).map((p) => ({ slug: p.slug, title: p.title }))
-  );
+  const pages = await pageRepository.findAll()
+    .then((all) => all.filter((p) => p.isPublished).map((p) => ({ slug: p.slug, title: p.title })))
+    .catch(() => []);
 
   return (
     <div className="min-h-screen flex flex-col">

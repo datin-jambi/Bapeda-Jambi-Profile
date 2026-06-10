@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import api from "@/lib/axios";
 import { FallbackImage } from "@/components/ui/fallback-image";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,7 @@ import { DataTableFilter } from "@/components/cms/data-table-filter";
 import { DataTable, ColumnDef } from "@/components/cms/data-table";
 import { DataTablePagination } from "@/components/cms/data-table-pagination";
 import { useDebounce } from "@/hooks/use-debounce";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type Banner = {
@@ -41,7 +42,7 @@ type BannerResponse = {
   meta: { page: number; limit: number; totalItems: number; totalPages: number };
 };
 
-export default function CmsBannersPage() {
+function CmsBannersPage() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const pathname = usePathname();
@@ -335,4 +336,8 @@ export default function CmsBannersPage() {
       </Dialog>
     </div>
   );
+}
+
+export default function Page() {
+  return <Suspense><CmsBannersPage /></Suspense>;
 }

@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import api from "@/lib/axios";
@@ -23,6 +23,7 @@ import { DataTablePagination } from "@/components/cms/data-table-pagination";
 import { PdfUpload } from "@/components/cms/pdf-upload";
 import { PdfPreviewDialog } from "@/components/cms/pdf-preview-dialog";
 import { useDebounce } from "@/hooks/use-debounce";
+
 import { regulationSchema, RegulationInput } from "@/lib/validations";
 import { ContentStatus } from "@prisma/client";
 
@@ -64,7 +65,7 @@ const defaultValues: RegulationInput = {
   status: "DRAFT",
 };
 
-export default function CmsRegulationsPage() {
+function CmsRegulationsPage() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const pathname = usePathname();
@@ -412,4 +413,8 @@ export default function CmsRegulationsPage() {
       />
     </div>
   );
+}
+
+export default function Page() {
+  return <Suspense><CmsRegulationsPage /></Suspense>;
 }

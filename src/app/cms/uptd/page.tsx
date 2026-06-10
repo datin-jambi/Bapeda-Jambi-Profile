@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import api from "@/lib/axios";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import { DataTableFilter } from "@/components/cms/data-table-filter";
 import { DataTablePagination } from "@/components/cms/data-table-pagination";
 import { ConfirmDialog } from "@/components/cms/confirm-dialog";
 import { useDebounce } from "@/hooks/use-debounce";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -128,7 +129,7 @@ function MapPreview({ lat, lng }: { lat?: number | null; lng?: number | null }) 
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function CmsUptdPage() {
+function CmsUptdPage() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const pathname = usePathname();
@@ -645,4 +646,8 @@ export default function CmsUptdPage() {
       </Dialog>
     </div>
   );
+}
+
+export default function Page() {
+  return <Suspense><CmsUptdPage /></Suspense>;
 }

@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import api from "@/lib/axios";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +17,7 @@ import { DataTableFilter } from "@/components/cms/data-table-filter";
 import { DataTable, ColumnDef } from "@/components/cms/data-table";
 import { DataTablePagination } from "@/components/cms/data-table-pagination";
 import { useDebounce } from "@/hooks/use-debounce";
+
 
 type FaqCategoryItem = {
   id: number;
@@ -34,7 +35,7 @@ type CategoryResponse = {
   meta: { page: number; limit: number; totalItems: number; totalPages: number };
 };
 
-export default function CmsFaqCategoriesPage() {
+function CmsFaqCategoriesPage() {
   const { user } = useAuthStore();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -278,4 +279,8 @@ export default function CmsFaqCategoriesPage() {
       />
     </div>
   );
+}
+
+export default function Page() {
+  return <Suspense><CmsFaqCategoriesPage /></Suspense>;
 }

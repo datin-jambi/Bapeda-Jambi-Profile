@@ -28,7 +28,7 @@ export default async function NewsDetailPage({ params }: Props) {
       category: true,
       author: { select: { name: true, avatarUrl: true } },
     },
-  });
+  }).catch(() => null);
 
   if (!news) notFound();
 

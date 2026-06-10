@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import api from "@/lib/axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,7 @@ import { DataTableFilter } from "@/components/cms/data-table-filter";
 import { DataTablePagination } from "@/components/cms/data-table-pagination";
 import { ConfirmDialog } from "@/components/cms/confirm-dialog";
 import { useDebounce } from "@/hooks/use-debounce";
+
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -87,7 +88,7 @@ function formatDate(iso: string): string {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function CmsUsersPage() {
+function CmsUsersPage() {
   const { user: me } = useAuthStore();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -520,4 +521,8 @@ export default function CmsUsersPage() {
       </Dialog>
     </div>
   );
+}
+
+export default function Page() {
+  return <Suspense><CmsUsersPage /></Suspense>;
 }
