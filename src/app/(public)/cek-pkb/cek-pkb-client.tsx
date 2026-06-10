@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Search, AlertCircle, CheckCircle, Clock, Info, Download, FileText } from "lucide-react";
+import { Search, AlertCircle, CheckCircle, Clock, Info, Download, Eye, FileText } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const HOST = process.env.NEXT_PUBLIC_PKB_API_HOST;
 const TOKEN = process.env.NEXT_PUBLIC_PKB_API_TOKEN;
@@ -117,9 +118,9 @@ function normalizeNopol(raw: string): string {
   return "BH " + val;
 }
 
-// ─── Invoice Generator (client-side print) ───────────────────────────────────
+// ─── Invoice Generator (client-side, returns HTML string) ────────────────────
 
-function printInvoice(data: AllData, grandTotal: number) {
+function buildInvoiceHtml(data: AllData, grandTotal: number): string {
   const { kendaraan, pajak, jr, pnbp } = data;
   const now = new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
 
@@ -148,14 +149,14 @@ function printInvoice(data: AllData, grandTotal: number) {
 <title>Invoice PKB - ${kendaraan.no_polisi}</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: 'Arial', sans-serif; font-size: 12px; color: #1a1a1a; background: #fff; padding: 32px; }
+  body { font-family: 'Arial', sans-serif; font-size: 12px; color: #1a1a1a; background: #fff; padding: 8px 16px; }
   .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #1a3a6e; padding-bottom: 16px; margin-bottom: 20px; }
   .logo-text { font-size: 18px; font-weight: 700; color: #1a3a6e; }
   .logo-sub { font-size: 11px; color: #666; margin-top: 2px; }
   .invoice-meta { text-align: right; }
   .invoice-meta .label { font-size: 10px; color: #888; }
   .invoice-meta .value { font-weight: 600; color: #1a3a6e; }
-  .nopol-badge { background: #1a3a6e; color: #fff; display: inline-block; padding: 6px 18px; border-radius: 6px; font-size: 22px; font-weight: 700; letter-spacing: 4px; margin-bottom: 12px; }
+  .nopol-badge { background: #1a3a6e; color: #fff; display: inline-flex; align-items: center; padding: 6px 18px; border-radius: 6px; font-size: 22px; font-weight: 700; letter-spacing: 4px; margin-bottom: 12px; line-height: 1; }
   .kendaraan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; margin-bottom: 16px; }
   .kendaraan-grid .item { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #eee; }
   .kendaraan-grid .item .lbl { color: #888; }
@@ -244,12 +245,32 @@ ${pnbp ? `
 </body>
 </html>`;
 
-  const win = window.open("", "_blank", "width=800,height=900");
-  if (!win) return;
-  win.document.write(html);
-  win.document.close();
-  win.focus();
-  setTimeout(() => { win.print(); }, 500);
+  return html;
+}
+
+async function downloadInvoice(data: AllData, grandTotal: number) {
+  const html = buildInvoiceHtml(data, grandTotal);
+  const filename = `invoice-pkb-${data.kendaraan.no_polisi.replace(/\s/g, "-")}.pdf`;
+
+  // Dynamic import agar tidak masuk bundle server-side
+  const html2pdf = (await import("html2pdf.js")).default;
+
+  const container = document.createElement("div");
+  container.innerHTML = html;
+  // Ambil hanya <body> content agar style inline ikut
+  const body = container.querySelector("body");
+  const el = body ?? container;
+
+  html2pdf()
+    .set({
+      margin: [10, 12, 10, 12],
+      filename,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    })
+    .from(el)
+    .save();
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -304,10 +325,18 @@ export function CekPkbClient() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [data, setData] = useState<AllData | null>(null);
+  const [invoiceOpen, setInvoiceOpen] = useState(false);
+  const [invoiceHtml, setInvoiceHtml] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Input phone-style: format BH·1234·AB dengan spasi otomatis
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setInputVal(e.target.value.toUpperCase());
+    const raw = e.target.value.toUpperCase().replace(/\s/g, "");
+    // Pisahkan segmen: huruf plat (1-2) + angka (1-4) + huruf akhir (1-3)
+    const m = raw.match(/^([A-Z]{1,2})?(\d{1,4})?([A-Z]{1,3})?/);
+    if (!m) { setInputVal(raw); return; }
+    const parts = [m[1], m[2], m[3]].filter(Boolean);
+    setInputVal(parts.join(" "));
     setError("");
   }
 
@@ -499,13 +528,25 @@ export function CekPkbClient() {
                         <p className="text-xs text-red-100 mb-1">Total Yang Harus Dibayar</p>
                         <p className="text-3xl font-bold text-white">{formatRupiah(grandTotal)}</p>
                       </div>
-                      <button
-                        onClick={() => printInvoice(data, grandTotal)}
-                        className="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-colors"
-                      >
-                        <Download className="h-4 w-4" />
-                        Invoice
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => {
+                            setInvoiceHtml(buildInvoiceHtml(data, grandTotal));
+                            setInvoiceOpen(true);
+                          }}
+                          className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 text-white px-3 py-2 rounded-xl text-sm font-semibold transition-colors"
+                        >
+                          <Eye className="h-4 w-4" />
+                          Lihat
+                        </button>
+                        <button
+                          onClick={() => downloadInvoice(data, grandTotal)}
+                          className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 text-white px-3 py-2 rounded-xl text-sm font-semibold transition-colors"
+                        >
+                          <Download className="h-4 w-4" />
+                          Unduh
+                        </button>
+                      </div>
                     </div>
                     <div className="px-6 py-4 space-y-2">
                       <div className="flex justify-between items-center text-sm py-1.5 border-b border-gray-50">
@@ -591,6 +632,34 @@ export function CekPkbClient() {
           </div>
         </div>
       )}
+
+      {/* Modal preview invoice */}
+      <Dialog open={invoiceOpen} onOpenChange={(v) => { if (!v) setInvoiceOpen(false); }}>
+        <DialogContent className="max-w-4xl h-[90vh] flex flex-col p-0">
+          <DialogHeader className="px-6 pt-6 pb-3 flex-shrink-0 border-b">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="flex items-center gap-2">
+                <FileText className="h-4 w-4 text-primary" />
+                Invoice PKB — {data?.kendaraan.no_polisi}
+              </DialogTitle>
+              <button
+                onClick={() => data && downloadInvoice(data, grandTotal)}
+                className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg transition-colors border border-primary/20 mr-8"
+              >
+                <Download className="h-4 w-4" />
+                Unduh
+              </button>
+            </div>
+          </DialogHeader>
+          <div className="flex-1 min-h-0 p-4">
+            <iframe
+              srcDoc={invoiceHtml}
+              className="w-full h-full rounded-xl border border-gray-100 bg-white"
+              title="Preview Invoice PKB"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
