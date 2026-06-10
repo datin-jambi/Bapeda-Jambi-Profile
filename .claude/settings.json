@@ -5,7 +5,9 @@
       "Bash(node -e ' *)",
       "Bash(mkdir -p \"c:/Users/ASUS/Documents/BPKPD/Code/Bapeda-Jambi-Profile/src/app/cms/uptd/[id]\")",
       "Bash(npm info *)",
-      "Bash(npm ci *)"
+      "Bash(npm ci *)",
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "Bash(xargs grep -l \"fileId\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ASUS\\Documents\\BPKPD\\Code\\Bapeda-Jambi-Profile\\src\\app\\cms\\uptd"
