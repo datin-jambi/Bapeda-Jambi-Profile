@@ -12,10 +12,14 @@
       "Bash(npx prisma *)",
       "Bash(rm push_output.txt)",
       "Bash(powershell -Command \"cd 'c:\\\\Users\\\\ASUS\\\\Documents\\\\BPKPD\\\\Code\\\\Bapeda-Jambi-Profile'; npx prisma db push 2>&1 | Out-String\")",
-      "Bash(node -e \"const {execSync} = require\\('child_process'\\); try { const r = execSync\\('npx prisma db push', {encoding:'utf8', timeout:60000}\\); console.log\\(r\\); } catch\\(e\\) { console.log\\('stdout:', e.stdout\\); console.log\\('stderr:', e.stderr\\); }\")"
+      "Bash(node -e \"const {execSync} = require\\('child_process'\\); try { const r = execSync\\('npx prisma db push', {encoding:'utf8', timeout:60000}\\); console.log\\(r\\); } catch\\(e\\) { console.log\\('stdout:', e.stdout\\); console.log\\('stderr:', e.stderr\\); }\")",
+      "Bash(mkdir -p \"c:/Users/ASUS/Documents/BPKPD/Code/Bapeda-Jambi-Profile/src/app/cms/pages/[id]/edit\")",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/quill/package.json'\\).version\\)\")",
+      "Bash(node -e \"const q = require\\('./node_modules/quill/package.json'\\); console.log\\('quill:', q.version\\); const rq = require\\('./node_modules/react-quill/package.json'\\); console.log\\('react-quill:', rq.version\\);\")"
     ],
     "additionalDirectories": [
-      "c:\\Users\\ASUS\\Documents\\BPKPD\\Code\\Bapeda-Jambi-Profile\\src\\app\\cms\\uptd"
+      "c:\\Users\\ASUS\\Documents\\BPKPD\\Code\\Bapeda-Jambi-Profile\\src\\app\\cms\\uptd",
+      "c:\\Users\\ASUS\\Documents\\BPKPD\\Code\\Bapeda-Jambi-Profile\\src\\app\\cms\\pages\\[id]"
     ]
   }
 }

@@ -131,6 +131,29 @@ export const pageRepository = {
     });
   },
 
+  async findPaginated(params: {
+    skip: number; limit: number; search?: string; isPublished?: boolean;
+  }) {
+    const where = {
+      deletedAt: null,
+      ...(params.isPublished !== undefined && { isPublished: params.isPublished }),
+      ...(params.search && {
+        OR: [
+          { title: { contains: params.search, mode: "insensitive" as const } },
+          { slug: { contains: params.search, mode: "insensitive" as const } },
+        ],
+      }),
+    };
+    const [data, total] = await Promise.all([
+      prisma.page.findMany({
+        where, skip: params.skip, take: params.limit,
+        orderBy: { createdAt: "asc" },
+      }),
+      prisma.page.count({ where }),
+    ]);
+    return { data, total };
+  },
+
   async findBySlug(slug: string) {
     return prisma.page.findUnique({ where: { slug, deletedAt: null } });
   },
@@ -139,11 +162,37 @@ export const pageRepository = {
     return prisma.page.findUnique({ where: { id, deletedAt: null } });
   },
 
+  async generateSlug(base: string, excludeId?: number): Promise<string> {
+    const baseSlug = slugify(base);
+    let slug = baseSlug;
+    let i = 1;
+    while (
+      await prisma.page.findFirst({
+        where: { slug, deletedAt: null, ...(excludeId && { id: { not: excludeId } }) },
+      })
+    ) {
+      slug = `${baseSlug}-${i++}`;
+    }
+    return slug;
+  },
+
+  async create(data: {
+    title: string; slug?: string; content: string;
+    seoTitle?: string | null; seoDescription?: string | null; isPublished?: boolean;
+  }) {
+    const slug = data.slug || await pageRepository.generateSlug(data.title);
+    return prisma.page.create({ data: { ...data, slug } });
+  },
+
   async update(id: number, data: Partial<{
-    title: string; content: string; seoTitle: string | null;
-    seoDescription: string | null; isPublished: boolean;
+    title: string; slug: string; content: string;
+    seoTitle: string | null; seoDescription: string | null; isPublished: boolean;
   }>) {
     return prisma.page.update({ where: { id }, data });
+  },
+
+  async delete(id: number) {
+    return prisma.page.update({ where: { id }, data: { deletedAt: new Date() } });
   },
 };
 
