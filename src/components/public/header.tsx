@@ -32,7 +32,13 @@ export function PublicHeader({ pages = [] }: PublicHeaderProps) {
   const NAV_LINKS = [
     { href: "/", label: "Beranda" },
     { label: "Profil", children: profilChildren },
-    { href: "/layanan", label: "Layanan" },
+    {
+      label: "Layanan",
+      children: [
+        { href: "/layanan", label: "Informasi Layanan" },
+        { href: "/cek-pajak", label: "Cek Pajak Kendaraan" },
+      ],
+    },
     { href: "/lokasi-uptd", label: "Lokasi UPTD" },
     { href: "/regulasi", label: "Regulasi" },
     {
@@ -42,7 +48,6 @@ export function PublicHeader({ pages = [] }: PublicHeaderProps) {
         { href: "/galeri", label: "Galeri" },
       ],
     },
-    { href: "/cek-pkb", label: "Cek PKB" },
     { href: "/faq", label: "FAQ" },
     { href: "/kontak", label: "Kontak" },
   ];
