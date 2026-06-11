@@ -24,7 +24,18 @@
       "Read(//c/laragon/www/profile-new/**)",
       "Bash(mkdir -p \"c:\\\\Users\\\\ASUS\\\\Documents\\\\BPKPD\\\\Code\\\\Bapeda-Jambi-Profile\\\\src\\\\app\\\\api\\\\cms\\\\dashboard\")",
       "WebSearch",
-      "WebFetch(domain:esamsat.jambiprov.go.id)"
+      "WebFetch(domain:esamsat.jambiprov.go.id)",
+      "Bash(docker compose *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3031)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3032)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3033)",
+      "Bash(curl -s http://localhost:3033/api/health)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3033/api/health)",
+      "Bash(docker exec *)",
+      "Bash(docker restart *)",
+      "Bash(curl -s -o /dev/null -w \"prod:3031 -> %{http_code}\\\\n\" http://localhost:3031/api/health)",
+      "Bash(curl -s -o /dev/null -w \"staging:3032 -> %{http_code}\\\\n\" http://localhost:3032/api/health)",
+      "Bash(curl -s -o /dev/null -w \"dev:3033 -> %{http_code}\\\\n\" http://localhost:3033/api/health)"
     ],
     "additionalDirectories": [
       "c:\\Users\\ASUS\\Documents\\BPKPD\\Code\\Bapeda-Jambi-Profile\\src\\app\\cms\\uptd",

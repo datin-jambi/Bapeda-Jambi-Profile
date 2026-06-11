@@ -1,10 +1,13 @@
 services:
   app-production:
-    image: ${DOCKER_IMAGE:-bapenda-jambi}:latest
-    container_name: app-production
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bapeda-profile:production
+    container_name: bapeda-profile-prod
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3031:3000"
     env_file:
       - .env.production
     networks:

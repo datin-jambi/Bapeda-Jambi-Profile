@@ -23,7 +23,7 @@ RUN npm run build
 
 # Stage 3: Production runner
 FROM node:20-alpine AS runner
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl wget
 WORKDIR /app
 
 ENV NODE_ENV=production
