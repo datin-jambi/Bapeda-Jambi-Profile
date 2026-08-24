@@ -21,12 +21,13 @@ model User {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   deletedAt    DateTime?
-  auditLogs       AuditLog[]
-  faqsAuthored    Faq[]      @relation("FaqAuthor")
-  faqsUpdated     Faq[]      @relation("FaqUpdatedBy")
-  galleries       Gallery[]
-  news            News[]
-  uptd            Uptd?      @relation(fields: [uptdId], references: [id])
+  auditLogs          AuditLog[]
+  faqsAuthored       Faq[]      @relation("FaqAuthor")
+  faqsUpdated        Faq[]      @relation("FaqUpdatedBy")
+  galleries          Gallery[]
+  news               News[]
+  uptd               Uptd?      @relation(fields: [uptdId], references: [id])
+  vehicleTaxChecks   VehicleTaxCheckLog[]
 
   @@map("users")
 }
@@ -245,12 +246,29 @@ model AuditLog {
   @@map("audit_logs")
 }
 
+model VehicleTaxCheckLog {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  licensePlate  String
+  vehicleType   String?
+  status        String
+  notes         String?
+  latitude      Float?
+  longitude     Float?
+  lokasi        String?
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id])
+
+  @@map("vehicle_tax_check_logs")
+}
+
 enum Role {
   Super_Admin
   Admin
   Editor
   Ketua_Uptd
   Admin_Uptd
+  Petugas
 }
 
 enum ContentStatus {
