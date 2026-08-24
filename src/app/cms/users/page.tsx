@@ -62,6 +62,7 @@ const ROLES: { value: Role; label: string }[] = [
   { value: "Editor", label: "Editor" },
   { value: "Ketua_Uptd", label: "Ketua UPTD" },
   { value: "Admin_Uptd", label: "Admin UPTD" },
+  { value: "Petugas", label: "Petugas" },
 ];
 
 const resetPwSchema = z.object({ newPassword: z.string().min(8, "Min. 8 karakter") });

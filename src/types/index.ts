@@ -95,7 +95,8 @@ export type Permission =
   | "create:news"
   | "edit:news"
   | "create:gallery"
-  | "edit:gallery";
+  | "edit:gallery"
+  | "cek:pajak";
 
 export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   Super_Admin: [
@@ -132,6 +133,7 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   Editor: ["create:news", "edit:news", "create:gallery", "edit:gallery"],
   Ketua_Uptd: ["create:news", "edit:news", "create:gallery", "edit:gallery"],
   Admin_Uptd: ["create:news", "create:gallery"],
+  Petugas: ["cek:pajak"],
 };
 
 export function hasPermission(role: Role, permission: Permission): boolean {

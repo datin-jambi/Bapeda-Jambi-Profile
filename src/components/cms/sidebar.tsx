@@ -8,7 +8,7 @@ import { useSidebarStore, useAuthStore } from "@/store";
 import {
   LayoutDashboard, Newspaper, Images, HelpCircle, FileText,
   Shield, Image, Settings, Users, Building2, ChevronLeft, ChevronRight,
-  User, ScrollText, Tag,
+  User, ScrollText, Tag, Car,
 } from "lucide-react";
 import NextImage from "next/image";
 import { Role } from "@prisma/client";
@@ -32,6 +32,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/cms/banners", label: "Banner", icon: Image, roles: ["Super_Admin", "Admin"] },
   { href: "/cms/uptd", label: "UPTD", icon: Building2, roles: ["Super_Admin"] },
   { href: "/cms/users", label: "Pengguna", icon: Users, roles: ["Super_Admin", "Admin"] },
+  { href: "/cms/pajak-kendaraan", label: "Cek Pajak", icon: Car, roles: ["Petugas"] },
   { href: "/cms/settings", label: "Pengaturan", icon: Settings, roles: ["Super_Admin"] },
   { href: "/cms/profile", label: "Profil Saya", icon: User },
 ];
