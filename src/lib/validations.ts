@@ -124,6 +124,22 @@ export const regulationSchema = z.object({
 
 export const settingsSchema = z.record(z.string(), z.string());
 
+export const vehicleTaxCheckSchema = z.object({
+  licensePlate: z.string().min(1, "Nomor polisi wajib diisi"),
+  status: z.enum(["Lunas", "Belum Lunas"], { required_error: "Status wajib dipilih" }),
+  notes: z.string().optional().nullable(),
+  latitude: z.coerce.number().optional().nullable(),
+  longitude: z.coerce.number().optional().nullable(),
+  lokasi: z.string().optional().nullable(),
+});
+
+export const vehicleTaxCheckInputSchema = z.object({
+  licensePlate: z.string().min(1, "Nomor polisi wajib diisi"),
+});
+
+export type VehicleTaxCheckInput = z.infer<typeof vehicleTaxCheckSchema>;
+export type VehicleTaxCheckLookup = z.infer<typeof vehicleTaxCheckInputSchema>;
+
 export const uptdSchema = z.object({
   code: z.string().min(2, "Kode UPTD wajib diisi"),
   name: z.string().min(2, "Nama UPTD wajib diisi"),

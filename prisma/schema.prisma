@@ -250,7 +250,6 @@ model VehicleTaxCheckLog {
   id            Int      @id @default(autoincrement())
   userId        Int
   licensePlate  String
-  vehicleType   String?
   status        String
   notes         String?
   latitude      Float?
