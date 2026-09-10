@@ -181,11 +181,9 @@ function CekPajakPage() {
       api
         .post("/cms/pajak-kendaraan", { action: "check", licensePlate })
         .then((r) => r.data.data),
-    onSuccess: (result: CheckResult) => {
-      setCheckResult(result);
-      setLokasi("");
-      setNotes("");
-    },
+    // Lokasi & catatan sengaja tidak direset: petugas mengisinya sekali lalu
+    // memakai nilai yang sama untuk beberapa kendaraan di lokasi tersebut.
+    onSuccess: (result: CheckResult) => setCheckResult(result),
     onError: (err: { response?: { data?: { message?: string } } }) =>
       toast.error(err.response?.data?.message || "Gagal melakukan pengecekan"),
   });
@@ -200,8 +198,6 @@ function CekPajakPage() {
       toast.success("Log pengecekan berhasil disimpan");
       setCheckResult(null);
       setNopolInput("");
-      setLokasi("");
-      setNotes("");
     },
     onError: (err: { response?: { data?: { message?: string } } }) =>
       toast.error(err.response?.data?.message || "Gagal menyimpan data"),
@@ -239,8 +235,6 @@ function CekPajakPage() {
   function handleReset() {
     setCheckResult(null);
     setNopolInput("");
-    setLokasi("");
-    setNotes("");
   }
 
   // ── Columns ───────────────────────────────────────────────────────────────
@@ -312,6 +306,27 @@ function CekPajakPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
+              {/* Lokasi & catatan diisi lebih dulu, sengaja tidak ikut ter-reset
+                  saat cek/simpan agar bisa dipakai lintas kendaraan. */}
+              <div className="space-y-2">
+                <Label>Lokasi</Label>
+                <Input
+                  placeholder="contoh: Jl. Merdeka, Kota Jambi"
+                  value={lokasi}
+                  onChange={(e) => setLokasi(e.target.value)}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Catatan</Label>
+                <Textarea
+                  placeholder="Catatan tambahan (opsional)"
+                  rows={3}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                />
+              </div>
+
               <div className="space-y-2">
                 <Label>
                   No. Polisi <span className="text-red-500">*</span>
@@ -382,6 +397,31 @@ function CekPajakPage() {
                     <li>Hindari silau atau bayangan</li>
                   </ul>
                 </div>
+              )}
+
+              {/* Save Button */}
+              <Button
+                type="button"
+                className="w-full"
+                onClick={handleSave}
+                disabled={!checkResult || saveMutation.isPending}
+              >
+                {saveMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Menyimpan...
+                  </>
+                ) : (
+                  <>
+                    <Save className="mr-2 h-4 w-4" />
+                    Simpan Log
+                  </>
+                )}
+              </Button>
+              {!checkResult && (
+                <p className="text-xs text-muted-foreground">
+                  Cek nomor polisi dulu, lokasi & catatan di atas akan ikut tersimpan.
+                </p>
               )}
             </CardContent>
           </Card>
@@ -499,68 +539,6 @@ function CekPajakPage() {
                     label="STNK Berlaku"
                     value={formatDate(checkResult.kendaraan.tgAkhirStnk)}
                   />
-                </CardContent>
-              </Card>
-
-              {/* Form Lokasi & Catatan */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Lokasi & Catatan</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <Label>Lokasi</Label>
-                    <Input
-                      placeholder="contoh: Jl. Merdeka, Kota Jambi"
-                      value={lokasi}
-                      onChange={(e) => setLokasi(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label>Catatan</Label>
-                    <Textarea
-                      placeholder="Catatan tambahan (opsional)"
-                      rows={3}
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                    />
-                  </div>
-
-                  {/* GPS Info */}
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    {latitude && longitude ? (
-                      <>
-                        <MapPin className="h-3 w-3 text-green-500" />
-                        GPS: {latitude.toFixed(5)}, {longitude.toFixed(5)}
-                      </>
-                    ) : (
-                      <>
-                        <MapPin className="h-3 w-3 text-yellow-500" />
-                        {geoError || "Lokasi tidak tersedia"}
-                      </>
-                    )}
-                  </div>
-
-                  {/* Save Button */}
-                  <Button
-                    type="button"
-                    className="w-full"
-                    onClick={handleSave}
-                    disabled={saveMutation.isPending}
-                  >
-                    {saveMutation.isPending ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Menyimpan...
-                      </>
-                    ) : (
-                      <>
-                        <Save className="mr-2 h-4 w-4" />
-                        Simpan Log
-                      </>
-                    )}
-                  </Button>
                 </CardContent>
               </Card>
             </>
