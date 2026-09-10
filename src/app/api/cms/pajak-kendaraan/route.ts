@@ -6,11 +6,7 @@ import { ApiResponse, getPaginationParams, buildMeta } from "@/lib/api-response"
 import { withErrorHandler } from "@/lib/with-error-handler";
 import { UnauthorizedError, ForbiddenError, ValidationError } from "@/lib/errors";
 import { hasPermission } from "@/types";
-
-// ─── Samsat API Config ────────────────────────────────────────────────────────
-
-const SAMSAT_HOST = process.env.NEXT_PUBLIC_PKB_API_HOST;
-const SAMSAT_TOKEN = process.env.NEXT_PUBLIC_PKB_API_TOKEN;
+import { pkbFetch } from "@/lib/pkb";
 
 interface KendaraanData {
   no_polisi: string;
@@ -63,20 +59,6 @@ function shouldShowTagihan(tgAkhirPkb: string): boolean {
   return jatuhTempo <= batas;
 }
 
-async function samsatFetch<T>(path: string, nopol: string): Promise<T | null> {
-  try {
-    const res = await fetch(`${SAMSAT_HOST}${path}?nopol=${encodeURIComponent(nopol)}`, {
-      headers: {
-        Authorization: `Bearer ${SAMSAT_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await res.json();
-    return json.status && json.data ? json.data : null;
-  } catch {
-    return null;
-  }
-}
 
 // ─── GET /api/cms/pajak-kendaraan — list logs ────────────────────────────────
 
@@ -125,7 +107,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
     const nopol = normalizeNopol(parsed.data.licensePlate);
 
     // 1. Ambil data kendaraan
-    const kendaraan = await samsatFetch<KendaraanData>("/kendaraan/detail", nopol);
+    const kendaraan = await pkbFetch<KendaraanData>("kendaraan-detail", nopol);
     if (!kendaraan) {
       return ApiResponse.error("Data kendaraan tidak ditemukan", 404);
     }
@@ -149,7 +131,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
       };
     } else {
       // Tagihan sudah muncul, cek detail pajak
-      const pajak = await samsatFetch<PajakData>("/pajak/detail", nopol);
+      const pajak = await pkbFetch<PajakData>("pajak-detail", nopol);
 
       if (!pajak || isSudahBayar(pajak)) {
         status = "Lunas";

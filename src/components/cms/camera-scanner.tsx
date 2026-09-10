@@ -220,7 +220,7 @@ export function CameraScanner({ onDetected }: CameraScannerProps) {
       }
 
       // Step 2: Calculate Otsu's threshold
-      let histogram = new Array(256).fill(0);
+      const histogram = new Array(256).fill(0);
       for (let i = 0; i < data.length; i += 4) {
         histogram[data[i]]++;
       }

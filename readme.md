@@ -161,8 +161,8 @@ IMAGEKIT_URL_ENDPOINT="https://ik.imagekit.io/your_id"
 NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY="your_imagekit_public_key"
 NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT="https://ik.imagekit.io/your_id"
 
-NEXT_PUBLIC_PKB_API_HOST="https://api-samsat.example.com"
-NEXT_PUBLIC_PKB_API_TOKEN="your-api-token"
+PKB_API_HOST="https://api-samsat.example.com"
+PKB_API_TOKEN="your-api-token"
 
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 NEXT_PUBLIC_APP_NAME="BAPENDA Provinsi Jambi"
@@ -348,8 +348,8 @@ main branch
 | `IMAGEKIT_URL_ENDPOINT` | URL endpoint ImageKit |
 | `NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY` | Public key ImageKit (client-side) |
 | `NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT` | URL endpoint ImageKit (client-side) |
-| `NEXT_PUBLIC_PKB_API_HOST` | Base URL API Samsat (contoh: `https://api-samsat.example.com`) |
-| `NEXT_PUBLIC_PKB_API_TOKEN` | Bearer token untuk autentikasi API Samsat |
+| `PKB_API_HOST` | Base URL API Samsat (contoh: `https://api-samsat.example.com`). Server-only — dipakai proxy `/api/pkb/*`, tidak diekspos ke browser |
+| `PKB_API_TOKEN` | Bearer token untuk autentikasi API Samsat (server-only) |
 | `NEXT_PUBLIC_APP_URL` | URL aplikasi, contoh: `http://localhost:3000` |
 | `NEXT_PUBLIC_APP_NAME` | Nama aplikasi |
 

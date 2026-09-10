@@ -4,8 +4,6 @@ import { useState, useRef } from "react";
 import { Search, AlertCircle, CheckCircle, Clock, Info, Download, Eye, FileText } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-const HOST = process.env.NEXT_PUBLIC_PKB_API_HOST;
-const TOKEN = process.env.NEXT_PUBLIC_PKB_API_TOKEN;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -100,9 +98,7 @@ function shouldShowTagihan(tgAkhirPkb: string) {
 
 async function apiFetch<T>(path: string, nopol: string): Promise<T | null> {
   try {
-    const res = await fetch(`${HOST}${path}?nopol=${encodeURIComponent(nopol)}`, {
-      headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
-    });
+    const res = await fetch(`/api/pkb/${path}?nopol=${encodeURIComponent(nopol)}`);
     const json = await res.json();
     return json.status && json.data ? json.data : null;
   } catch {
@@ -352,7 +348,7 @@ export function CekPkbClient() {
     setError("");
     setData(null);
 
-    const kendaraan = await apiFetch<KendaraanData>("/kendaraan/detail", normalized);
+    const kendaraan = await apiFetch<KendaraanData>("kendaraan-detail", normalized);
     if (!kendaraan) {
       setError("Data kendaraan tidak ditemukan");
       setLoading(false);
@@ -365,9 +361,9 @@ export function CekPkbClient() {
 
     if (shouldShowTagihan(kendaraan.tg_akhir_pkb)) {
       [pajak, jr, pnbp] = await Promise.all([
-        apiFetch<PajakData>("/pajak/detail", normalized),
-        apiFetch<JRData>("/jr/detail", normalized),
-        apiFetch<PNBPData>("/kendaraan/pnbp", normalized),
+        apiFetch<PajakData>("pajak-detail", normalized),
+        apiFetch<JRData>("jr-detail", normalized),
+        apiFetch<PNBPData>("kendaraan-pnbp", normalized),
       ]);
     }
 

@@ -3,8 +3,6 @@
 import { useState, useRef } from "react";
 import { Search, AlertCircle, Car, Bike, Truck, Fuel, Palette, Calendar, Hash, Shield } from "lucide-react";
 
-const HOST = process.env.NEXT_PUBLIC_PKB_API_HOST;
-const TOKEN = process.env.NEXT_PUBLIC_PKB_API_TOKEN;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -43,9 +41,7 @@ function normalizeNopol(raw: string): string {
 
 async function apiFetch<T>(path: string, nopol: string): Promise<T | null> {
   try {
-    const res = await fetch(`${HOST}${path}?nopol=${encodeURIComponent(nopol)}`, {
-      headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
-    });
+    const res = await fetch(`/api/pkb/${path}?nopol=${encodeURIComponent(nopol)}`);
     const json = await res.json();
     return json.status && json.data ? json.data : null;
   } catch {
@@ -108,7 +104,7 @@ export function InpoKendaraanClient() {
     setError("");
     setData(null);
 
-    const kendaraan = await apiFetch<KendaraanData>("/kendaraan/detail", normalized);
+    const kendaraan = await apiFetch<KendaraanData>("kendaraan-detail", normalized);
     if (!kendaraan) {
       setError("Data kendaraan tidak ditemukan");
       setLoading(false);
