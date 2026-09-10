@@ -1,0 +1,79 @@
+﻿[
+  {
+    "name": "Pajak Kendaraan Bermotor (PKB)",
+    "slug": "pkb",
+    "createdAt": "2026-06-17 11:25:44.876",
+    "deletedAt": null,
+    "id": 1,
+    "description": "Pertanyaan seputar Pajak Kendaraan Bermotor",
+    "sortOrder": 1,
+    "isActive": true,
+    "updatedAt": "2026-06-17 11:25:44.876"
+  },
+  {
+    "name": "Bea Balik Nama Kendaraan (BBNKB)",
+    "slug": "bbnkb",
+    "createdAt": "2026-06-17 11:25:44.962",
+    "deletedAt": null,
+    "id": 2,
+    "description": "Pertanyaan seputar Bea Balik Nama Kendaraan Bermotor",
+    "sortOrder": 2,
+    "isActive": true,
+    "updatedAt": "2026-06-17 11:25:44.962"
+  },
+  {
+    "name": "E-Samsat",
+    "slug": "e-samsat",
+    "createdAt": "2026-06-17 11:25:45.006",
+    "deletedAt": null,
+    "id": 3,
+    "description": "Pertanyaan seputar layanan E-Samsat online",
+    "sortOrder": 3,
+    "isActive": true,
+    "updatedAt": "2026-06-17 11:25:45.006"
+  },
+  {
+    "name": "Pembayaran Pajak",
+    "slug": "pembayaran-pajak",
+    "createdAt": "2026-06-17 11:25:45.058",
+    "deletedAt": null,
+    "id": 4,
+    "description": "Pertanyaan seputar tata cara pembayaran pajak",
+    "sortOrder": 1,
+    "isActive": true,
+    "updatedAt": "2026-06-23 03:29:29.497"
+  },
+  {
+    "name": "UPTD Samsat",
+    "slug": "uptd-samsat",
+    "createdAt": "2026-06-17 11:25:45.374",
+    "deletedAt": null,
+    "id": 5,
+    "description": "Pertanyaan seputar kantor UPTD Samsat",
+    "sortOrder": 5,
+    "isActive": true,
+    "updatedAt": "2026-06-17 11:25:45.374"
+  },
+  {
+    "name": "Informasi Umum",
+    "slug": "informasi-umum",
+    "createdAt": "2026-06-17 11:25:45.418",
+    "deletedAt": null,
+    "id": 6,
+    "description": "Pertanyaan umum seputar layanan BAPENDA",
+    "sortOrder": 6,
+    "isActive": true,
+    "updatedAt": "2026-06-17 11:25:45.418"
+  },
+  {
+    "name": "Program PEMUTIHAN ",
+    "slug": "program-pemutihan",
+    "createdAt": "2026-06-23 03:12:41.422",
+    "deletedAt": null,
+    "id": 7,
+    "description": "pertanyaan seputar pemutihan pajak bermotor",
+    "sortOrder": 0,
+    "isActive": false,
+    "updatedAt": "2026-06-26 08:05:25.156"
+  }
+]

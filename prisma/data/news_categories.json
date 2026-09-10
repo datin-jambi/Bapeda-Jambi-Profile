@@ -1,0 +1,57 @@
+﻿[
+  {
+    "name": "Pengumuman",
+    "slug": "pengumuman",
+    "createdAt": "2026-06-17 11:25:44.065",
+    "deletedAt": null,
+    "id": 1,
+    "description": "Pengumuman resmi dari BAPENDA Provinsi Jambi",
+    "isActive": false,
+    "sortOrder": 1,
+    "updatedAt": "2026-08-16 07:36:16.009"
+  },
+  {
+    "name": "Berita",
+    "slug": "berita",
+    "createdAt": "2026-06-17 11:25:44.43",
+    "deletedAt": null,
+    "id": 2,
+    "description": "Berita terkini seputar kegiatan BAPENDA",
+    "isActive": true,
+    "sortOrder": 2,
+    "updatedAt": "2026-06-17 11:25:44.43"
+  },
+  {
+    "name": "Kegiatan",
+    "slug": "kegiatan",
+    "createdAt": "2026-06-17 11:25:44.746",
+    "deletedAt": null,
+    "id": 3,
+    "description": "Liputan kegiatan dan acara BAPENDA",
+    "isActive": true,
+    "sortOrder": 3,
+    "updatedAt": "2026-06-17 11:25:44.746"
+  },
+  {
+    "name": "Inovasi",
+    "slug": "inovasi",
+    "createdAt": "2026-06-17 11:25:44.789",
+    "deletedAt": null,
+    "id": 4,
+    "description": "Inovasi layanan dan program BAPENDA",
+    "isActive": true,
+    "sortOrder": 4,
+    "updatedAt": "2026-06-17 11:25:44.789"
+  },
+  {
+    "name": "Layanan",
+    "slug": "layanan",
+    "createdAt": "2026-06-17 11:25:44.832",
+    "deletedAt": null,
+    "id": 5,
+    "description": "Informasi seputar layanan pajak daerah",
+    "isActive": true,
+    "sortOrder": 5,
+    "updatedAt": "2026-06-17 11:25:44.832"
+  }
+]

@@ -1,0 +1,542 @@
+﻿[
+  {
+    "action": "UNPUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "createdAt": "2026-06-22 14:13:42.669",
+    "id": 1,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "UPDATE",
+    "entityType": "News",
+    "oldData": "{\u0022id\u0022: 3, \u0022slug\u0022: \u0022sosialisasi-pajak-kendaraan-bermotor-di-kabupaten-merangin\u0022, \u0022title\u0022: \u0022Sosialisasi Pajak Kendaraan Bermotor di Kabupaten Merangin\u0022, \u0022author\u0022: {\u0022id\u0022: 3, \u0022name\u0022: \u0022Editor Konten\u0022, \u0022avatarUrl\u0022: null}, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Cp\u003ETim BAPENDA Provinsi Jambi melakukan sosialisasi Pajak Kendaraan Bermotor (PKB) di Kabupaten Merangin sebagai bagian dari program edukasi wajib pajak.\u003C/p\u003E\\n\u003Cp\u003EKegiatan ini dihadiri oleh ratusan masyarakat dan bertujuan untuk meningkatkan kesadaran dan kepatuhan wajib pajak dalam memenuhi kewajiban perpajakan mereka.\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022BAPENDA Jambi mengadakan sosialisasi pajak kendaraan bermotor untuk meningkatkan kesadaran wajib pajak di Kabupaten Merangin.\u0022, \u0022authorId\u0022: 3, \u0022category\u0022: {\u0022id\u0022: 2, \u0022name\u0022: \u0022Berita\u0022, \u0022slug\u0022: \u0022berita\u0022, \u0022isActive\u0022: true, \u0022createdAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022deletedAt\u0022: null, \u0022sortOrder\u0022: 2, \u0022updatedAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022description\u0022: \u0022Berita terkini seputar kegiatan BAPENDA\u0022}, \u0022seoTitle\u0022: \u0022Sosialisasi Pajak Kendaraan Bermotor di Kabupaten Merangin\u0022, \u0022createdAt\u0022: \u00222026-06-17T11:25:59.033Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-22T14:13:42.666Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/o7kpef481o/bapenda/news-default.jpg\u0022, \u0022seoDescription\u0022: \u0022BAPENDA Jambi mengadakan sosialisasi pajak kendaraan bermotor untuk meningkatkan kesadaran wajib pajak di Kabupaten Merangin.\u0022}",
+    "newData": "{\u0022id\u0022: 3, \u0022slug\u0022: \u0022sosialisasi-pajak-kendaraan-bermotor-di-kabupaten-merangin\u0022, \u0022title\u0022: \u0022Sosialisasi Pajak Kendaraan Bermotor di Kabupaten Merangin\u0022, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Cp\u003ETim BAPENDA Provinsi Jambi melakukan sosialisasi Pajak Kendaraan Bermotor (PKB) di Kabupaten Merangin sebagai bagian dari program edukasi wajib pajak.\u003C/p\u003E\\n\u003Cp\u003EKegiatan ini dihadiri oleh ratusan masyarakat dan bertujuan untuk meningkatkan kesadaran dan kepatuhan wajib pajak dalam memenuhi kewajiban perpajakan mereka.\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022BAPENDA Jambi mengadakan sosialisasi pajak kendaraan bermotor untuk meningkatkan kesadaran wajib pajak di Kabupaten Merangin.\u0022, \u0022authorId\u0022: 3, \u0022seoTitle\u0022: \u0022Sosialisasi Pajak Kendaraan Bermotor di Kabupaten Merangin\u0022, \u0022createdAt\u0022: \u00222026-06-17T11:25:59.033Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-22T14:13:59.963Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-sosialisasi-pajak-kendaraan-bermotor-di--1782137634_oybrD1Hvc\u0022, \u0022seoDescription\u0022: \u0022BAPENDA Jambi mengadakan sosialisasi pajak kendaraan bermotor untuk meningkatkan kesadaran wajib pajak di Kabupaten Merangin.\u0022}",
+    "createdAt": "2026-06-22 14:13:59.967",
+    "id": 2,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-06-22 14:14:02.574",
+    "id": 3,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-06-22 14:14:03.27",
+    "id": 4,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-06-22 14:14:06.102",
+    "id": 5,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "UNPUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "createdAt": "2026-06-23 02:09:02.502",
+    "id": 6,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-06-23 02:09:08.928",
+    "id": 7,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-06-23 02:09:11.103",
+    "id": 8,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-06-23 02:09:11.777",
+    "id": 9,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "UNPUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "createdAt": "2026-06-23 02:09:37.788",
+    "id": 10,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-06-23 02:09:42.286",
+    "id": 11,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-06-23 02:09:45.692",
+    "id": 12,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "CREATE",
+    "entityType": "News",
+    "oldData": null,
+    "newData": "{\u0022id\u0022: 4, \u0022slug\u0022: \u0022pemutihan-2026\u0022, \u0022title\u0022: \u0022pemutihan 2026\u0022, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Ch2\u003EProgram Pemutihan Pajak Kendaraan Bermotor Tahun 2026\u003C/h2\u003E\u003Cp\u003EKabar gembira bagi masyarakat! Manfaatkan Program Pemutihan Pajak Kendaraan Bermotor Tahun 2026 sebagai kesempatan terbaik untuk melunasi kewajiban pajak kendaraan Anda dengan berbagai keringanan yang telah disediakan oleh pemerintah daerah.\u003C/p\u003E\u003Cp\u003EMelalui program ini, masyarakat dapat memperoleh kemudahan berupa penghapusan denda keterlambatan, pengurangan pokok pajak tertentu, serta berbagai insentif lainnya sesuai ketentuan yang berlaku. Program pemutihan bertujuan untuk meringankan beban masyarakat sekaligus meningkatkan kepatuhan administrasi kendaraan bermotor.\u003C/p\u003E\u003Cblockquote\u003E\\\u0022Jangan tunda lagi! Bayar pajak kendaraan Anda sekarang dan manfaatkan kesempatan pemutihan untuk berkendara lebih nyaman, aman, dan tertib administrasi.\\\u0022\u003C/blockquote\u003E\u003Cp\u003EAyo manfaatkan program ini sebelum masa berlaku berakhir. Bersama kita wujudkan masyarakat yang taat pajak dan mendukung pembangunan daerah yang lebih maju.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPajak Anda, Kontribusi Nyata untuk Daerah.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPemutihan 2026: Ringan Bayarnya, Besar Manfaatnya!\u003C/strong\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022\\\u0022Ayo Bayar Pajak, Manfaatkan Pemutihan 2026!\\\u0022\u0022, \u0022authorId\u0022: 2, \u0022seoTitle\u0022: \u0022pemutihan pajak jambi 2026\u0022, \u0022createdAt\u0022: \u00222026-06-23T02:44:49.938Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-23T02:44:49.938Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-pemutihan-2026-1782182617_2IFt9k-nj\u0022, \u0022seoDescription\u0022: \u0022pemutihan pajak jambi 2026\u0022}",
+    "createdAt": "2026-06-23 02:44:49.941",
+    "id": 13,
+    "userId": 2,
+    "entityId": 4
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-06-23 02:44:53.413",
+    "id": 14,
+    "userId": 2,
+    "entityId": 4
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-06-23 02:45:04.034",
+    "id": 15,
+    "userId": 2,
+    "entityId": 4
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-06-23 02:45:38.258",
+    "id": 16,
+    "userId": 2,
+    "entityId": 4
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-06-23 02:45:39.916",
+    "id": 17,
+    "userId": 2,
+    "entityId": 3
+  },
+  {
+    "action": "CREATE",
+    "entityType": "News",
+    "oldData": null,
+    "newData": "{\u0022id\u0022: 5, \u0022slug\u0022: \u0022bapenda-provinsi-jambi-ikuti-workshop-asistensi-pengisian-championship-tp2dd-tahun-2026\u0022, \u0022title\u0022: \u0022Bapenda Provinsi Jambi Ikuti Workshop Asistensi Pengisian Championship TP2DD Tahun 2026\u0022, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Cp\u003E\u003Cstrong\u003EJambi, 23 April 2026\u003C/strong\u003E \u2013 Badan Pendapatan Daerah (Bapenda) Provinsi Jambi menghadiri \u003Cstrong\u003EWorkshop Asistensi Pengisian Evaluasi Kinerja (Championship) Tim Percepatan dan Perluasan Digitalisasi Daerah (TP2DD) Tahun 2026\u003C/strong\u003E yang diselenggarakan oleh \u003Cstrong\u003EKantor Perwakilan Bank Indonesia Provinsi Jambi\u003C/strong\u003E di \u003Cstrong\u003EBW Luxury Hotel Jambi\u003C/strong\u003E.\u003C/p\u003E\u003Cp\u003EKegiatan ini merupakan tindak lanjut dari arahan Kementerian Koordinator Bidang Perekonomian terkait pelaksanaan \u003Cstrong\u003EEvaluasi Kinerja TP2DD Tahun 2025 (Championship 2026)\u003C/strong\u003E. Workshop bertujuan untuk meningkatkan kualitas, akurasi, dan kelengkapan pengisian data evaluasi kinerja TP2DD oleh pemerintah daerah di Provinsi Jambi.\u003C/p\u003E\u003Cp\u003EDalam kegiatan tersebut, peserta memperoleh pendampingan teknis mengenai mekanisme pengisian instrumen Championship TP2DD, pemahaman terhadap indikator penilaian, serta penyelarasan data dan dokumen pendukung yang menjadi bagian dari proses evaluasi nasional.\u003C/p\u003E\u003Cp\u003EWorkshop diikuti oleh perwakilan pemerintah provinsi, pemerintah kabupaten/kota se-Provinsi Jambi, serta mitra strategis lainnya, termasuk Bank Pembangunan Daerah (BPD) Jambi. Seluruh peserta juga diminta membawa perangkat kerja untuk melakukan pengisian data secara langsung dengan pendampingan dari tim Bank Indonesia.\u003C/p\u003E\u003Cp\u003EMelalui keikutsertaan dalam kegiatan ini, \u003Cstrong\u003EBapenda Provinsi Jambi\u003C/strong\u003E menegaskan komitmennya dalam mendukung percepatan dan perluasan digitalisasi transaksi pemerintah daerah, khususnya pada sektor penerimaan daerah. Upaya ini diharapkan dapat memperkuat tata kelola keuangan daerah yang lebih efektif, transparan, akuntabel, serta meningkatkan kualitas pelayanan kepada masyarakat.\u003C/p\u003E\u003Cp\u003EPartisipasi aktif Bapenda Provinsi Jambi dalam Championship TP2DD juga menjadi bagian dari komitmen untuk mendorong implementasi \u003Cstrong\u003EElektronifikasi Transaksi Pemerintah Daerah (ETPD)\u003C/strong\u003E, sehingga mampu meningkatkan kinerja digitalisasi daerah sekaligus mendukung transformasi layanan publik yang modern dan terintegrasi. (Tim sekretariat Bapenda)\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022Jambi, 23 April 2026 \u2013 Badan Pendapatan Daerah (Bapenda) Provinsi Jambi menghadiri Workshop Asistensi Pengisian Evaluasi Kinerja (Championship) Tim Percepatan dan Perluasan Digitalisasi Daerah (TP2DD) Tahun 2026 yang diselenggarakan oleh Kantor Perwakilan Bank Indonesia Provinsi Jambi di BW Luxury Hotel Jambi.\\n\\nKegiatan ini merupakan tindak lanjut dari arahan Kementerian Koordinator Bidang Perekonomian terkait pelaksanaan Evaluasi Kinerja TP2DD Tahun 2025 (Championship 2026). Workshop bertujuan untuk meningkatkan kualitas, akurasi, dan kelengkapan pengisian data evaluasi kinerja TP2DD oleh pemerintah daerah di Provinsi Jambi.\\n\u0022, \u0022authorId\u0022: 1, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-06-26T07:44:00.996Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-26T07:44:00.996Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-bapenda-provinsi-jambi-ikuti-workshop-as-1782459777_6-6tOfzITZ\u0022, \u0022seoDescription\u0022: \u0022\u0022}",
+    "createdAt": "2026-06-26 07:44:01.003",
+    "id": 18,
+    "userId": 1,
+    "entityId": 5
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-06-26 07:44:05.032",
+    "id": 19,
+    "userId": 1,
+    "entityId": 5
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-06-26 07:47:16.777",
+    "id": 20,
+    "userId": 1,
+    "entityId": 5
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-06-26 07:47:19.595",
+    "id": 21,
+    "userId": 1,
+    "entityId": 5
+  },
+  {
+    "action": "DELETE",
+    "entityType": "News",
+    "oldData": "{\u0022id\u0022: 4, \u0022slug\u0022: \u0022pemutihan-2026\u0022, \u0022title\u0022: \u0022pemutihan 2026\u0022, \u0022author\u0022: {\u0022id\u0022: 2, \u0022name\u0022: \u0022Administrator\u0022, \u0022avatarUrl\u0022: null}, \u0022status\u0022: \u0022PUBLISHED\u0022, \u0022content\u0022: \u0022\u003Ch2\u003EProgram Pemutihan Pajak Kendaraan Bermotor Tahun 2026\u003C/h2\u003E\u003Cp\u003EKabar gembira bagi masyarakat! Manfaatkan Program Pemutihan Pajak Kendaraan Bermotor Tahun 2026 sebagai kesempatan terbaik untuk melunasi kewajiban pajak kendaraan Anda dengan berbagai keringanan yang telah disediakan oleh pemerintah daerah.\u003C/p\u003E\u003Cp\u003EMelalui program ini, masyarakat dapat memperoleh kemudahan berupa penghapusan denda keterlambatan, pengurangan pokok pajak tertentu, serta berbagai insentif lainnya sesuai ketentuan yang berlaku. Program pemutihan bertujuan untuk meringankan beban masyarakat sekaligus meningkatkan kepatuhan administrasi kendaraan bermotor.\u003C/p\u003E\u003Cblockquote\u003E\\\u0022Jangan tunda lagi! Bayar pajak kendaraan Anda sekarang dan manfaatkan kesempatan pemutihan untuk berkendara lebih nyaman, aman, dan tertib administrasi.\\\u0022\u003C/blockquote\u003E\u003Cp\u003EAyo manfaatkan program ini sebelum masa berlaku berakhir. Bersama kita wujudkan masyarakat yang taat pajak dan mendukung pembangunan daerah yang lebih maju.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPajak Anda, Kontribusi Nyata untuk Daerah.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPemutihan 2026: Ringan Bayarnya, Besar Manfaatnya!\u003C/strong\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022\\\u0022Ayo Bayar Pajak, Manfaatkan Pemutihan 2026!\\\u0022\u0022, \u0022authorId\u0022: 2, \u0022category\u0022: {\u0022id\u0022: 2, \u0022name\u0022: \u0022Berita\u0022, \u0022slug\u0022: \u0022berita\u0022, \u0022isActive\u0022: true, \u0022createdAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022deletedAt\u0022: null, \u0022sortOrder\u0022: 2, \u0022updatedAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022description\u0022: \u0022Berita terkini seputar kegiatan BAPENDA\u0022}, \u0022seoTitle\u0022: \u0022pemutihan pajak jambi 2026\u0022, \u0022createdAt\u0022: \u00222026-06-23T02:44:49.938Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-23T02:45:38.255Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: \u00222026-06-23T02:45:38.254Z\u0022, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-pemutihan-2026-1782182617_2IFt9k-nj\u0022, \u0022seoDescription\u0022: \u0022pemutihan pajak jambi 2026\u0022}",
+    "newData": null,
+    "createdAt": "2026-06-26 08:05:51.693",
+    "id": 22,
+    "userId": 1,
+    "entityId": 4
+  },
+  {
+    "action": "DELETE",
+    "entityType": "News",
+    "oldData": "{\u0022id\u0022: 2, \u0022slug\u0022: \u0022realisasi-pad-provinsi-jambi-triwulan-iii-melampaui-target\u0022, \u0022title\u0022: \u0022Realisasi PAD Provinsi Jambi Triwulan III Melampaui Target\u0022, \u0022author\u0022: {\u0022id\u0022: 3, \u0022name\u0022: \u0022Editor Konten\u0022, \u0022avatarUrl\u0022: null}, \u0022status\u0022: \u0022PUBLISHED\u0022, \u0022content\u0022: \u0022\u003Cp\u003EBadan Pendapatan Daerah (BAPENDA) Provinsi Jambi berhasil mencatat realisasi Pendapatan Asli Daerah (PAD) pada triwulan III tahun 2024 yang melampaui target yang telah ditetapkan.\u003C/p\u003E\\n\u003Cp\u003ETotal realisasi PAD mencapai 85% dari target tahunan, meningkat signifikan dibandingkan periode yang sama tahun lalu.\u003C/p\u003E\\n\u003Cp\u003EKepala BAPENDA menyampaikan bahwa pencapaian ini merupakan hasil dari berbagai program intensifikasi pajak yang telah dilaksanakan sepanjang tahun.\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022Realisasi Pendapatan Asli Daerah Provinsi Jambi triwulan III 2024 berhasil melampaui target yang telah ditetapkan.\u0022, \u0022authorId\u0022: 3, \u0022category\u0022: {\u0022id\u0022: 2, \u0022name\u0022: \u0022Berita\u0022, \u0022slug\u0022: \u0022berita\u0022, \u0022isActive\u0022: true, \u0022createdAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022deletedAt\u0022: null, \u0022sortOrder\u0022: 2, \u0022updatedAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022description\u0022: \u0022Berita terkini seputar kegiatan BAPENDA\u0022}, \u0022seoTitle\u0022: \u0022Realisasi PAD Provinsi Jambi Triwulan III Melampaui Target\u0022, \u0022createdAt\u0022: \u00222026-06-17T11:25:57.956Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-17T11:25:57.956Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: \u00222024-10-20T00:00:00.000Z\u0022, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/o7kpef481o/bapenda/news-default.jpg\u0022, \u0022seoDescription\u0022: \u0022Realisasi Pendapatan Asli Daerah Provinsi Jambi triwulan III 2024 berhasil melampaui target yang telah ditetapkan.\u0022}",
+    "newData": null,
+    "createdAt": "2026-06-26 08:05:56.915",
+    "id": 23,
+    "userId": 1,
+    "entityId": 2
+  },
+  {
+    "action": "DELETE",
+    "entityType": "News",
+    "oldData": "{\u0022id\u0022: 1, \u0022slug\u0022: \u0022bapenda-jambi-luncurkan-program-e-samsat-untuk-kemudahan-masyarakat\u0022, \u0022title\u0022: \u0022BAPENDA Jambi Luncurkan Program E-Samsat untuk Kemudahan Masyarakat\u0022, \u0022author\u0022: {\u0022id\u0022: 3, \u0022name\u0022: \u0022Editor Konten\u0022, \u0022avatarUrl\u0022: null}, \u0022status\u0022: \u0022PUBLISHED\u0022, \u0022content\u0022: \u0022\u003Cp\u003EBadan Pendapatan Daerah (BAPENDA) Provinsi Jambi resmi meluncurkan program E-Samsat yang memungkinkan masyarakat membayar pajak kendaraan bermotor secara online.\u003C/p\u003E\\n\u003Cp\u003EProgram ini merupakan bagian dari upaya digitalisasi layanan publik yang dilakukan BAPENDA untuk meningkatkan kenyamanan dan efisiensi pelayanan pajak daerah.\u003C/p\u003E\\n\u003Cp\u003EDengan E-Samsat, wajib pajak tidak perlu lagi mengantri panjang di kantor Samsat. Cukup dengan smartphone, pembayaran PKB dapat dilakukan kapan saja dan di mana saja.\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022Program E-Samsat yang baru diluncurkan memudahkan masyarakat membayar pajak kendaraan bermotor secara online.\u0022, \u0022authorId\u0022: 3, \u0022category\u0022: {\u0022id\u0022: 2, \u0022name\u0022: \u0022Berita\u0022, \u0022slug\u0022: \u0022berita\u0022, \u0022isActive\u0022: true, \u0022createdAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022deletedAt\u0022: null, \u0022sortOrder\u0022: 2, \u0022updatedAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022description\u0022: \u0022Berita terkini seputar kegiatan BAPENDA\u0022}, \u0022seoTitle\u0022: \u0022BAPENDA Jambi Luncurkan Program E-Samsat untuk Kemudahan Masyarakat\u0022, \u0022createdAt\u0022: \u00222026-06-17T11:25:57.046Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-17T11:25:57.046Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: \u00222024-01-15T00:00:00.000Z\u0022, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/o7kpef481o/bapenda/news-default.jpg\u0022, \u0022seoDescription\u0022: \u0022Program E-Samsat yang baru diluncurkan memudahkan masyarakat membayar pajak kendaraan bermotor secara online.\u0022}",
+    "newData": null,
+    "createdAt": "2026-06-26 08:05:59.334",
+    "id": 24,
+    "userId": 1,
+    "entityId": 1
+  },
+  {
+    "action": "CREATE",
+    "entityType": "News",
+    "oldData": null,
+    "newData": "{\u0022id\u0022: 6, \u0022slug\u0022: \u0022optimalisasi-pembayaran-digital-bapenda-jambi-gelar-pembahasan-virtual-account\u0022, \u0022title\u0022: \u0022Optimalisasi Pembayaran Digital, Bapenda Jambi Gelar Pembahasan Virtual Account\u0022, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Ch1\u003E\u003Cstrong\u003EBapenda Provinsi Jambi Ikuti Pembahasan Implementasi Virtual Account dan Optimalisasi Digitalisasi Penerimaan Daerah\u003C/strong\u003E\u003C/h1\u003E\u003Cp\u003E\u003Cstrong\u003EJambi, 26 Juni 2026\u003C/strong\u003E \u2013 Dalam rangka mendukung percepatan digitalisasi penerimaan daerah, Badan Pendapatan Daerah (Bapenda) Provinsi Jambi mengikuti kegiatan pembahasan implementasi layanan \u003Cstrong\u003EVirtual Account (VA)\u003C/strong\u003E bersama Bank Jambi dan Bank BJB. Kegiatan dilaksanakan secara hybrid melalui pertemuan langsung dan konferensi video yang diikuti oleh jajaran teknis dari masing-masing instansi.\u003C/p\u003E\u003Cp\u003EPertemuan ini membahas berbagai aspek teknis implementasi Virtual Account sebagai salah satu instrumen pembayaran penerimaan daerah yang diharapkan mampu memberikan kemudahan bagi wajib pajak, meningkatkan akurasi pencatatan transaksi, serta memperkuat integrasi sistem pembayaran daerah.\u003C/p\u003E\u003Cp\u003EDalam diskusi tersebut, di hadiri langsung kabid Pepsi Yopie Said Rahmadany,SE,M.ak dan Kasubbid PSI Syafiqqurrahman,S.STP,M.H beserta Tim IT Bapenda,  pembahasanmengenai mekanisme layanan Virtual Account, integrasi sistem dengan aplikasi pemerintah daerah, alur transaksi, hingga identifikasi tantangan yang perlu diantisipasi pada tahap implementasi. Selain itu, dilakukan pula sesi diskusi untuk menyamakan persepsi terkait proses bisnis serta langkah-langkah percepatan implementasi layanan.\u003C/p\u003E\u003Cp\u003EMelalui kegiatan ini, Bapenda Provinsi Jambi berkomitmen untuk terus mendorong transformasi digital dalam pengelolaan pendapatan daerah. Pemanfaatan teknologi pembayaran digital diharapkan dapat meningkatkan kualitas pelayanan kepada masyarakat, memperkuat transparansi dan akuntabilitas pengelolaan penerimaan daerah, serta mendukung terwujudnya sistem pembayaran yang lebih efektif, efisien, aman, dan modern.\u003C/p\u003E\u003Cp\u003EKe depan, hasil pembahasan ini akan menjadi dasar dalam penyusunan langkah tindak lanjut bersama seluruh pihak terkait sehingga implementasi Virtual Account dapat berjalan optimal dan memberikan manfaat nyata bagi Pemerintah Provinsi Jambi maupun masyarakat sebagai pengguna layanan. (Sekretariat Bapenda)\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022Bapenda Provinsi Jambi mengikuti pembahasan implementasi layanan Virtual Account (VA) bersama Bank Jambi dan Bank BJB sebagai upaya mempercepat digitalisasi penerimaan daerah. Melalui kolaborasi ini diharapkan tercipta sistem pembayaran yang semakin mudah, cepat, aman, dan transparan bagi masyarakat serta mendukung peningkatan kualitas pelayanan publik.\u0022, \u0022authorId\u0022: 1, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-06-26T08:23:50.169Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-26T08:23:50.169Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-optimalisasi-pembayaran-digital-bapenda--1782462130_7ey4amYPi\u0022, \u0022seoDescription\u0022: \u0022\u0022}",
+    "createdAt": "2026-06-26 08:23:50.177",
+    "id": 25,
+    "userId": 1,
+    "entityId": 6
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-06-26 08:23:52.874",
+    "id": 26,
+    "userId": 1,
+    "entityId": 6
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-06-26 08:23:54.107",
+    "id": 27,
+    "userId": 1,
+    "entityId": 6
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-06-26 08:23:56.077",
+    "id": 28,
+    "userId": 1,
+    "entityId": 6
+  },
+  {
+    "action": "DELETE",
+    "entityType": "News",
+    "oldData": "{\u0022id\u0022: 3, \u0022slug\u0022: \u0022sosialisasi-pajak-kendaraan-bermotor-di-kabupaten-merangin\u0022, \u0022title\u0022: \u0022Sosialisasi Pajak Kendaraan Bermotor di Kabupaten Merangin\u0022, \u0022author\u0022: {\u0022id\u0022: 3, \u0022name\u0022: \u0022Editor Konten\u0022, \u0022avatarUrl\u0022: null}, \u0022status\u0022: \u0022PUBLISHED\u0022, \u0022content\u0022: \u0022\u003Cp\u003ETim BAPENDA Provinsi Jambi melakukan sosialisasi Pajak Kendaraan Bermotor (PKB) di Kabupaten Merangin sebagai bagian dari program edukasi wajib pajak.\u003C/p\u003E\\n\u003Cp\u003EKegiatan ini dihadiri oleh ratusan masyarakat dan bertujuan untuk meningkatkan kesadaran dan kepatuhan wajib pajak dalam memenuhi kewajiban perpajakan mereka.\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022BAPENDA Jambi mengadakan sosialisasi pajak kendaraan bermotor untuk meningkatkan kesadaran wajib pajak di Kabupaten Merangin.\u0022, \u0022authorId\u0022: 3, \u0022category\u0022: {\u0022id\u0022: 2, \u0022name\u0022: \u0022Berita\u0022, \u0022slug\u0022: \u0022berita\u0022, \u0022isActive\u0022: true, \u0022createdAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022deletedAt\u0022: null, \u0022sortOrder\u0022: 2, \u0022updatedAt\u0022: \u00222026-06-17T11:25:44.430Z\u0022, \u0022description\u0022: \u0022Berita terkini seputar kegiatan BAPENDA\u0022}, \u0022seoTitle\u0022: \u0022Sosialisasi Pajak Kendaraan Bermotor di Kabupaten Merangin\u0022, \u0022createdAt\u0022: \u00222026-06-17T11:25:59.033Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-06-23T02:45:39.913Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: \u00222026-06-23T02:45:39.913Z\u0022, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-sosialisasi-pajak-kendaraan-bermotor-di--1782137634_oybrD1Hvc\u0022, \u0022seoDescription\u0022: \u0022BAPENDA Jambi mengadakan sosialisasi pajak kendaraan bermotor untuk meningkatkan kesadaran wajib pajak di Kabupaten Merangin.\u0022}",
+    "newData": null,
+    "createdAt": "2026-07-02 09:41:30.458",
+    "id": 29,
+    "userId": 1,
+    "entityId": 3
+  },
+  {
+    "action": "CREATE",
+    "entityType": "News",
+    "oldData": null,
+    "newData": "{\u0022id\u0022: 7, \u0022slug\u0022: \u0022bapenda-jambi\u0022, \u0022title\u0022: \u0022BAPENDA JAMBI \u0022, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Ch1\u003E\u003Cstrong\u003EBAPENDA PROVINSI JAMBI PERKENALKAN IDENTITAS BARU: LOGO YANG MENCERMINKAN SEMANGAT PELAYANAN DAN KEMAJUAN DAERAH\u003C/strong\u003E\u003C/h1\u003E\u003Cp\u003E\u003Cstrong\u003EJambi\u003C/strong\u003E \u2013 Badan Pendapatan Daerah (BAPENDA) Provinsi Jambi secara resmi memperkenalkan identitas visual terbaru sebagai simbol transformasi kelembagaan menuju pelayanan publik yang semakin profesional, modern, transparan, dan berorientasi pada peningkatan Pendapatan Asli Daerah (PAD).\u003C/p\u003E\u003Cp\u003ELogo baru ini tidak hanya hadir sebagai identitas visual, tetapi juga mengandung filosofi yang merepresentasikan nilai-nilai budaya Jambi, semangat pembangunan, serta komitmen BAPENDA dalam memberikan pelayanan terbaik kepada masyarakat.\u003C/p\u003E\u003Ch2\u003EFilosofi Logo\u003C/h2\u003E\u003Ch3\u003E\u003Cstrong\u003E1. Bentuk Tetesan\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003EBentuk utama logo menyerupai tetesan yang melambangkan sumber penerimaan daerah yang terus tumbuh dan menjadi penopang pembangunan Provinsi Jambi. Bentuk ini juga merepresentasikan akuntabilitas, kesinambungan, dan komitmen dalam mengelola pendapatan daerah secara optimal.\u003C/p\u003E\u003Ch3\u003E\u003Cstrong\u003E2. Tugu Keris Siginjai\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003EIkon Tugu Keris Siginjai menjadi simbol kebanggaan masyarakat Jambi. Elemen ini menggambarkan identitas daerah, keberanian, integritas, serta semangat aparatur BAPENDA dalam menjalankan tugas dengan penuh tanggung jawab.\u003C/p\u003E\u003Ch3\u003E\u003Cstrong\u003E3. Jembatan Gentala Arasy\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003EGaris-garis yang membentuk jembatan melambangkan konektivitas antara pemerintah dan masyarakat. Filosofi ini menggambarkan bahwa BAPENDA hadir sebagai penghubung dalam memberikan pelayanan perpajakan dan pendapatan daerah yang mudah diakses, cepat, dan terpercaya.\u003C/p\u003E\u003Ch3\u003E\u003Cstrong\u003E4. Gelombang Sungai Batanghari\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003EBagian bawah logo berbentuk gelombang yang melambangkan Sungai Batanghari sebagai urat nadi kehidupan masyarakat Jambi. Gelombang tersebut menggambarkan aliran penerimaan daerah yang terus bergerak, berkelanjutan, serta menjadi fondasi pembangunan daerah yang berkesinambungan.\u003C/p\u003E\u003Ch3\u003E\u003Cstrong\u003E5. Motif Batik Jambi\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003EMotif batik yang menghiasi sisi logo merupakan representasi dari kekayaan budaya dan kearifan lokal Provinsi Jambi. Kehadiran motif ini menunjukkan bahwa BAPENDA senantiasa menjunjung tinggi nilai budaya dalam setiap langkah pelayanan kepada masyarakat.\u003C/p\u003E\u003Ch3\u003E\u003Cstrong\u003E6. Tipografi \\\u0022BAPENDA\\\u0022\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003ETulisan \u003Cstrong\u003EBAPENDA\u003C/strong\u003E menggunakan desain huruf modern yang mencerminkan lembaga yang adaptif terhadap perkembangan teknologi, inovatif dalam pelayanan, dan siap menghadapi transformasi digital di era pemerintahan berbasis elektronik.\u003C/p\u003E\u003Ch3\u003E\u003Cstrong\u003E7. Garis Emas Dinamis\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003EGaris berwarna emas yang membelah tulisan \\\u0022BAPENDA\\\u0022 menggambarkan akselerasi, inovasi, dan pertumbuhan ekonomi daerah. Elemen ini menjadi simbol optimisme dalam meningkatkan penerimaan daerah demi mewujudkan kesejahteraan masyarakat Provinsi Jambi.\u003C/p\u003E\u003Ch2\u003EMakna Warna\u003C/h2\u003E\u003Cul\u003E\u003Cli\u003E\u003Cstrong\u003EBiru\u003C/strong\u003E melambangkan profesionalisme, kepercayaan, stabilitas, integritas, dan pelayanan publik yang berkualitas.\u003C/li\u003E\u003Cli\u003E\u003Cstrong\u003EEmas\u003C/strong\u003E melambangkan kemakmuran, keberhasilan, semangat pembangunan, serta nilai strategis Pendapatan Asli Daerah sebagai pilar utama pembiayaan pembangunan.\u003C/li\u003E\u003Cli\u003E\u003Cstrong\u003EPutih\u003C/strong\u003E melambangkan keterbukaan, transparansi, kejujuran, dan akuntabilitas dalam tata kelola pemerintahan.\u003C/li\u003E\u003C/ul\u003E\u003Ch2\u003ESemangat Transformasi\u003C/h2\u003E\u003Cp\u003EMelalui identitas visual baru ini, BAPENDA Provinsi Jambi menegaskan komitmennya untuk terus bertransformasi menjadi organisasi yang modern, responsif, dan berbasis teknologi informasi. Logo ini menjadi simbol semangat baru dalam menghadirkan pelayanan publik yang semakin cepat, mudah, transparan, dan terpercaya.\u003C/p\u003E\u003Cp\u003EDengan mengusung nilai \u003Cstrong\u003EProfesional, Integritas, Transparan, Akuntabel, dan Melayani\u003C/strong\u003E, BAPENDA Provinsi Jambi bertekad menjadi institusi yang mampu meningkatkan optimalisasi pendapatan daerah sebagai fondasi pembangunan yang berkelanjutan.\u003C/p\u003E\u003Ch3\u003E\u003Cstrong\u003ETagline\u003C/strong\u003E\u003C/h3\u003E\u003Cp\u003E\u003Cstrong\u003E\\\u0022BAPENDA Provinsi Jambi \u2013 Melayani dengan Integritas, Membangun Daerah dengan Optimalisasi Pendapatan.\\\u0022\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003EAtau dapat menggunakan tagline yang telah menjadi semangat pelayanan BAPENDA:\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003E\\\u0022Melayani dengan Hati untuk Jambi MANTAP.\\\u0022\u003C/strong\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022\u0022, \u0022authorId\u0022: 1, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-07-03T01:45:53.634Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-07-03T01:45:53.634Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-bapenda-jambi-1783043071_dOMWnmMNV\u0022, \u0022seoDescription\u0022: \u0022\u0022}",
+    "createdAt": "2026-07-03 01:45:53.64",
+    "id": 30,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-07-03 01:45:55.296",
+    "id": 31,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-07-03 01:45:56.485",
+    "id": 32,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-07-03 01:46:40.751",
+    "id": 33,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "UNPUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "createdAt": "2026-07-03 01:47:42.769",
+    "id": 34,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "CREATE_USER",
+    "entityType": "User",
+    "oldData": null,
+    "newData": null,
+    "createdAt": "2026-07-15 04:28:21.595",
+    "id": 35,
+    "userId": 1,
+    "entityId": 6
+  },
+  {
+    "action": "CREATE",
+    "entityType": "News",
+    "oldData": null,
+    "newData": "{\u0022id\u0022: 8, \u0022slug\u0022: \u0022lorem\u0022, \u0022title\u0022: \u0022lorem\u0022, \u0022status\u0022: \u0022PENDING_REVIEW\u0022, \u0022content\u0022: \u0022\u003Cp\u003Elorem\u003C/p\u003E\u003Ch1\u003E\u003C/h1\u003E\u003Cp\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022pemutihan di ...\u0022, \u0022authorId\u0022: 3, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-07-23T03:20:04.419Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-07-23T03:20:04.419Z\u0022, \u0022categoryId\u0022: 3, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-lorem-1784776766_J5NEUFpPW\u0022, \u0022seoDescription\u0022: \u0022\u0022}",
+    "createdAt": "2026-07-23 03:20:04.422",
+    "id": 36,
+    "userId": 3,
+    "entityId": 8
+  },
+  {
+    "action": "CREATE",
+    "entityType": "News",
+    "oldData": null,
+    "newData": "{\u0022id\u0022: 9, \u0022slug\u0022: \u0022ayo-manfaatkan-pemutihan-pajak-kendaraan-bayar-lebih-ringan-dan-bangun-jambi-bersama-kabar-gembira-untuk-masyarakat-provinsi-jambi-dalam-rangka-memperingati-hut-ke-81-kemerdekaan-republik-indonesia-pemerintah-provinsi-jambi-memberikan-relaksasipemutihan-pajak-kendaraan-bermotor-bagi-masyarakat-yang-memiliki-tunggakan-pajak-program-ini-menjadi-kesempatan-bagi-masyarakat-untuk-menyelesaikan-kewajiban-pajak-kendaraan-dengan-lebih-ringan-dan-tanpa-khawatir-beban-tunggakan-sebelumnya-beragam-keringanan-menanti-masyarakat-dapat-memanfaatkan-berbagai-keringanan-antara-lain-diskon-5percent-untuk-kendaraan-roda-dua-dan-roda-tiga-diskon-25percent-untuk-kendaraan-roda-empat-atau-lebih-diskon-75percent-dari-pokok-pajak-bagi-masyarakat-yang-melakukan-balik-nama-kendaraan-cukup-bayar-pajak-satu-tahun-tanpa-denda-sesuai-ketentuan-program-periode-program-18-agustus-2026-30-september-2026-tempat-pelayanan-kantor-samsat-terdekat-di-seluruh-provinsi-jambi-jangan-sampai-kesempatan-ini-terlewat-segera-manfaatkan-program-pemutihan-pajak-kendaraan-dan-selesaikan-kewajiban-pajak-anda-pajakmu-kontribusimu-untuk-jambi-setiap-pajak-yang-dibayarkan-menjadi-bagian-dari-dukungan-terhadap-pembangunan-daerah-dan-peningkatan-pelayanan-kepada-masyarakat-mari-bersama-sama-menjadi-masyarakat-yang-taat-pajak-karena-pajak-yang-kita-bayarkan-hari-ini-adalah-bagian-dari-pembangunan-jambi-yang-lebih-maju-sehat-dan-sejahtera-dirgahayu-republik-indonesia-ke-81-bersatu-berdaulat-rakyat-sejahtera-indonesia-maju-ayo-bayar-pajak-kendaraan-anda-manfaatkan-pemutihan-sebelum-30-september-2026\u0022, \u0022title\u0022: \u0022# Ayo Manfaatkan Pemutihan Pajak Kendaraan, Bayar Lebih Ringan dan Bangun Jambi Bersama!  **Kabar gembira untuk masyarakat Provinsi Jambi!** Dalam rangka memperingati **HUT ke-81 Kemerdekaan Republik Indonesia**, Pemerintah Provinsi Jambi memberikan **relaksasi/pemutihan pajak kendaraan bermotor** bagi masyarakat yang memiliki tunggakan pajak.  Program ini menjadi kesempatan bagi masyarakat untuk menyelesaikan kewajiban pajak kendaraan dengan **lebih ringan dan tanpa khawatir beban tunggakan sebelumnya**.  ### \uD83C\uDF89 Beragam Keringanan Menanti!  Masyarakat dapat memanfaatkan berbagai keringanan, antara lain:  * **Diskon 5%** untuk kendaraan roda dua dan roda tiga. * **Diskon 2,5%** untuk kendaraan roda empat atau lebih. * **Diskon 7,5% dari pokok pajak** bagi masyarakat yang melakukan **balik nama kendaraan**. * **Cukup bayar pajak satu tahun tanpa denda** sesuai ketentuan program.  \uD83D\uDCC5 **Periode program:** **18 Agustus 2026 \u2013 30 September 2026**  \uD83D\uDCCD **Tempat pelayanan:** Kantor **SAMSAT terdekat di seluruh Provinsi Jambi**.  Jangan sampai kesempatan ini terlewat! Segera manfaatkan program pemutihan pajak kendaraan dan selesaikan kewajiban pajak Anda.  **Pajakmu, kontribusimu untuk Jambi.** Setiap pajak yang dibayarkan menjadi bagian dari dukungan terhadap pembangunan daerah dan peningkatan pelayanan kepada masyarakat.  Mari bersama-sama menjadi masyarakat yang taat pajak, karena **pajak yang kita bayarkan hari ini adalah bagian dari pembangunan Jambi yang lebih maju, sehat, dan sejahtera.**  \uD83C\uDDEE\uD83C\uDDE9 **Dirgahayu Republik Indonesia ke-81!** **Bersatu, Berdaulat, Rakyat Sejahtera, Indonesia Maju.**  **AYO! Bayar pajak kendaraan Anda. Manfaatkan pemutihan sebelum 30 September 2026!**\u0022, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Ch1\u003EAyo Manfaatkan Pemutihan Pajak Kendaraan, Bayar Lebih Ringan dan Bangun Jambi Bersama!\u003C/h1\u003E\u003Cp\u003E\u003Cstrong\u003EKabar gembira untuk masyarakat Provinsi Jambi!\u003C/strong\u003E Dalam rangka memperingati \u003Cstrong\u003EHUT ke-81 Kemerdekaan Republik Indonesia\u003C/strong\u003E, Pemerintah Provinsi Jambi memberikan \u003Cstrong\u003Erelaksasi/pemutihan pajak kendaraan bermotor\u003C/strong\u003E bagi masyarakat yang memiliki tunggakan pajak.\u003C/p\u003E\u003Cp\u003EProgram ini menjadi kesempatan bagi masyarakat untuk menyelesaikan kewajiban pajak kendaraan dengan \u003Cstrong\u003Elebih ringan dan tanpa khawatir beban tunggakan sebelumnya\u003C/strong\u003E.\u003C/p\u003E\u003Ch3\u003E\uD83C\uDF89 Beragam Keringanan Menanti!\u003C/h3\u003E\u003Cp\u003EMasyarakat dapat memanfaatkan berbagai keringanan, antara lain:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EDiskon 5%\u003C/strong\u003E untuk kendaraan roda dua dan roda tiga.\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EDiskon 2,5%\u003C/strong\u003E untuk kendaraan roda empat atau lebih.\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EDiskon 7,5% dari pokok pajak\u003C/strong\u003E bagi masyarakat yang melakukan \u003Cstrong\u003Ebalik nama kendaraan\u003C/strong\u003E.\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003ECukup bayar pajak satu tahun tanpa denda\u003C/strong\u003E sesuai ketentuan program.\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E\u003Cp\u003E\uD83D\uDCC5 \u003Cstrong\u003EPeriode program:\u003C/strong\u003E\u003Cbr\u003E\u003Cstrong\u003E18 Agustus 2026 \u2013 30 September 2026\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\uD83D\uDCCD \u003Cstrong\u003ETempat pelayanan:\u003C/strong\u003E\u003Cbr\u003EKantor \u003Cstrong\u003ESAMSAT terdekat di seluruh Provinsi Jambi\u003C/strong\u003E.\u003C/p\u003E\u003Cp\u003EJangan sampai kesempatan ini terlewat! Segera manfaatkan program pemutihan pajak kendaraan dan selesaikan kewajiban pajak Anda.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPajakmu, kontribusimu untuk Jambi.\u003C/strong\u003E\u003Cbr\u003ESetiap pajak yang dibayarkan menjadi bagian dari dukungan terhadap pembangunan daerah dan peningkatan pelayanan kepada masyarakat.\u003C/p\u003E\u003Cp\u003EMari bersama-sama menjadi masyarakat yang taat pajak, karena \u003Cstrong\u003Epajak yang kita bayarkan hari ini adalah bagian dari pembangunan Jambi yang lebih maju, sehat, dan sejahtera.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\uD83C\uDDEE\uD83C\uDDE9 \u003Cstrong\u003EDirgahayu Republik Indonesia ke-81!\u003C/strong\u003E\u003Cbr\u003E\u003Cstrong\u003EBersatu, Berdaulat, Rakyat Sejahtera, Indonesia Maju.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EAYO! Bayar pajak kendaraan Anda. Manfaatkan pemutihan sebelum 30 September 2026!\u003C/strong\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022# Ayo Manfaatkan Pemutihan Pajak Kendaraan, Bayar Lebih Ringan dan Bangun Jambi Bersama!\\n\\n**Kabar gembira untuk masyarakat Provinsi Jambi!** Dalam rangka memperingati **HUT ke-81 Kemerdekaan Republik Indonesia**, Pemerintah Provinsi Jambi memberikan **relaksasi/pemutihan pajak kendaraan bermotor** bagi masyarakat yang memiliki tunggakan pajak.\\n\\nProgram ini menjadi kesempatan bagi masyarakat untuk menyelesaikan kewajiban pajak kendaraan dengan **lebih ringan dan tanpa khawatir beban tunggakan sebelumnya**.\\n\\n### \uD83C\uDF89 Beragam Keringanan Menanti!\\n\\nMasyarakat dapat memanfaatkan berbagai keringanan, antara lain:\\n\\n* **Diskon 5%** untuk kendaraan roda dua dan roda tiga.\\n* **Diskon 2,5%** untuk kendaraan roda empat atau lebih.\\n* **Diskon 7,5% dari pokok pajak** bagi masyarakat yang melakukan **balik nama kendaraan**.\\n* **Cukup bayar pajak satu tahun tanpa denda** sesuai ketentuan program.\\n\\n\uD83D\uDCC5 **Periode program:**\\n**18 Agustus 2026 \u2013 30 September 2026**\\n\\n\uD83D\uDCCD **Tempat pelayanan:**\\nKantor **SAMSAT terdekat di seluruh Provinsi Jambi**.\\n\\nJangan sampai kesempatan ini terlewat! Segera manfaatkan program pemutihan pajak kendaraan dan selesaikan kewajiban pajak Anda.\\n\\n**Pajakmu, kontribusimu untuk Jambi.**\\nSetiap pajak yang dibayarkan menjadi bagian dari dukungan terhadap pembangunan daerah dan peningkatan pelayanan kepada masyarakat.\\n\\nMari bersama-sama menjadi masyarakat yang taat pajak, karena **pajak yang kita bayarkan hari ini adalah bagian dari pembangunan Jambi yang lebih maju, sehat, dan sejahtera.**\\n\\n\uD83C\uDDEE\uD83C\uDDE9 **Dirgahayu Republik Indonesia ke-81!**\\n**Bersatu, Berdaulat, Rakyat Sejahtera, Indonesia Maju.**\\n\\n**AYO! Bayar pajak kendaraan Anda. Manfaatkan pemutihan sebelum 30 September 2026!**\\n\u0022, \u0022authorId\u0022: 1, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-08-15T11:05:42.380Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-08-15T11:05:42.380Z\u0022, \u0022categoryId\u0022: 1, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: null, \u0022seoDescription\u0022: \u0022\u0022}",
+    "createdAt": "2026-08-15 11:05:42.389",
+    "id": 37,
+    "userId": 1,
+    "entityId": 9
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-08-15 11:06:48.165",
+    "id": 38,
+    "userId": 1,
+    "entityId": 8
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-08-15 11:07:02.955",
+    "id": 39,
+    "userId": 1,
+    "entityId": 9
+  },
+  {
+    "action": "DELETE",
+    "entityType": "News",
+    "oldData": "{\u0022id\u0022: 8, \u0022slug\u0022: \u0022lorem\u0022, \u0022title\u0022: \u0022lorem\u0022, \u0022author\u0022: {\u0022id\u0022: 3, \u0022name\u0022: \u0022Editor Konten\u0022, \u0022avatarUrl\u0022: null}, \u0022status\u0022: \u0022APPROVED\u0022, \u0022content\u0022: \u0022\u003Cp\u003Elorem\u003C/p\u003E\u003Ch1\u003E\u003C/h1\u003E\u003Cp\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022pemutihan di ...\u0022, \u0022authorId\u0022: 3, \u0022category\u0022: {\u0022id\u0022: 3, \u0022name\u0022: \u0022Kegiatan\u0022, \u0022slug\u0022: \u0022kegiatan\u0022, \u0022isActive\u0022: true, \u0022createdAt\u0022: \u00222026-06-17T11:25:44.746Z\u0022, \u0022deletedAt\u0022: null, \u0022sortOrder\u0022: 3, \u0022updatedAt\u0022: \u00222026-06-17T11:25:44.746Z\u0022, \u0022description\u0022: \u0022Liputan kegiatan dan acara BAPENDA\u0022}, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-07-23T03:20:04.419Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-08-15T11:06:48.160Z\u0022, \u0022categoryId\u0022: 3, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-lorem-1784776766_J5NEUFpPW\u0022, \u0022seoDescription\u0022: \u0022\u0022}",
+    "newData": null,
+    "createdAt": "2026-08-15 11:07:16.451",
+    "id": 40,
+    "userId": 1,
+    "entityId": 8
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-08-15 11:07:26.793",
+    "id": 41,
+    "userId": 1,
+    "entityId": 9
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-08-15 11:07:28.278",
+    "id": 42,
+    "userId": 1,
+    "entityId": 9
+  },
+  {
+    "action": "CREATE",
+    "entityType": "News",
+    "oldData": null,
+    "newData": "{\u0022id\u0022: 10, \u0022slug\u0022: \u0022program-pemutihan-pkb-dan-bbnkb-tahun-2026\u0022, \u0022title\u0022: \u0022Program pemutihan PKB dan BBNKB tahun 2026\u0022, \u0022status\u0022: \u0022DRAFT\u0022, \u0022content\u0022: \u0022\u003Cp\u003E# Ayo Manfaatkan Pemutihan Pajak Kendaraan, Bayar Lebih Ringan dan Bangun Jambi Bersama!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EKabar gembira untuk masyarakat Provinsi Jambi!\u003C/strong\u003E Dalam rangka memperingati \u003Cstrong\u003EHUT ke-81 Kemerdekaan Republik Indonesia\u003C/strong\u003E, Pemerintah Provinsi Jambi memberikan \u003Cstrong\u003Erelaksasi/pemutihan pajak kendaraan bermotor\u003C/strong\u003E bagi masyarakat yang memiliki tunggakan pajak.\u003C/p\u003E\u003Cp\u003EProgram ini menjadi kesempatan bagi masyarakat untuk menyelesaikan kewajiban pajak kendaraan dengan \u003Cstrong\u003Elebih ringan dan tanpa khawatir beban tunggakan sebelumnya\u003C/strong\u003E.\u003C/p\u003E\u003Cp\u003E### \uD83C\uDF89 Beragam Keringanan Menanti!\u003C/p\u003E\u003Cp\u003EMasyarakat dapat memanfaatkan berbagai keringanan, antara lain:\u003C/p\u003E\u003Cp\u003E* \u003Cstrong\u003EDiskon 5%\u003C/strong\u003E untuk kendaraan roda dua dan roda tiga.\u003C/p\u003E\u003Cp\u003E* \u003Cstrong\u003EDiskon 2,5%\u003C/strong\u003E untuk kendaraan roda empat atau lebih.\u003C/p\u003E\u003Cp\u003E* \u003Cstrong\u003EDiskon 7,5% dari pokok pajak\u003C/strong\u003E bagi masyarakat yang melakukan \u003Cstrong\u003Ebalik nama kendaraan\u003C/strong\u003E.\u003C/p\u003E\u003Cp\u003E* \u003Cstrong\u003ECukup bayar pajak satu tahun tanpa denda\u003C/strong\u003E sesuai ketentuan program.\u003C/p\u003E\u003Cp\u003E\uD83D\uDCC5 \u003Cstrong\u003EPeriode program:\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003E18 Agustus 2026 \u2013 30 September 2026\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\uD83D\uDCCD \u003Cstrong\u003ETempat pelayanan:\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003EKantor \u003Cstrong\u003ESAMSAT terdekat di seluruh Provinsi Jambi\u003C/strong\u003E.\u003C/p\u003E\u003Cp\u003EJangan sampai kesempatan ini terlewat! Segera manfaatkan program pemutihan pajak kendaraan dan selesaikan kewajiban pajak Anda.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPajakmu, kontribusimu untuk Jambi.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003ESetiap pajak yang dibayarkan menjadi bagian dari dukungan terhadap pembangunan daerah dan peningkatan pelayanan kepada masyarakat.\u003C/p\u003E\u003Cp\u003EMari bersama-sama menjadi masyarakat yang taat pajak, karena \u003Cstrong\u003Epajak yang kita bayarkan hari ini adalah bagian dari pembangunan Jambi yang lebih maju, sehat, dan sejahtera.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\uD83C\uDDEE\uD83C\uDDE9 \u003Cstrong\u003EDirgahayu Republik Indonesia ke-81!\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EBersatu, Berdaulat, Rakyat Sejahtera, Indonesia Maju.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EAYO! Bayar pajak kendaraan Anda. Manfaatkan pemutihan sebelum 30 September 2026!\u003C/strong\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022Ayo manfaatkan Pemutihan Pajak Kendaraan Provinsi Jambi! \uD83C\uDDEE\uD83C\uDDE9\\n\\nDalam rangka HUT ke-81 Kemerdekaan RI, Pemerintah Provinsi Jambi memberikan keringanan pajak kendaraan pada 18 Agustus\u201330 September 2026.\\n\\n\uD83C\uDF89 Keringanan:\\n\\n5% untuk roda 2 dan roda 3\\n2,5% untuk roda 4 atau lebih\\n7,5% bagi yang melakukan balik nama kendaraan\\nBayar pajak 1 tahun tanpa denda, sesuai ketentuan program\\n\\n\uD83D\uDCCD Layanan tersedia di SAMSAT terdekat di seluruh Provinsi Jambi.\\n\\nJangan lewatkan kesempatan ini!\\nPajakmu, kontribusimu untuk Jambi. Bersama kita bangun Jambi yang lebih maju, sehat, dan sejahtera! \uD83C\uDDEE\uD83C\uDDE9\u0022, \u0022authorId\u0022: 1, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-08-15T11:39:20.618Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-08-15T11:39:20.618Z\u0022, \u0022categoryId\u0022: 2, \u0022publishedAt\u0022: null, \u0022thumbnailUrl\u0022: \u0022https://ik.imagekit.io/bapendajambi/news/news-program-pemutihan-1786793756_RgnsKfdBU\u0022, \u0022seoDescription\u0022: \u0022\u0022}",
+    "createdAt": "2026-08-15 11:39:20.625",
+    "id": 43,
+    "userId": 1,
+    "entityId": 10
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-08-15 11:39:24.983",
+    "id": 44,
+    "userId": 1,
+    "entityId": 10
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-08-15 11:39:26.18",
+    "id": 45,
+    "userId": 1,
+    "entityId": 10
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-08-15 11:39:27.165",
+    "id": 46,
+    "userId": 1,
+    "entityId": 10
+  },
+  {
+    "action": "DELETE",
+    "entityType": "News",
+    "oldData": "{\u0022id\u0022: 9, \u0022slug\u0022: \u0022ayo-manfaatkan-pemutihan-pajak-kendaraan-bayar-lebih-ringan-dan-bangun-jambi-bersama-kabar-gembira-untuk-masyarakat-provinsi-jambi-dalam-rangka-memperingati-hut-ke-81-kemerdekaan-republik-indonesia-pemerintah-provinsi-jambi-memberikan-relaksasipemutihan-pajak-kendaraan-bermotor-bagi-masyarakat-yang-memiliki-tunggakan-pajak-program-ini-menjadi-kesempatan-bagi-masyarakat-untuk-menyelesaikan-kewajiban-pajak-kendaraan-dengan-lebih-ringan-dan-tanpa-khawatir-beban-tunggakan-sebelumnya-beragam-keringanan-menanti-masyarakat-dapat-memanfaatkan-berbagai-keringanan-antara-lain-diskon-5percent-untuk-kendaraan-roda-dua-dan-roda-tiga-diskon-25percent-untuk-kendaraan-roda-empat-atau-lebih-diskon-75percent-dari-pokok-pajak-bagi-masyarakat-yang-melakukan-balik-nama-kendaraan-cukup-bayar-pajak-satu-tahun-tanpa-denda-sesuai-ketentuan-program-periode-program-18-agustus-2026-30-september-2026-tempat-pelayanan-kantor-samsat-terdekat-di-seluruh-provinsi-jambi-jangan-sampai-kesempatan-ini-terlewat-segera-manfaatkan-program-pemutihan-pajak-kendaraan-dan-selesaikan-kewajiban-pajak-anda-pajakmu-kontribusimu-untuk-jambi-setiap-pajak-yang-dibayarkan-menjadi-bagian-dari-dukungan-terhadap-pembangunan-daerah-dan-peningkatan-pelayanan-kepada-masyarakat-mari-bersama-sama-menjadi-masyarakat-yang-taat-pajak-karena-pajak-yang-kita-bayarkan-hari-ini-adalah-bagian-dari-pembangunan-jambi-yang-lebih-maju-sehat-dan-sejahtera-dirgahayu-republik-indonesia-ke-81-bersatu-berdaulat-rakyat-sejahtera-indonesia-maju-ayo-bayar-pajak-kendaraan-anda-manfaatkan-pemutihan-sebelum-30-september-2026\u0022, \u0022title\u0022: \u0022# Ayo Manfaatkan Pemutihan Pajak Kendaraan, Bayar Lebih Ringan dan Bangun Jambi Bersama!  **Kabar gembira untuk masyarakat Provinsi Jambi!** Dalam rangka memperingati **HUT ke-81 Kemerdekaan Republik Indonesia**, Pemerintah Provinsi Jambi memberikan **relaksasi/pemutihan pajak kendaraan bermotor** bagi masyarakat yang memiliki tunggakan pajak.  Program ini menjadi kesempatan bagi masyarakat untuk menyelesaikan kewajiban pajak kendaraan dengan **lebih ringan dan tanpa khawatir beban tunggakan sebelumnya**.  ### \uD83C\uDF89 Beragam Keringanan Menanti!  Masyarakat dapat memanfaatkan berbagai keringanan, antara lain:  * **Diskon 5%** untuk kendaraan roda dua dan roda tiga. * **Diskon 2,5%** untuk kendaraan roda empat atau lebih. * **Diskon 7,5% dari pokok pajak** bagi masyarakat yang melakukan **balik nama kendaraan**. * **Cukup bayar pajak satu tahun tanpa denda** sesuai ketentuan program.  \uD83D\uDCC5 **Periode program:** **18 Agustus 2026 \u2013 30 September 2026**  \uD83D\uDCCD **Tempat pelayanan:** Kantor **SAMSAT terdekat di seluruh Provinsi Jambi**.  Jangan sampai kesempatan ini terlewat! Segera manfaatkan program pemutihan pajak kendaraan dan selesaikan kewajiban pajak Anda.  **Pajakmu, kontribusimu untuk Jambi.** Setiap pajak yang dibayarkan menjadi bagian dari dukungan terhadap pembangunan daerah dan peningkatan pelayanan kepada masyarakat.  Mari bersama-sama menjadi masyarakat yang taat pajak, karena **pajak yang kita bayarkan hari ini adalah bagian dari pembangunan Jambi yang lebih maju, sehat, dan sejahtera.**  \uD83C\uDDEE\uD83C\uDDE9 **Dirgahayu Republik Indonesia ke-81!** **Bersatu, Berdaulat, Rakyat Sejahtera, Indonesia Maju.**  **AYO! Bayar pajak kendaraan Anda. Manfaatkan pemutihan sebelum 30 September 2026!**\u0022, \u0022author\u0022: {\u0022id\u0022: 1, \u0022name\u0022: \u0022Super Administrator\u0022, \u0022avatarUrl\u0022: null}, \u0022status\u0022: \u0022PUBLISHED\u0022, \u0022content\u0022: \u0022\u003Ch1\u003EAyo Manfaatkan Pemutihan Pajak Kendaraan, Bayar Lebih Ringan dan Bangun Jambi Bersama!\u003C/h1\u003E\u003Cp\u003E\u003Cstrong\u003EKabar gembira untuk masyarakat Provinsi Jambi!\u003C/strong\u003E Dalam rangka memperingati \u003Cstrong\u003EHUT ke-81 Kemerdekaan Republik Indonesia\u003C/strong\u003E, Pemerintah Provinsi Jambi memberikan \u003Cstrong\u003Erelaksasi/pemutihan pajak kendaraan bermotor\u003C/strong\u003E bagi masyarakat yang memiliki tunggakan pajak.\u003C/p\u003E\u003Cp\u003EProgram ini menjadi kesempatan bagi masyarakat untuk menyelesaikan kewajiban pajak kendaraan dengan \u003Cstrong\u003Elebih ringan dan tanpa khawatir beban tunggakan sebelumnya\u003C/strong\u003E.\u003C/p\u003E\u003Ch3\u003E\uD83C\uDF89 Beragam Keringanan Menanti!\u003C/h3\u003E\u003Cp\u003EMasyarakat dapat memanfaatkan berbagai keringanan, antara lain:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EDiskon 5%\u003C/strong\u003E untuk kendaraan roda dua dan roda tiga.\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EDiskon 2,5%\u003C/strong\u003E untuk kendaraan roda empat atau lebih.\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EDiskon 7,5% dari pokok pajak\u003C/strong\u003E bagi masyarakat yang melakukan \u003Cstrong\u003Ebalik nama kendaraan\u003C/strong\u003E.\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003ECukup bayar pajak satu tahun tanpa denda\u003C/strong\u003E sesuai ketentuan program.\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E\u003Cp\u003E\uD83D\uDCC5 \u003Cstrong\u003EPeriode program:\u003C/strong\u003E\u003Cbr\u003E\u003Cstrong\u003E18 Agustus 2026 \u2013 30 September 2026\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\uD83D\uDCCD \u003Cstrong\u003ETempat pelayanan:\u003C/strong\u003E\u003Cbr\u003EKantor \u003Cstrong\u003ESAMSAT terdekat di seluruh Provinsi Jambi\u003C/strong\u003E.\u003C/p\u003E\u003Cp\u003EJangan sampai kesempatan ini terlewat! Segera manfaatkan program pemutihan pajak kendaraan dan selesaikan kewajiban pajak Anda.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPajakmu, kontribusimu untuk Jambi.\u003C/strong\u003E\u003Cbr\u003ESetiap pajak yang dibayarkan menjadi bagian dari dukungan terhadap pembangunan daerah dan peningkatan pelayanan kepada masyarakat.\u003C/p\u003E\u003Cp\u003EMari bersama-sama menjadi masyarakat yang taat pajak, karena \u003Cstrong\u003Epajak yang kita bayarkan hari ini adalah bagian dari pembangunan Jambi yang lebih maju, sehat, dan sejahtera.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\uD83C\uDDEE\uD83C\uDDE9 \u003Cstrong\u003EDirgahayu Republik Indonesia ke-81!\u003C/strong\u003E\u003Cbr\u003E\u003Cstrong\u003EBersatu, Berdaulat, Rakyat Sejahtera, Indonesia Maju.\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EAYO! Bayar pajak kendaraan Anda. Manfaatkan pemutihan sebelum 30 September 2026!\u003C/strong\u003E\u003C/p\u003E\u0022, \u0022excerpt\u0022: \u0022# Ayo Manfaatkan Pemutihan Pajak Kendaraan, Bayar Lebih Ringan dan Bangun Jambi Bersama!\\n\\n**Kabar gembira untuk masyarakat Provinsi Jambi!** Dalam rangka memperingati **HUT ke-81 Kemerdekaan Republik Indonesia**, Pemerintah Provinsi Jambi memberikan **relaksasi/pemutihan pajak kendaraan bermotor** bagi masyarakat yang memiliki tunggakan pajak.\\n\\nProgram ini menjadi kesempatan bagi masyarakat untuk menyelesaikan kewajiban pajak kendaraan dengan **lebih ringan dan tanpa khawatir beban tunggakan sebelumnya**.\\n\\n### \uD83C\uDF89 Beragam Keringanan Menanti!\\n\\nMasyarakat dapat memanfaatkan berbagai keringanan, antara lain:\\n\\n* **Diskon 5%** untuk kendaraan roda dua dan roda tiga.\\n* **Diskon 2,5%** untuk kendaraan roda empat atau lebih.\\n* **Diskon 7,5% dari pokok pajak** bagi masyarakat yang melakukan **balik nama kendaraan**.\\n* **Cukup bayar pajak satu tahun tanpa denda** sesuai ketentuan program.\\n\\n\uD83D\uDCC5 **Periode program:**\\n**18 Agustus 2026 \u2013 30 September 2026**\\n\\n\uD83D\uDCCD **Tempat pelayanan:**\\nKantor **SAMSAT terdekat di seluruh Provinsi Jambi**.\\n\\nJangan sampai kesempatan ini terlewat! Segera manfaatkan program pemutihan pajak kendaraan dan selesaikan kewajiban pajak Anda.\\n\\n**Pajakmu, kontribusimu untuk Jambi.**\\nSetiap pajak yang dibayarkan menjadi bagian dari dukungan terhadap pembangunan daerah dan peningkatan pelayanan kepada masyarakat.\\n\\nMari bersama-sama menjadi masyarakat yang taat pajak, karena **pajak yang kita bayarkan hari ini adalah bagian dari pembangunan Jambi yang lebih maju, sehat, dan sejahtera.**\\n\\n\uD83C\uDDEE\uD83C\uDDE9 **Dirgahayu Republik Indonesia ke-81!**\\n**Bersatu, Berdaulat, Rakyat Sejahtera, Indonesia Maju.**\\n\\n**AYO! Bayar pajak kendaraan Anda. Manfaatkan pemutihan sebelum 30 September 2026!**\\n\u0022, \u0022authorId\u0022: 1, \u0022category\u0022: {\u0022id\u0022: 1, \u0022name\u0022: \u0022Pengumuman\u0022, \u0022slug\u0022: \u0022pengumuman\u0022, \u0022isActive\u0022: true, \u0022createdAt\u0022: \u00222026-06-17T11:25:44.065Z\u0022, \u0022deletedAt\u0022: null, \u0022sortOrder\u0022: 1, \u0022updatedAt\u0022: \u00222026-06-17T11:25:44.065Z\u0022, \u0022description\u0022: \u0022Pengumuman resmi dari BAPENDA Provinsi Jambi\u0022}, \u0022seoTitle\u0022: \u0022\u0022, \u0022createdAt\u0022: \u00222026-08-15T11:05:42.380Z\u0022, \u0022deletedAt\u0022: null, \u0022updatedAt\u0022: \u00222026-08-15T11:07:28.275Z\u0022, \u0022categoryId\u0022: 1, \u0022publishedAt\u0022: \u00222026-08-15T11:07:28.274Z\u0022, \u0022thumbnailUrl\u0022: null, \u0022seoDescription\u0022: \u0022\u0022}",
+    "newData": null,
+    "createdAt": "2026-08-15 11:39:33.33",
+    "id": 47,
+    "userId": 1,
+    "entityId": 9
+  },
+  {
+    "action": "DELETE",
+    "entityType": "Gallery",
+    "oldData": null,
+    "newData": null,
+    "createdAt": "2026-08-15 11:41:20.883",
+    "id": 48,
+    "userId": 1,
+    "entityId": 3
+  },
+  {
+    "action": "DELETE",
+    "entityType": "Gallery",
+    "oldData": null,
+    "newData": null,
+    "createdAt": "2026-08-15 11:41:22.954",
+    "id": 49,
+    "userId": 1,
+    "entityId": 2
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-08-16 07:35:13.538",
+    "id": 50,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "APPROVE",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "newData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "createdAt": "2026-08-16 07:35:15.322",
+    "id": 51,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "PUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022APPROVED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "createdAt": "2026-08-16 07:35:16.362",
+    "id": 52,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "UNPUBLISH",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022PUBLISHED\u0022}",
+    "newData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "createdAt": "2026-08-16 07:35:43.481",
+    "id": 53,
+    "userId": 1,
+    "entityId": 7
+  },
+  {
+    "action": "SUBMIT",
+    "entityType": "News",
+    "oldData": "{\u0022status\u0022: \u0022DRAFT\u0022}",
+    "newData": "{\u0022status\u0022: \u0022PENDING_REVIEW\u0022}",
+    "createdAt": "2026-08-16 08:04:35.268",
+    "id": 54,
+    "userId": 1,
+    "entityId": 7
+  }
+]

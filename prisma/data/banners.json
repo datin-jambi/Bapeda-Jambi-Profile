@@ -1,0 +1,80 @@
+﻿[
+  {
+    "title": "Layanan Pajak Daerah Provinsi Jambi",
+    "description": "Kami hadir untuk memberikan pelayanan terbaik dalam pengelolaan pajak daerah",
+    "imageUrl": "https://ik.imagekit.io/bapendajambi/banner/banner-layanan-pajak-daerah-provinsi-jambi-1782137270_vy4Ml4--Y",
+    "buttonText": "Pelajari Lebih Lanjut",
+    "buttonUrl": "/profil/sejarah",
+    "sortOrder": 1,
+    "isActive": true,
+    "createdAt": "2026-06-17 11:25:49.534",
+    "updatedAt": "2026-06-22 14:07:56.643",
+    "deletedAt": null,
+    "id": 1
+  },
+  {
+    "title": "E-Samsat: Pembayaran Pajak Online",
+    "description": "Bayar pajak kendaraan bermotor Anda dengan mudah melalui E-Samsat",
+    "imageUrl": "https://ik.imagekit.io/bapendajambi/banner/banner-e-samsat-pembayaran-pajak-online-1782137485_awHhNLwwn",
+    "buttonText": "Bayar Sekarang",
+    "buttonUrl": "https://esamsat.jambiprov.go.id",
+    "sortOrder": 2,
+    "isActive": false,
+    "createdAt": "2026-06-17 11:25:49.626",
+    "updatedAt": "2026-08-16 08:05:12.178",
+    "deletedAt": null,
+    "id": 2
+  },
+  {
+    "title": "Optimalisasi Pendapatan Daerah",
+    "description": "Bersama membangun Provinsi Jambi yang maju dan sejahtera",
+    "imageUrl": "https://ik.imagekit.io/o7kpef481o/bapenda/bapenda/banner-3.jpg",
+    "buttonText": "Lihat Program",
+    "buttonUrl": "/layanan",
+    "sortOrder": 3,
+    "isActive": true,
+    "createdAt": "2026-06-17 11:25:49.671",
+    "updatedAt": "2026-07-03 01:43:46.488",
+    "deletedAt": "2026-07-03 01:43:46.487",
+    "id": 3
+  },
+  {
+    "title": "APRESIASI TAAT PAJAK BERHADIAH EMAS ",
+    "description": "",
+    "imageUrl": "https://ik.imagekit.io/bapendajambi/banner/banner-apresiasi-taat-pajak-berhadiah-emas-1782806404_zUHkufq9t",
+    "buttonText": "",
+    "buttonUrl": "https://ampar.id/manjakan-wajib-pajak-pemprov-jambi-bagi-bagi-emas-hingga-motor-lewat-program-apresiasi-taat-pajak/",
+    "sortOrder": 0,
+    "isActive": true,
+    "createdAt": "2026-06-30 07:32:15.627",
+    "updatedAt": "2026-06-30 08:00:42.975",
+    "deletedAt": null,
+    "id": 4
+  },
+  {
+    "title": "ISO 27001:2022",
+    "description": "",
+    "imageUrl": "https://ik.imagekit.io/bapendajambi/banner/banner-banner-1782956812_6TF1T8RpK",
+    "buttonText": "",
+    "buttonUrl": "",
+    "sortOrder": 0,
+    "isActive": true,
+    "createdAt": "2026-07-02 01:47:14.082",
+    "updatedAt": "2026-07-02 01:47:20.134",
+    "deletedAt": null,
+    "id": 5
+  },
+  {
+    "title": "BAPENDA JAMBI ",
+    "description": "",
+    "imageUrl": "https://ik.imagekit.io/bapendajambi/banner/banner-banner-1783042931_ZyVL6OCNX",
+    "buttonText": "",
+    "buttonUrl": "",
+    "sortOrder": 0,
+    "isActive": false,
+    "createdAt": "2026-07-03 01:42:19.608",
+    "updatedAt": "2026-08-16 08:04:57.86",
+    "deletedAt": null,
+    "id": 6
+  }
+]

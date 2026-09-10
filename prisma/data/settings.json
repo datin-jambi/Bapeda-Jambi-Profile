@@ -1,0 +1,110 @@
+﻿[
+  {
+    "key": "site_name",
+    "value": "BAPENDA Provinsi Jambi",
+    "updatedAt": "2026-06-26 07:06:11.543",
+    "id": 1
+  },
+  {
+    "key": "site_description",
+    "value": "Website Resmi Badan Pendapatan Daerah Provinsi Jambi",
+    "updatedAt": "2026-06-26 07:06:11.543",
+    "id": 2
+  },
+  {
+    "key": "site_keywords",
+    "value": "bapenda, pajak, jambi, samsat, pkb, bbnkb",
+    "updatedAt": "2026-06-26 07:06:11.543",
+    "id": 3
+  },
+  {
+    "key": "meta_author",
+    "value": "BAPENDA Provinsi Jambi",
+    "updatedAt": "2026-06-26 07:06:11.543",
+    "id": 4
+  },
+  {
+    "key": "logo_url",
+    "value": "",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 5
+  },
+  {
+    "key": "favicon_url",
+    "value": "",
+    "updatedAt": "2026-06-26 07:06:11.543",
+    "id": 6
+  },
+  {
+    "key": "contact_address",
+    "value": "Jl. Kolonel Tarmizi Kodir Tambak Sari no 71",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 7
+  },
+  {
+    "key": "contact_phone",
+    "value": "08117404770",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 8
+  },
+  {
+    "key": "contact_email",
+    "value": "info@bapenda.jambiprov.go.id",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 9
+  },
+  {
+    "key": "contact_fax",
+    "value": "",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 10
+  },
+  {
+    "key": "office_hours",
+    "value": "Senin - Jumat: 08.00 - 16.00 WIB",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 11
+  },
+  {
+    "key": "social_facebook",
+    "value": "https://facebook.com/bapendajambi",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 12
+  },
+  {
+    "key": "social_twitter",
+    "value": "https://twitter.com/bapendajambi",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 13
+  },
+  {
+    "key": "social_instagram",
+    "value": "https://www.instagram.com/bapenda_jambi_prov/",
+    "updatedAt": "2026-06-26 07:06:11.544",
+    "id": 14
+  },
+  {
+    "key": "social_youtube",
+    "value": "https://youtube.com/bapendajambi",
+    "updatedAt": "2026-06-26 07:06:11.545",
+    "id": 15
+  },
+  {
+    "key": "social_tiktok",
+    "value": "",
+    "updatedAt": "2026-06-26 07:06:11.543",
+    "id": 16
+  },
+  {
+    "key": "google_analytics_id",
+    "value": "",
+    "updatedAt": "2026-06-26 07:06:11.545",
+    "id": 17
+  },
+  {
+    "key": "footer_text",
+    "value": "\u00A9 2026 BAPENDA Provinsi Jambi. Hak Cipta Dilindungi. bid.IT",
+    "updatedAt": "2026-06-26 07:06:11.545",
+    "id": 18
+  }
+]
