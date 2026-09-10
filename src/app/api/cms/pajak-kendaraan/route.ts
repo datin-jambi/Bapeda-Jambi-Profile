@@ -65,21 +65,30 @@ function shouldShowTagihan(tgAkhirPkb: string): boolean {
 export const GET = withErrorHandler(async (request: NextRequest) => {
   const user = await getAuthUser();
   if (!user) throw new UnauthorizedError();
-  if (!hasPermission(user.role, "cek:pajak")) throw new ForbiddenError("Tidak memiliki akses");
+
+  // Petugas hanya melihat lognya sendiri; Super_Admin/Admin melihat semua.
+  const canViewAll = hasPermission(user.role, "view:pajak-logs");
+  if (!canViewAll && !hasPermission(user.role, "cek:pajak")) {
+    throw new ForbiddenError("Tidak memiliki akses");
+  }
 
   const { searchParams } = request.nextUrl;
   const { page, limit, skip } = getPaginationParams(searchParams);
   const search = searchParams.get("search") || undefined;
-
-  const isAdmin = user.role === "Super_Admin" || user.role === "Admin";
-  const userId = isAdmin ? undefined : user.id;
+  const status = searchParams.get("status") || undefined;
+  const dateFrom = searchParams.get("dateFrom") || undefined;
+  const dateTo = searchParams.get("dateTo") || undefined;
+  const petugasId = Number(searchParams.get("userId")) || undefined;
 
   const { data, total } = await vehicleTaxRepository.findAll({
     page,
     limit,
     skip,
-    userId,
+    userId: canViewAll ? petugasId : user.id,
     search,
+    status,
+    dateFrom,
+    dateTo,
   });
 
   return ApiResponse.paginated(data, buildMeta(page, limit, total));

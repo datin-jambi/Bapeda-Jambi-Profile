@@ -16,6 +16,9 @@ interface FindAllParams {
   skip: number;
   userId?: number;
   search?: string;
+  status?: string;
+  dateFrom?: string;
+  dateTo?: string;
 }
 
 export const vehicleTaxRepository = {
@@ -40,15 +43,36 @@ export const vehicleTaxRepository = {
     });
   },
 
-  async findAll({ page, limit, skip, userId, search }: FindAllParams) {
+  async findAll({ page, limit, skip, userId, search, status, dateFrom, dateTo }: FindAllParams) {
     const where: Record<string, unknown> = {};
 
     if (userId) {
       where.userId = userId;
     }
 
+    if (status) {
+      where.status = status;
+    }
+
+    // dateTo inklusif: batas atas = awal hari berikutnya.
+    if (dateFrom || dateTo) {
+      const range: { gte?: Date; lt?: Date } = {};
+      if (dateFrom) range.gte = new Date(`${dateFrom}T00:00:00`);
+      if (dateTo) {
+        const end = new Date(`${dateTo}T00:00:00`);
+        end.setDate(end.getDate() + 1);
+        range.lt = end;
+      }
+      where.createdAt = range;
+    }
+
     if (search) {
-      where.licensePlate = { contains: search, mode: "insensitive" };
+      where.OR = [
+        { licensePlate: { contains: search, mode: "insensitive" } },
+        { lokasi: { contains: search, mode: "insensitive" } },
+        { notes: { contains: search, mode: "insensitive" } },
+        { user: { name: { contains: search, mode: "insensitive" } } },
+      ];
     }
 
     const [data, total] = await Promise.all([
@@ -56,7 +80,7 @@ export const vehicleTaxRepository = {
         where,
         include: {
           user: {
-            select: { id: true, name: true },
+            select: { id: true, name: true, role: true },
           },
         },
         orderBy: { createdAt: "desc" },

@@ -96,7 +96,8 @@ export type Permission =
   | "edit:news"
   | "create:gallery"
   | "edit:gallery"
-  | "cek:pajak";
+  | "cek:pajak"
+  | "view:pajak-logs";
 
 export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   Super_Admin: [
@@ -116,6 +117,7 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "edit:news",
     "create:gallery",
     "edit:gallery",
+    "view:pajak-logs",
   ],
   Admin: [
     "approve:news",
@@ -129,6 +131,7 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "edit:news",
     "create:gallery",
     "edit:gallery",
+    "view:pajak-logs",
   ],
   Editor: ["create:news", "edit:news", "create:gallery", "edit:gallery"],
   Ketua_Uptd: ["create:news", "edit:news", "create:gallery", "edit:gallery"],
